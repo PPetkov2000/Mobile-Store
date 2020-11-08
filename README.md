@@ -1,1 +1,2 @@
 # Mobile-Store
+- Initial setup
