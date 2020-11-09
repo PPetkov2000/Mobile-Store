@@ -1,6 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  margin-top: 75px; /* because of the navbar */
+}
 
+.logo {
+  width: 10rem;
+}
 
+.full-width {
+  width: 100%;
+}
 
 header i {
   font-size: 1.5rem !important;
@@ -125,12 +139,14 @@ header i {
 }
 
 .cart-product-name,
-.place-order-product-name {
+.place-order-product-name,
+.order-item-name {
   color: #212529;
 }
 
 .cart-product-name:hover,
-.place-order-product-name:hover {
+.place-order-product-name:hover,
+.order-item-name:hover {
   color: #e0aa13;
   text-decoration: none;
 }
@@ -152,6 +168,12 @@ header i {
 
 .product-rating i {
   color: #e6ad11;
+}
+
+.product-rating-text {
+  font-size: 1rem;
+  color: gray;
+  margin-bottom: 0;
 }
 
 .free-delivery {
@@ -200,11 +222,7 @@ header i {
 .continue-btn {
   background-color: #f3be2d;
   font-size: 0.9rem;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
+  width: 100%;
 }
 
 .continue-btn:hover {
@@ -249,7 +267,8 @@ header i {
   height: 70%;
 }
 
-.place-order-div {
+.place-order-div,
+.place-order-summary-div {
   background-color: rgb(252, 237, 237);
   padding: 1rem;
   box-shadow: 0px 1px 6px 2px #888888;
@@ -290,6 +309,31 @@ header i {
   color: #212529;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  border-bottom: 3px solid black;
+}
+
+.order-item-div,
+.order-summary-div {
+  background-color: rgb(252, 237, 237);
+  padding: 1rem;
+  box-shadow: 0px 1px 6px 2px #888888;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  border-top: 1px solid gray;
+}
+
+.order-item-img {
+  width: 50%;
+  height: 70%;
+}
+
+.order-title-color {
+  color: #df500e;
 }
 
 /* Register and Login pages */
