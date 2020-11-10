@@ -1,5 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin-top: 75px; /* because of the navbar */
+}
+
+.logo {
+  width: 10rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
 header i {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
   color: #f0c040;
   margin-left: 0.5rem;
   cursor: pointer;
@@ -38,6 +56,7 @@ header i {
   background-color: #f0c040;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
+  margin-bottom: 0;
 }
 
 .product-card {
@@ -45,6 +64,10 @@ header i {
   background-color: rgb(228, 225, 225);
   border: 1px solid gray;
   padding-bottom: 1rem;
+}
+
+.product-card-subtitle {
+  color: gray;
 }
 
 .btn {
@@ -108,6 +131,12 @@ header i {
   align-items: center;
   padding: 1rem 0.5rem;
   border-top: 1px solid gray;
+}
+
+.cart-card {
+  background-color: rgb(252, 237, 237);
+  padding: 0.5rem;
+  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .cart-product-name,
@@ -304,8 +333,43 @@ header i {
   height: 70%;
 }
 
-.order-title-color {
+.order-title-color,
+.profile-title-color {
   color: #df500e;
+}
+
+.update-profile-form {
+  background-color: rgb(252, 237, 237);
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0px 1px 6px 2px #888888;
+}
+
+.update-profile-btn {
+  background-color: #f3be2d;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.update-profile-btn:hover {
+  background-color: #e0aa13;
+  border: 1px solid black;
+}
+
+.paypal-button-row > div {
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* .profile-order-details-btn {
+  color: black;
+} */
+
+.profile-order-details-btn:hover {
+  color: #df500e;
+  text-decoration: none;
 }
 
 /* Register and Login pages */
