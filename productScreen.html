@@ -1,0 +1,103 @@
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Row, Col } from "react-bootstrap";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { listProductDetails } from "../actions/productActions";
+import Rating from "../components/Rating";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import ProductReview from "../components/ProductReview";
+
+function ProductScreen({ match, history }) {
+  const productId = match.params.id;
+
+  const dispatch = useDispatch();
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
+
+  useEffect(() => {
+    if (!product || product._id !== productId) {
+      dispatch(listProductDetails(productId));
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
+  }, [productId, dispatch, product]);
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${productId}`);
+  };
+
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <Message variant="danger">{error}</Message>
+  ) : (
+    <section className="product-details">
+      <Row xs={1} sm={1} md={3}>
+        <Col>
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="product-details-img"
+          />
+        </Col>
+        <Col>
+          <h3 className="product-details-title">{product.name}</h3>
+          <Rating
+            value={product.rating}
+            text={`Clients reviewed: ${
+              product.reviews && product.reviews.length
+            }`}
+          />
+          <div className="product-features">
+            <p>
+              <strong>OS:</strong> {product.OS}
+            </p>
+            <p>
+              <strong>Memory:</strong> {product.memory}GB, {product.RAM}RAM
+            </p>
+            <p>
+              <strong>SIM:</strong> {product.SIM}
+            </p>
+            <p>
+              <strong>Network:</strong> {product.network}
+            </p>
+            <p>
+              <strong>Size:</strong> {product.size} inches
+            </p>
+            <p>
+              <strong>Weight:</strong> {product.weight} g
+            </p>
+            <p>
+              <strong>Color:</strong> {product.color}
+            </p>
+            <p>
+              <strong>Release date:</strong> {product.releaseDate}
+            </p>
+          </div>
+        </Col>
+        <Col>
+          <div className="product-order-container">
+            <h3 className="product-price">Price: ${product.price}</h3>
+            <i className="fa fa-truck" aria-hidden="true"></i>
+            <span className="free-delivery">free delivery</span>
+            <button
+              className="btn full-width add-to-cart"
+              onClick={addToCartHandler}
+            >
+              <i className="fa fa-cart-plus btn-icon" aria-hidden="true"></i>{" "}
+              add to cart
+            </button>
+            <button className="btn full-width add-to-favourites">
+              <i className="fa fa-heart" aria-hidden="true"></i> add to
+              favourites
+            </button>
+          </div>
+        </Col>
+      </Row>
+      <ProductReview productId={productId} />
+    </section>
+  );
+}
+
+export default ProductScreen;
