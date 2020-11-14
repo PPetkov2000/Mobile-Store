@@ -1,0 +1,61 @@
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+
+module.exports = {
+  users: [
+    {
+      email: "plamen1@email.com",
+      username: "Plamen",
+      password: bcrypt.hashSync("123", 10),
+      isAdmin: true,
+      favouriteProducts: [],
+    },
+    {
+      email: "test@email.com",
+      username: "Test",
+      password: bcrypt.hashSync("123", 10),
+      isAdmin: false,
+      favouriteProducts: [],
+    },
+  ],
+  products: [
+    {
+      brand: "Samsung",
+      name: "Samsung Galaxy J6",
+      imageUrl: "../../images/samsung.jpg",
+      OS: "Android 9.0",
+      memory: 32,
+      RAM: 4,
+      network: "4G",
+      SIM: "Dual SIM",
+      price: 359.99,
+      size: 6.1,
+      weight: 157,
+      color: "Black",
+      releaseDate: "4 November 2020",
+      reviews: [],
+      rating: 4.5,
+      countInStock: 4,
+      creator: mongoose.Types.ObjectId("5fa704b6f1fa2336a07528cc"),
+    },
+    {
+      brand: "Samsung",
+      name: "Samsung Galaxy S10",
+      imageUrl: "../../images/samsung.jpg",
+      OS: "Android 10.0",
+      memory: 64,
+      RAM: 8,
+      network: "4G",
+      SIM: "Dual SIM",
+      price: 499.99,
+      size: 6.1,
+      weight: 157,
+      color: "Black",
+      releaseDate: "4 November 2020",
+      reviews: [],
+      rating: 4,
+      countInStock: 2,
+      creator: mongoose.Types.ObjectId("5fa704b6f1fa2336a07528cc"),
+    },
+  ],
+};
