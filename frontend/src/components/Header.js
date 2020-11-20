@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -62,14 +62,14 @@ function Header() {
             </button>
           </Form>
           <Nav className="ml-auto">
-            <Link to="/" className="nav-link active">
+            <NavLink to="/" exact className="nav-link">
               Home
-            </Link>
+            </NavLink>
             {userInfo ? (
               <>
-                <Link to="/profile" className="nav-link">
+                <NavLink to="/profile" className="nav-link">
                   {userInfo.username}
-                </Link>
+                </NavLink>
                 <Nav.Link className="nav-link" onClick={logoutHandler}>
                   Logout
                 </Nav.Link>
