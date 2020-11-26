@@ -17,17 +17,31 @@ body {
   width: 100%;
 }
 
+.product-carousel {
+  margin-top: -50px;
+  margin-bottom: 5rem;
+  height: 70vh;
+}
+
+.product-carousel .carousel-inner {
+  height: 90%;
+}
+
+.product-carousel .carousel-inner .carousel-item {
+  height: 100%;
+}
+
 .product-carousel-img-link {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 60%;
+  height: 100%;
   margin: 0 auto;
 }
 
 .product-carousel-img {
-  /* max-height: 60vh; */
-  height: 80vh;
+  height: 100%;
 }
 
 header i {
