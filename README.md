@@ -18,6 +18,15 @@ npm install
 ```sh
 cd frontend => npm install
 ```
+4. Create .env file and add this in the root folder
+```sh
+PORT=6000
+MONGO_URI=your_mongoDB_uri
+JWT_SECRET=your_jwt_secret
+
+### For the PayPal button to work add this
+PAYPAL_CLIENT_ID=your_paypal_client_id
+```
 4. Run Application
 ```sh
 run frontend => npm run client
