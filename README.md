@@ -10,9 +10,21 @@
 ```sh
 git clone https://github.com/PPetkov2000/Mobile-Store
 ```
-2. Install NPM packages
+2. Install NPM backend packages
 ```sh
 npm install
+```
+3. Install NPM frontend packages
+```sh
+cd frontend -> npm install
+```
+4. Run Application (both frontend and backend)
+```sh
+npm run dev
+```
+5. Go to
+```sh
+http://localhost:3000/
 ```
 
 ## General Requirements
