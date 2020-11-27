@@ -24,16 +24,16 @@ PORT=6000
 MONGO_URI=your_mongoDB_uri
 JWT_SECRET=your_jwt_secret
 
-### For the PayPal button to work add this
+<h2>For the PayPal button to work add this</h2>
 PAYPAL_CLIENT_ID=your_paypal_client_id
 ```
-4. Run Application
+5. Run Application
 ```sh
 run frontend => npm run client
 run backend => npm run server
 run both => npm run dev
 ```
-5. Go to
+6. Go to
 ```sh
 http://localhost:3000/
 ```
