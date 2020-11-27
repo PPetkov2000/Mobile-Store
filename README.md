@@ -16,11 +16,13 @@ npm install
 ```
 3. Install NPM frontend packages
 ```sh
-cd frontend -> npm install
+cd frontend => npm install
 ```
-4. Run Application (both frontend and backend)
+4. Run Application
 ```sh
-npm run dev
+run frontend => npm run client
+run backend => npm run server
+run both => npm run dev
 ```
 5. Go to
 ```sh
