@@ -24,7 +24,7 @@ PORT=6000
 MONGO_URI=your_mongoDB_uri
 JWT_SECRET=your_jwt_secret
 
-<h2>For the PayPal button to work add this</h2>
+For the PayPal button to work add this
 PAYPAL_CLIENT_ID=your_paypal_client_id
 ```
 5. Run Application
