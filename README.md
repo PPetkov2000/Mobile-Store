@@ -18,7 +18,7 @@ npm install
 ```sh
 cd frontend => npm install
 ```
-4. Create .env file and add this in the root folder
+4. Create .env file in the root folder and add this
 ```sh
 PORT=6000
 MONGO_URI=your_mongoDB_uri
