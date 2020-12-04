@@ -106,7 +106,7 @@ function OrderScreen({ match, history }) {
           </div>
           <div className="order-item-div mb-3">
             <h4 className="order-title-color">Payment Method</h4>
-            <p className="mb">
+            <p className="mb-0">
               <strong>Method: </strong>
               {order.paymentMethod}
             </p>
