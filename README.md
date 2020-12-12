@@ -47,4 +47,4 @@ http://localhost:3000/
 
 ## Website
 
-![Game Zone](https://github.com/PPetkov2000/Mobile-Store/blob/main/app-view2.PNG)
+![Mobile-Store](https://github.com/PPetkov2000/Mobile-Store/blob/main/app-view2.PNG)
