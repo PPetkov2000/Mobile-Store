@@ -1,27 +1,36 @@
 const Order = require("../models/OrderModel");
 
 const getOrders = async (req, res, next) => {
+  const ordersPerPage = 8;
+  const page = Number(req.query.pageNumber) || 1;
+
   try {
+    const count = await Order.countDocuments();
     const orders = await Order.find()
       .populate("creator")
-      .sort({
-        createdAt: "desc",
-      })
-      .limit(10);
-    res.json(orders);
+      .sort({ createdAt: "desc" })
+      .limit(ordersPerPage)
+      .skip(ordersPerPage * (page - 1)); // 8 * (1 - 1) = 0 skipped orders on page 1 | 8 * (2 - 1) = 8 skipped orders on page 2
+
+    res.json({ orders, page, pages: Math.ceil(count / ordersPerPage) });
   } catch (error) {
     next(error);
   }
 };
 
 const getMyOrders = async (req, res, next) => {
+  const ordersPerPage = 8;
+  const page = Number(req.query.pageNumber) || 1;
+
   try {
+    const count = await Order.countDocuments({ creator: req.user._id });
     const orders = await Order.find({ creator: req.user._id })
-      .sort({
-        createdAt: "desc",
-      })
-      .limit(10);
-    res.json(orders);
+      .populate("creator")
+      .sort({ createdAt: "desc" })
+      .limit(ordersPerPage)
+      .skip(ordersPerPage * (page - 1)); // 8 * (1 - 1) = 0 skipped orders on page 1 | 8 * (2 - 1) = 8 skipped orders on page 2
+
+    res.json({ orders, page, pages: Math.ceil(count / ordersPerPage) });
   } catch (error) {
     next(error);
   }
@@ -77,7 +86,7 @@ const payOrder = async (req, res, next) => {
         id: req.body.id,
         status: req.body.status,
         update_time: req.body.update_time,
-        email_address: req.body.payer.email_address,
+        email_address: req.body.email_address,
       };
 
       const updatedOrder = await order.save();
