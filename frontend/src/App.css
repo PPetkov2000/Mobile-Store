@@ -257,9 +257,9 @@ header i {
 }
 
 .product-details-img {
-  width: 100%;
-  height: 100%;
-  max-height: 310px;
+  width: 85%;
+  height: 85%;
+  margin: 0 auto;
 }
 
 .product-order-container {
