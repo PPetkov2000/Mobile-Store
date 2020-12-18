@@ -31,7 +31,8 @@ function RegisterScreen({ history, location }) {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match!");
     } else {
-      dispatch(register(username, email, password));
+      dispatch(register(username, email, password, confirmPassword));
+      history.push("/");
     }
   };
 
