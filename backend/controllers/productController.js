@@ -36,21 +36,19 @@ const getProductById = async (req, res, next) => {
 const createProduct = async (req, res, next) => {
   const product = new Product({
     name: req.body.name,
+    images: req.body.images,
     brand: req.body.brand,
-    imageUrl: req.body.imageUrl,
-    OS: req.body.OS,
-    memory: req.body.memory,
-    RAM: req.body.RAM,
-    network: req.body.network,
-    SIM: req.body.SIM,
     price: req.body.price,
+    cpu: req.body.cpu,
+    camera: req.body.camera,
     size: req.body.size,
     weight: req.body.weight,
-    color: req.body.color,
-    releaseDate: req.body.releaseDate,
+    display: req.body.display,
+    battery: req.body.battery,
+    memory: req.body.memory,
+    description: req.body.description,
     countInStock: req.body.countInStock,
-    creator: req.user._id,
-    reviews: [],
+    quantity: req.body.quantity,
   });
 
   try {
@@ -67,18 +65,19 @@ const updateProduct = async (req, res, next) => {
 
     if (product) {
       product.name = req.body.name;
+      product.images = req.body.images.toString().split(/,\s|,/g);
       product.brand = req.body.brand;
-      product.imageUrl = req.body.imageUrl;
-      product.OS = req.body.OS;
-      product.memory = req.body.memory;
-      product.RAM = req.body.RAM;
-      product.network = req.body.network;
-      product.SIM = req.body.SIM;
       product.price = req.body.price;
+      product.cpu = req.body.cpu;
+      product.camera = req.body.camera;
       product.size = req.body.size;
       product.weight = req.body.weight;
-      product.color = req.body.color;
+      product.display = req.body.display;
+      product.battery = req.body.battery;
+      product.memory = req.body.memory;
+      product.description = req.body.description;
       product.countInStock = req.body.countInStock;
+      product.quantity = req.body.quantity;
 
       const updatedProduct = await product.save();
       res.json(updatedProduct);
@@ -141,8 +140,28 @@ const createProductReview = async (req, res, next) => {
         product.reviews.reduce((acc, curr) => acc + curr.rating, 0) /
         product.reviews.length;
 
-      await product.save();
-      res.status(201).json({ message: "Review added" });
+      const updatedProduct = await product.save();
+      res.status(201).json({ product: updatedProduct });
+    } else {
+      res.status(404);
+      throw new Error("Product not Found");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteProductReview = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+      const deleteReview = await product.reviews
+        .id(req.params.reviewId)
+        .remove();
+      product.rating -= deleteReview.rating;
+      const updatedProduct = await product.save();
+      res.json({ product: updatedProduct });
     } else {
       res.status(404);
       throw new Error("Product not Found");
@@ -160,4 +179,5 @@ module.exports = {
   deleteProduct,
   getTopProducts,
   createProductReview,
+  deleteProductReview,
 };
