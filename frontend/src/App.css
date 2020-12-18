@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
+
+:root {
+  --primary-color: #e6ad11;
+  --primary-color-hover: #ce9907;
+  --primary-title-color: #df500e;
+  --primary-box-shadow-container-color: rgb(252, 237, 237);
+  --primary-box-shadow: 0px 1px 8px 2px #888888;
+  --primary-font-family: "Inter", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +17,7 @@
 
 body {
   margin-top: 75px; /* because of the navbar */
-  font-family: "Roboto Condensed", serif;
+  font-family: "Inter", sans-serif;
 }
 
 .logo {
@@ -46,7 +57,7 @@ body {
 
 header i {
   font-size: 1.5rem !important;
-  color: #f0c040;
+  color: var(--primary-color);
   margin-left: 0.5rem;
   cursor: pointer;
 }
@@ -58,7 +69,7 @@ header i {
 
 .nav-link:hover,
 .active {
-  color: #f0c040 !important;
+  color: var(--primary-color) !important;
 }
 
 .banner {
@@ -67,8 +78,8 @@ header i {
 }
 
 .featured-products {
-  background-color: rgb(252, 237, 237);
-  box-shadow: 0px 1px 6px 2px #888888;
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
 }
 
 .featured-products .row {
@@ -81,7 +92,7 @@ header i {
 }
 
 .featured-products-title {
-  background-color: #f0c040;
+  background-color: var(--primary-color);
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
@@ -120,13 +131,13 @@ header i {
 }
 
 .add-to-cart {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
 .add-to-cart:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -142,22 +153,22 @@ header i {
 }
 
 .remove-from-favourites {
-  background-color: rgb(241, 94, 94);
+  background-color: rgb(235, 45, 45);
   margin-top: 0.5rem;
   font-size: 0.9rem;
 }
 
 .remove-from-favourites:hover {
-  background-color: rgb(235, 45, 45);
+  background-color: rgb(214, 5, 5);
   border: 1px solid black;
 }
 
 .cart-btn {
-  background-color: #eeb929;
+  background-color: var(--primary-color);
 }
 
 .cart-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -169,9 +180,9 @@ header i {
 }
 
 .cart-info-column {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .cart-info-item {
@@ -183,9 +194,9 @@ header i {
 }
 
 .cart-card {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 0.5rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .cart-product-name,
@@ -197,7 +208,7 @@ header i {
 .cart-product-name:hover,
 .place-order-product-name:hover,
 .order-item-name:hover {
-  color: #e0aa13;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -217,7 +228,7 @@ header i {
 }
 
 .product-rating i {
-  color: #e6ad11;
+  color: var(--primary-color);
 }
 
 .product-rating-text {
@@ -252,9 +263,9 @@ header i {
 }
 
 .product-order-container {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .product-rating {
@@ -273,22 +284,22 @@ header i {
 }
 
 .continue-btn {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   font-size: 0.9rem;
   width: 100%;
 }
 
 .continue-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
 .payment-method-form,
 .shipping-address-form {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
   margin-top: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .payment-method-label {
@@ -296,14 +307,14 @@ header i {
 }
 
 .payment-btn {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   font-size: 0.8rem;
   padding-left: 1.3rem;
   padding-right: 1.3rem;
 }
 
 .payment-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -322,25 +333,25 @@ header i {
 
 .place-order-div,
 .place-order-summary-div {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .place-order-button {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
 .place-order-button:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
 .total-price-row {
   font-size: 1.3rem;
-  color: #df500e;
+  color: var(--primary-title-color);
 }
 
 .checkout-steps {
@@ -358,7 +369,7 @@ header i {
 
 .checkout-steps .nav-item-link {
   display: block;
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   color: #212529;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -367,9 +378,9 @@ header i {
 
 .order-item-div,
 .order-summary-div {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .order-item {
@@ -388,24 +399,24 @@ header i {
 .place-order-title-color,
 .order-title-color,
 .profile-title-color {
-  color: #df500e;
+  color: var(--primary-title-color);
 }
 
 .update-profile-form {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
   margin-top: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .update-profile-btn {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   margin-top: 0.5rem;
   font-size: 0.9rem;
 }
 
 .update-profile-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -417,10 +428,10 @@ header i {
 }
 
 .product-review-container {
-  background-color: rgb(252, 237, 237);
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   padding: 1rem;
   margin-top: 5rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .product-review-header {
@@ -439,13 +450,13 @@ header i {
 }
 
 .review-btn {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
 .review-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -493,21 +504,21 @@ header i {
 .user-edit-page-container,
 .product-edit-page-container {
   max-width: 720px;
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   margin: 0 auto;
-  background-color: rgb(252, 237, 237);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .user-edit-page-btn,
 .product-edit-page-btn {
-  background-color: #f3be2d;
+  background-color: var(--primary-color);
   font-size: 0.9rem;
 }
 
 .user-edit-page-btn:hover,
 .product-edit-page-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
@@ -525,8 +536,8 @@ header i {
 }
 
 .fav-products-container {
-  background-color: rgb(252, 237, 237);
-  box-shadow: 0px 1px 6px 2px #888888;
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
 }
 
 .fav-products-container .row {
@@ -539,7 +550,7 @@ header i {
 }
 
 .fav-products-title {
-  background-color: #f0c040;
+  background-color: var(--primary-color);
   padding: 0.5rem 1rem;
   margin-bottom: 0;
 }
@@ -557,23 +568,23 @@ header i {
 .register-container,
 .login-container {
   width: 60%;
+  background-color: var(--primary-box-shadow-container-color);
+  box-shadow: var(--primary-box-shadow);
   margin: 0 auto;
-  background-color: rgb(252, 237, 237);
   padding: 1rem;
-  box-shadow: 0px 1px 6px 2px #888888;
 }
 
 .register-btn,
 .login-btn {
   width: 100%;
   font-size: 0.9rem;
-  background-color: #e6ad11;
+  background-color: var(--primary-color);
   margin-top: 1rem;
 }
 
 .register-btn:hover,
 .login-btn:hover {
-  background-color: #e0aa13;
+  background-color: var(--primary-color-hover);
   border: 1px solid black;
 }
 
