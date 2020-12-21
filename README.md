@@ -55,6 +55,11 @@ Admin users can delete products and products reviews as well as create products,
 - Express framework 
 - MongoDB Atlas for database
 
+## About The Project
+
+The project is an online store for mobile devices. Тhe home page shows all the products with basic information about them and a search form to find the product the user desires. Тhe product details page shows all product information. Users can register and log in, after which they have access to their profile page. Еach user has their own shopping cart and favorite products section located in their profile. In the profile page each user is also able to edit his profile information.
+
+
 ## Website
 
 ![Mobile-Store](https://github.com/PPetkov2000/Mobile-Store/blob/main/app-view2.PNG)
