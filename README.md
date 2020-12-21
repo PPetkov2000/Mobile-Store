@@ -3,6 +3,7 @@
 * [Installation](#installation)
 * [Application Structure](#application-structure)
 * [General Requirements](#general-requirements)
+* [About the Project](#about-the-project)
 * [Website](#website)
 
 ## Installation
