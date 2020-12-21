@@ -1,6 +1,7 @@
 ## Table of Contents
 
 * [Installation](#installation)
+* [Application Structure](#application-structure)
 * [General Requirements](#general-requirements)
 * [Website](#website)
 
