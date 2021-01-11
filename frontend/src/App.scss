@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
 
-:root {
-  --primary-color: #e6ad11;
-  --primary-color-hover: #ce9907;
-  --primary-title-color: #df500e;
-  --primary-box-shadow-container-color: rgb(252, 237, 237);
-  --primary-box-shadow: 0px 1px 8px 2px #888888;
-  --primary-font-family: "Inter", sans-serif;
+$primary-color: #e6ad11;
+$primary-color-hover: #ce9907;
+$primary-title-color: #df500e;
+$primary-font-family: "Inter", sans-serif;
+
+%box-shadow-container {
+  background-color: rgb(252, 237, 237);
+  box-shadow: 0px 1px 8px 2px #888888;
 }
 
 * {
@@ -17,7 +18,7 @@
 
 body {
   margin-top: 75px; /* because of the navbar */
-  font-family: "Inter", sans-serif;
+  font-family: $primary-font-family;
 }
 
 .logo {
@@ -57,7 +58,7 @@ body {
 
 header i {
   font-size: 1.5rem !important;
-  color: var(--primary-color);
+  color: $primary-color;
   margin-left: 0.5rem;
   cursor: pointer;
 }
@@ -65,11 +66,14 @@ header i {
 .nav-link {
   font-size: 1.2rem;
   font-weight: bold;
+
+  &:hover {
+    color: $primary-color !important;
+  }
 }
 
-.nav-link:hover,
 .active {
-  color: var(--primary-color) !important;
+  color: $primary-color !important;
 }
 
 .banner {
@@ -78,8 +82,7 @@ header i {
 }
 
 .featured-products {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
 }
 
 .featured-products .row {
@@ -92,7 +95,7 @@ header i {
 }
 
 .featured-products-title {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
@@ -123,53 +126,53 @@ header i {
 .search-btn {
   border: 1px solid green;
   color: green;
-}
 
-.search-btn:hover {
-  background-color: green;
-  color: white;
+  &:hover {
+    background-color: green;
+    color: white;
+  }
 }
 
 .add-to-cart {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   margin-top: 1rem;
-  font-size: 0.9rem;
-}
+  font-size: 1rem;
 
-.add-to-cart:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .add-to-favourites {
   background-color: lightgray;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
-}
+  font-size: 1rem;
 
-.add-to-favourites:hover {
-  background-color: rgb(160, 158, 158);
-  border: 1px solid black;
+  &:hover {
+    background-color: rgb(160, 158, 158);
+    border: 1px solid black;
+  }
 }
 
 .remove-from-favourites {
   background-color: rgb(235, 45, 45);
   margin-top: 0.5rem;
   font-size: 0.9rem;
-}
 
-.remove-from-favourites:hover {
-  background-color: rgb(214, 5, 5);
-  border: 1px solid black;
+  &:hover {
+    background-color: rgb(214, 5, 5);
+    border: 1px solid black;
+  }
 }
 
 .cart-btn {
-  background-color: var(--primary-color);
-}
+  background-color: $primary-color;
 
-.cart-btn:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .cart-remove-item-btn {
@@ -180,8 +183,7 @@ header i {
 }
 
 .cart-info-column {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
 }
 
@@ -194,8 +196,7 @@ header i {
 }
 
 .cart-card {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 0.5rem;
 }
 
@@ -208,7 +209,7 @@ header i {
 .cart-product-name:hover,
 .place-order-product-name:hover,
 .order-item-name:hover {
-  color: var(--primary-color);
+  color: $primary-color;
   text-decoration: none;
 }
 
@@ -220,7 +221,7 @@ header i {
 .cart-title {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  font-weight: "bold";
+  font-weight: bold;
 }
 
 .cart-badge {
@@ -228,7 +229,7 @@ header i {
 }
 
 .product-rating i {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 
 .product-rating-text {
@@ -251,20 +252,17 @@ header i {
 
 .product-card-img {
   width: 80%;
-  /* max-width: 180px; */
-  height: 16rem;
+  height: 20rem;
   margin: 0.5rem auto;
 }
 
 .product-details-img {
   width: 85%;
   height: 85%;
-  margin: 0 auto;
 }
 
 .product-order-container {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
 }
 
@@ -284,20 +282,19 @@ header i {
 }
 
 .continue-btn {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   font-size: 0.9rem;
   width: 100%;
-}
 
-.continue-btn:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .payment-method-form,
 .shipping-address-form {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
   margin-top: 1rem;
 }
@@ -307,15 +304,15 @@ header i {
 }
 
 .payment-btn {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   font-size: 0.8rem;
   padding-left: 1.3rem;
   padding-right: 1.3rem;
-}
 
-.payment-btn:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .place-order-item {
@@ -333,25 +330,24 @@ header i {
 
 .place-order-div,
 .place-order-summary-div {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
 }
 
 .place-order-button {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   margin-top: 1rem;
   font-size: 0.9rem;
-}
 
-.place-order-button:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .total-price-row {
   font-size: 1.3rem;
-  color: var(--primary-title-color);
+  color: $primary-title-color;
 }
 
 .checkout-steps {
@@ -369,7 +365,7 @@ header i {
 
 .checkout-steps .nav-item-link {
   display: block;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   color: #212529;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -378,8 +374,7 @@ header i {
 
 .order-item-div,
 .order-summary-div {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
 }
 
@@ -399,25 +394,24 @@ header i {
 .place-order-title-color,
 .order-title-color,
 .profile-title-color {
-  color: var(--primary-title-color);
+  color: $primary-title-color;
 }
 
 .update-profile-form {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
   margin-top: 1rem;
 }
 
 .update-profile-btn {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   margin-top: 0.5rem;
   font-size: 0.9rem;
-}
 
-.update-profile-btn:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .paypal-button-row > div {
@@ -428,8 +422,7 @@ header i {
 }
 
 .product-review-container {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   padding: 1rem;
   margin-top: 5rem;
 }
@@ -450,14 +443,14 @@ header i {
 }
 
 .review-btn {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   margin-top: 1rem;
   font-size: 0.9rem;
-}
 
-.review-btn:hover {
-  background-color: var(--primary-color-hover);
-  border: 1px solid black;
+  &:hover {
+    background-color: $primary-color-hover;
+    border: 1px solid black;
+  }
 }
 
 .profile-order-details-btn {
@@ -465,11 +458,11 @@ header i {
   padding: 0;
   color: rgb(63, 63, 240);
   border: 1px solid rgb(63, 63, 240);
-}
 
-.profile-order-details-btn:hover {
-  background-color: rgb(63, 63, 240);
-  color: white;
+  &:hover {
+    background-color: rgb(63, 63, 240);
+    color: white;
+  }
 }
 
 .user-list-buttons,
@@ -493,32 +486,31 @@ header i {
 .product-list-create-btn {
   background-color: green;
   color: white;
-}
 
-.product-list-create-btn:hover {
-  background-color: transparent;
-  color: green;
-  border: 2px solid green;
+  &:hover {
+    background-color: transparent;
+    color: green;
+    border: 2px solid green;
+  }
 }
 
 .user-edit-page-container,
 .product-edit-page-container {
   max-width: 720px;
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   margin: 0 auto;
   padding: 1rem;
 }
 
 .user-edit-page-btn,
 .product-edit-page-btn {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   font-size: 0.9rem;
 }
 
 .user-edit-page-btn:hover,
 .product-edit-page-btn:hover {
-  background-color: var(--primary-color-hover);
+  background-color: $primary-color-hover;
   border: 1px solid black;
 }
 
@@ -528,16 +520,15 @@ header i {
   padding: 0;
   color: rgb(63, 63, 240);
   border: 1px solid rgb(63, 63, 240);
-}
 
-.order-list-details-btn:hover {
-  background-color: rgb(63, 63, 240);
-  color: white;
+  &:hover {
+    background-color: rgb(63, 63, 240);
+    color: white;
+  }
 }
 
 .fav-products-container {
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
 }
 
 .fav-products-container .row {
@@ -550,7 +541,7 @@ header i {
 }
 
 .fav-products-title {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
 }
@@ -568,8 +559,7 @@ header i {
 .register-container,
 .login-container {
   width: 60%;
-  background-color: var(--primary-box-shadow-container-color);
-  box-shadow: var(--primary-box-shadow);
+  @extend %box-shadow-container;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -578,13 +568,13 @@ header i {
 .login-btn {
   width: 100%;
   font-size: 0.9rem;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   margin-top: 1rem;
 }
 
 .register-btn:hover,
 .login-btn:hover {
-  background-color: var(--primary-color-hover);
+  background-color: $primary-color-hover;
   border: 1px solid black;
 }
 
