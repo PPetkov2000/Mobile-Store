@@ -13,18 +13,19 @@ function ProductEditScreen({ match, history }) {
   const productId = match.params.id;
 
   const [name, setName] = useState("");
+  const [images, setImages] = useState("");
   const [brand, setBrand] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [OS, setOS] = useState("");
-  const [memory, setMemory] = useState(0);
-  const [RAM, setRAM] = useState(0);
-  const [network, setNetwork] = useState("");
-  const [SIM, setSIM] = useState("");
   const [price, setPrice] = useState(0);
-  const [size, setSize] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [color, setColor] = useState("");
+  const [cpu, setCpu] = useState("");
+  const [camera, setCamera] = useState("");
+  const [size, setSize] = useState("");
+  const [weight, setWeight] = useState("");
+  const [display, setDisplay] = useState("");
+  const [battery, setBattery] = useState("");
+  const [memory, setMemory] = useState(0);
   const [countInStock, setCountInStock] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const [description, setDescription] = useState("");
 
   const dispatch = useDispatch();
 
@@ -47,18 +48,19 @@ function ProductEditScreen({ match, history }) {
         dispatch(listProductDetails(productId));
       } else {
         setName(product.name);
+        setImages(product.images);
         setBrand(product.brand);
-        setImageUrl(product.imageUrl);
-        setOS(product.OS);
-        setMemory(product.memory);
-        setRAM(product.RAM);
-        setNetwork(product.network);
-        setSIM(product.SIM);
         setPrice(product.price);
+        setCpu(product.cpu);
+        setCamera(product.camera);
         setSize(product.size);
         setWeight(product.weight);
-        setColor(product.color);
+        setDisplay(product.display);
+        setBattery(product.battery);
+        setMemory(product.memory);
         setCountInStock(product.countInStock);
+        setQuantity(product.quantity);
+        setDescription(product.description);
       }
     }
   }, [dispatch, history, productId, product, successUpdate]);
@@ -69,18 +71,19 @@ function ProductEditScreen({ match, history }) {
       updateProduct({
         _id: productId,
         name,
+        images,
         brand,
-        imageUrl,
-        OS,
-        memory,
-        RAM,
-        network,
-        SIM,
         price,
+        cpu,
+        camera,
         size,
         weight,
-        color,
+        display,
+        battery,
+        memory,
         countInStock,
+        quantity,
+        description,
       })
     );
   };
@@ -105,6 +108,15 @@ function ProductEditScreen({ match, history }) {
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
+          <Form.Group controlId="images">
+            <Form.Label>Images</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter images comma separated"
+              value={images}
+              onChange={(e) => setImages(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
           <Form.Group controlId="brand">
             <Form.Label>Brand</Form.Label>
             <Form.Control
@@ -112,60 +124,6 @@ function ProductEditScreen({ match, history }) {
               placeholder="Enter brand"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="imageUrl">
-            <Form.Label>Image url</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter image url"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="OS">
-            <Form.Label>OS</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter OS"
-              value={OS}
-              onChange={(e) => setOS(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="memory">
-            <Form.Label>Memory</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter memory"
-              value={memory}
-              onChange={(e) => setMemory(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="RAM">
-            <Form.Label>RAM</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter RAM"
-              value={RAM}
-              onChange={(e) => setRAM(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="network">
-            <Form.Label>Network</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter network"
-              value={network}
-              onChange={(e) => setNetwork(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="SIM">
-            <Form.Label>SIM</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter SIM"
-              value={SIM}
-              onChange={(e) => setSIM(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="price">
@@ -177,10 +135,28 @@ function ProductEditScreen({ match, history }) {
               onChange={(e) => setPrice(e.target.value)}
             ></Form.Control>
           </Form.Group>
+          <Form.Group controlId="cpu">
+            <Form.Label>CPU</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter CPU"
+              value={cpu}
+              onChange={(e) => setCpu(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="camera">
+            <Form.Label>Camera</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter camera"
+              value={camera}
+              onChange={(e) => setCamera(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
           <Form.Group controlId="size">
             <Form.Label>Size</Form.Label>
             <Form.Control
-              type="number"
+              type="text"
               placeholder="Enter size"
               value={size}
               onChange={(e) => setSize(e.target.value)}
@@ -189,19 +165,37 @@ function ProductEditScreen({ match, history }) {
           <Form.Group controlId="weight">
             <Form.Label>Weight</Form.Label>
             <Form.Control
-              type="number"
+              type="text"
               placeholder="Enter weight"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId="color">
-            <Form.Label>Color</Form.Label>
+          <Form.Group controlId="display">
+            <Form.Label>Display</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
+              placeholder="Enter display"
+              value={display}
+              onChange={(e) => setDisplay(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="battery">
+            <Form.Label>Battery</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter battery"
+              value={battery}
+              onChange={(e) => setBattery(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="memory">
+            <Form.Label>Memory</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter memory"
+              value={memory}
+              onChange={(e) => setMemory(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="countInStock">
@@ -211,6 +205,24 @@ function ProductEditScreen({ match, history }) {
               placeholder="Enter countInStock"
               value={countInStock}
               onChange={(e) => setCountInStock(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="quantity">
+            <Form.Label>Quantity</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Enter quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="description">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
