@@ -7,15 +7,8 @@ import Message from "../components/Message";
 import Rating from "../components/Rating";
 import ProductReviewForm from "./ProductReviewForm";
 
-function ProductReview({ productId }) {
+function ProductReview({ productId, productReviews }) {
   const dispatch = useDispatch();
-
-  const productDetails = useSelector((state) => state.productDetails);
-  const {
-    loading: loadingDetails,
-    error: errorDetails,
-    product,
-  } = productDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -28,26 +21,22 @@ function ProductReview({ productId }) {
   } = productReviewDelete;
 
   const deleteReviewHandler = () => {
-    if (product) {
-      const productReview = product.reviews.find(
+    if (productReviews) {
+      const productReview = productReviews.find(
         (r) => r.creator === userInfo._id
       );
       dispatch(deleteProductReview(productId, productReview._id));
     }
   };
 
-  return loadingDetails ? (
-    <Loader />
-  ) : errorDetails ? (
-    <Message variant="danger">{errorDetails}</Message>
-  ) : (
+  return (
     <div className="product-review-container">
       <h3>Reviews</h3>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {successDelete && <Message variant="success">Review removed</Message>}
-      {product.reviews.length === 0 && <Message>No Reviews</Message>}
-      {product.reviews.map((review) => (
+      {productReviews.length === 0 && <Message>No Reviews</Message>}
+      {productReviews.map((review) => (
         <div key={review._id} style={{ borderBottom: "1px solid grey" }}>
           <div className="product-review-header">
             <strong className="px-2">{review.name}</strong>
@@ -71,9 +60,9 @@ function ProductReview({ productId }) {
           </div>
         </div>
       ))}
-      {product.reviews &&
+      {productReviews &&
         Boolean(
-          !product.reviews.find(
+          !productReviews.find(
             (r) => r.creator.toString() === userInfo._id.toString()
           )
         ) && <ProductReviewForm productId={productId} />}
