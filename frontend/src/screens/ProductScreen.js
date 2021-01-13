@@ -24,6 +24,9 @@ function ProductScreen({ match, history }) {
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const userAddFavourites = useSelector((state) => state.userAddFavourites);
   const {
     loading: loadingFavourites,
@@ -41,13 +44,15 @@ function ProductScreen({ match, history }) {
   } = userRemoveFavourites;
 
   useEffect(() => {
-    if (!product || product._id !== productId || successFavourites) {
+    if (!product || product._id !== productId) {
       dispatch(listProductDetails(productId));
       dispatch({ type: USER_ADD_FAVOURITES_RESET });
-      dispatch(getUserDetails("profile"));
+      if (userInfo) {
+        dispatch(getUserDetails("profile"));
+      }
     }
 
-    if (successRemoveFavourites) {
+    if (successRemoveFavourites || successFavourites) {
       dispatch(getUserDetails("profile"));
     }
   }, [
@@ -56,6 +61,7 @@ function ProductScreen({ match, history }) {
     product,
     successFavourites,
     successRemoveFavourites,
+    userInfo,
   ]);
 
   const addToCartHandler = () => {
@@ -83,13 +89,13 @@ function ProductScreen({ match, history }) {
       <Row xs={1} sm={1} md={3}>
         <Col>
           <img
-            src={product.imageUrl}
+            src={product.images && product.images[0]}
             alt={product.name}
             className="product-details-img"
           />
         </Col>
         <Col>
-          <h3 className="product-details-title">{product.name}</h3>
+          <h2 className="product-details-title">{product.name}</h2>
           <Rating
             value={product.rating}
             text={`Clients reviewed: ${
@@ -98,28 +104,28 @@ function ProductScreen({ match, history }) {
           />
           <div className="product-features">
             <p>
-              <strong>OS:</strong> {product.OS}
+              <strong>Memory:</strong> {product.memory}
             </p>
             <p>
-              <strong>Memory:</strong> {product.memory}GB, {product.RAM}RAM
+              <strong>CPU:</strong> {product.cpu}
             </p>
             <p>
-              <strong>SIM:</strong> {product.SIM}
+              <strong>Display:</strong> {product.display}
             </p>
             <p>
-              <strong>Network:</strong> {product.network}
+              <strong>Battery:</strong> {product.battery}
             </p>
             <p>
-              <strong>Size:</strong> {product.size} inches
+              <strong>Camera:</strong> {product.camera}
+            </p>
+            <p>
+              <strong>Size:</strong> {product.size}
             </p>
             <p>
               <strong>Weight:</strong> {product.weight} g
             </p>
             <p>
-              <strong>Color:</strong> {product.color}
-            </p>
-            <p>
-              <strong>Release date:</strong> {product.releaseDate}
+              <strong>Description:</strong> {product.description} g
             </p>
           </div>
         </Col>
@@ -135,29 +141,29 @@ function ProductScreen({ match, history }) {
               <i className="fa fa-cart-plus btn-icon" aria-hidden="true"></i>{" "}
               add to cart
             </button>
-            {user &&
-            user.favouriteProducts &&
-            Boolean(
-              !user.favouriteProducts.find(
-                (x) => x._id.toString() === productId
-              )
-            ) ? (
-              <button
-                className="btn full-width add-to-favourites"
-                onClick={addToFavouritesHandler}
-              >
-                <i className="fa fa-heart" aria-hidden="true"></i> add to
-                favourites
-              </button>
-            ) : (
-              <button
-                className="btn full-width remove-from-favourites"
-                onClick={removeFromFavouritesHandler}
-              >
-                <i className="fa fa-heart" aria-hidden="true"></i> remove from
-                favourites
-              </button>
-            )}
+            {Object.keys(user).length > 0 &&
+              (user.favouriteProducts &&
+              Boolean(
+                !user.favouriteProducts.find(
+                  (x) => x._id.toString() === productId
+                )
+              ) ? (
+                <button
+                  className="btn full-width add-to-favourites"
+                  onClick={addToFavouritesHandler}
+                >
+                  <i className="fa fa-heart" aria-hidden="true"></i> add to
+                  favourites
+                </button>
+              ) : (
+                <button
+                  className="btn full-width remove-from-favourites"
+                  onClick={removeFromFavouritesHandler}
+                >
+                  <i className="fa fa-heart" aria-hidden="true"></i> remove from
+                  favourites
+                </button>
+              ))}
             {loadingRemoveFavourites && <Loader />}
             {errorRemoveFavourites && (
               <p className="mb-0 text-danger">{errorRemoveFavourites}</p>
@@ -169,7 +175,7 @@ function ProductScreen({ match, history }) {
           </div>
         </Col>
       </Row>
-      <ProductReview productId={productId} />
+      <ProductReview productId={productId} productReviews={product.reviews} />
     </section>
   );
 }
