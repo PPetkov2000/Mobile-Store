@@ -36,31 +36,34 @@ function ProductReview({ productId, productReviews }) {
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {successDelete && <Message variant="success">Review removed</Message>}
       {productReviews.length === 0 && <Message>No Reviews</Message>}
-      {productReviews.map((review) => (
-        <div key={review._id} style={{ borderBottom: "1px solid grey" }}>
-          <div className="product-review-header">
-            <strong className="px-2">{review.name}</strong>
-            {review.creator === userInfo._id && (
-              <button
-                className="product-review-delete-btn"
-                onClick={deleteReviewHandler}
-              >
-                <i className="fa fa-trash"></i>
-              </button>
-            )}
-          </div>
-          <div className="px-2">
-            <Rating value={review.rating} />
-            <div className="d-flex align-items-center justify-content-between">
-              <p className="mb-1">{review.comment}</p>
-              <Badge variant="dark" className="align-self-end mb-1">
-                {review.createdAt.substring(0, 10)}
-              </Badge>
+      {productReviews.map((review) => {
+        return (
+          <div key={review._id} style={{ borderBottom: "1px solid grey" }}>
+            <div className="product-review-header">
+              <strong className="px-2">{review.name}</strong>
+              {review.creator === userInfo && userInfo._id && (
+                <button
+                  className="product-review-delete-btn"
+                  onClick={deleteReviewHandler}
+                >
+                  <i className="fa fa-trash"></i>
+                </button>
+              )}
+            </div>
+            <div className="px-2">
+              <Rating value={review.rating} />
+              <div className="d-flex align-items-center justify-content-between">
+                <p className="mb-1">{review.comment}</p>
+                <Badge variant="dark" className="align-self-end mb-1">
+                  {review.createdAt.substring(0, 10)}
+                </Badge>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       {productReviews &&
+        userInfo &&
         Boolean(
           !productReviews.find(
             (r) => r.creator.toString() === userInfo._id.toString()
