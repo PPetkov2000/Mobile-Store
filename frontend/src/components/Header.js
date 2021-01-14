@@ -87,7 +87,7 @@ function Header() {
           </Nav>
           {userInfo && (
             <Link to="/cart">
-              <i className="fa fa-shopping-cart" aria-hidden="true">
+              <i className="icon fa fa-shopping-cart" aria-hidden="true">
                 {cartItems.length > 0 && (
                   <Badge variant="danger" className="cart-badge">
                     {cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}
@@ -121,8 +121,6 @@ function Header() {
           )}
         </Navbar.Collapse>
       </Navbar>
-
-      {/* <img src="./images/banner.jpg" alt="banner" className="banner" /> */}
     </header>
   );
 }
