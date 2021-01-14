@@ -1,0 +1,26 @@
+.product-carousel {
+  margin-top: -50px;
+  margin-bottom: 5rem;
+  height: 70vh;
+
+  .carousel-inner {
+    height: 90%;
+
+    .carousel-item {
+      height: 100%;
+    }
+  }
+
+  .img-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+
+    .img {
+      height: 100%;
+    }
+  }
+}
