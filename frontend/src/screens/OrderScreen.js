@@ -88,7 +88,7 @@ function OrderScreen({ match, history }) {
       <Row>
         <Col md={8}>
           <div className="order-item-div mb-3">
-            <h4 className="order-title-color">Shipping</h4>
+            <h4 className="title-color">Shipping</h4>
             <p className="mb-0">
               <strong>Username: </strong>
               {order.creator.username}
@@ -105,8 +105,8 @@ function OrderScreen({ match, history }) {
             </p>
           </div>
           <div className="order-item-div mb-3">
-            <h4 className="order-title-color">Payment Method</h4>
-            <p className="mb-0">
+            <h4 className="title-color">Payment Method</h4>
+            <p className="mb">
               <strong>Method: </strong>
               {order.paymentMethod}
             </p>
@@ -122,7 +122,7 @@ function OrderScreen({ match, history }) {
             )}
           </div>
           <div className="order-item-div mb-3">
-            <h4 className="mb-3 order-title-color">Order Items</h4>
+            <h4 className="mb-3 title-color">Order Items</h4>
             {order.orderItems.length === 0 ? (
               <Message>Order is empty</Message>
             ) : (
@@ -132,18 +132,18 @@ function OrderScreen({ match, history }) {
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="order-item-img"
+                      className="item-img"
                     />
                   </Col>
                   <Col>
                     <Link
-                      to={`/product/${order.product}`}
-                      className="order-item-name"
+                      to={`/products/${item.product}`}
+                      className="item-name"
                     >
                       {item.name}
                     </Link>
                   </Col>
-                  <Col md={4} xs={4} sm={4}>
+                  <Col md={5} xs={4} sm={4}>
                     {item.quantity} * {item.price} = $
                     {item.quantity * item.price}
                   </Col>
