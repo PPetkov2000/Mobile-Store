@@ -47,7 +47,15 @@ function PlaceOrderScreen({ history }) {
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
-        orderItems: cart.cartItems,
+        orderItems: cart.cartItems.map((item) => {
+          return {
+            name: item.name,
+            imageUrl: item.images[0],
+            price: item.price,
+            quantity: item.quantity,
+            product: item.product,
+          };
+        }),
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
@@ -64,7 +72,7 @@ function PlaceOrderScreen({ history }) {
       <Row>
         <Col md={8}>
           <div className="place-order-div mb-3">
-            <h4 className="place-order-title-color">Shipping</h4>
+            <h4 className="title-color">Shipping</h4>
             <p className="mb-0">
               <strong>Address: </strong>
               {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
@@ -72,12 +80,12 @@ function PlaceOrderScreen({ history }) {
             </p>
           </div>
           <div className="place-order-div mb-3">
-            <h4 className="place-order-title-color">Payment Method</h4>
+            <h4 className="title-color">Payment Method</h4>
             <strong>Method: </strong>
             {cart.paymentMethod}
           </div>
           <div className="place-order-div">
-            <h4 className="place-order-title-color mb-3">Order Items</h4>
+            <h4 className="title-color mb-3">Order Items</h4>
             {cart.cartItems.length === 0 ? (
               <Message>Your cart is empty</Message>
             ) : (
@@ -85,7 +93,7 @@ function PlaceOrderScreen({ history }) {
                 <Row key={index} className="place-order-item">
                   <Col md={2} xs={2} sm={2}>
                     <img
-                      src={item.imageUrl}
+                      src={item.images && item.images[0]}
                       alt={item.name}
                       className="place-order-img"
                     />
@@ -93,12 +101,12 @@ function PlaceOrderScreen({ history }) {
                   <Col>
                     <Link
                       to={`/products/${item.product}`}
-                      className="place-order-product-name"
+                      className="product-name"
                     >
                       {item.name}
                     </Link>
                   </Col>
-                  <Col md={4} xs={4} sm={4}>
+                  <Col md={5} xs={4} sm={4}>
                     {item.quantity} * {item.price} = $
                     {item.quantity * item.price}
                   </Col>
