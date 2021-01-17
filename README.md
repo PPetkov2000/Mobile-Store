@@ -31,9 +31,9 @@ PAYPAL_CLIENT_ID=your_paypal_client_id
 ```
 5. Run Application
 ```sh
-run frontend => npm run client
-run backend => npm run server
-run both => npm run dev
+run frontend: npm run client
+run backend: cd backend => npm run server
+run both: npm run dev
 ```
 6. Go to
 ```sh
