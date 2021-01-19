@@ -7,14 +7,19 @@ function Product({ product }) {
     <div className="product-card">
       <Link to={`/products/${product._id}`} className="product-card-img-a">
         <img
-          src={product.imageUrl}
+          src={product.images[0]}
+          className="product-card-img"
+          alt={product.name}
+        />
+        <img
+          src={product.images[1]}
           className="product-card-img"
           alt={product.name}
         />
       </Link>
       <h5 className="product-card-title">{product.name}</h5>
       <h6 className="product-card-subtitle">
-        {product.SIM}, {product.memory}GB, {product.network}, {product.color}
+        {product.memory}, {product.battery}
       </h6>
       <Rating value={product.rating} />
       <h5 className="product-card-text">${product.price}</h5>
