@@ -174,11 +174,14 @@ function ProfileScreen({ history, match }) {
       <div className="fav-products-container">
         <h3 className="fav-products-title">Favourites</h3>
         <div className="fav-product-div">
-          {user.favouriteProducts && user.favouriteProducts.length === 0 ? (
+          {user &&
+          user.favouriteProducts &&
+          user.favouriteProducts.length === 0 ? (
             <Message>No favouirites</Message>
           ) : (
-            <Row xs={2} sm={2} md={4} lg={4} xl={4}>
-              {user.favouriteProducts &&
+            <Row xs={1} sm={1} md={4} lg={4} xl={4}>
+              {user &&
+                user.favouriteProducts &&
                 user.favouriteProducts.map((product) => (
                   <Col key={product._id}>
                     <Product product={product} />
