@@ -1,9 +1,15 @@
-header {
+.navbar {
   .icon {
     font-size: 1.5rem !important;
     color: $primary-color;
     margin-left: 0.5rem;
     cursor: pointer;
+
+    @media #{$mq-760-down} {
+      margin-left: 50%;
+      transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
   }
 
   .nav-link {
@@ -12,6 +18,27 @@ header {
 
     &:hover {
       color: $primary-color !important;
+    }
+
+    @media #{$mq-760-down} {
+      text-align: center;
+
+      &:hover {
+        background-color: $primary-color;
+        color: #000 !important;
+      }
+    }
+  }
+
+  .searchInput {
+    @media #{$mq-760-down} {
+      width: 100%;
+    }
+  }
+
+  .search-btn {
+    @media #{$mq-760-down} {
+      display: none;
     }
   }
 
