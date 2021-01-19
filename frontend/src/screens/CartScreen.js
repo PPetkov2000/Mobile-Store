@@ -39,14 +39,14 @@ function CartScreen({ match, location, history }) {
           cartItems.map((item) => {
             return (
               <Row key={item.product} className="cart-info-item">
-                <Col md={2}>
+                <Col md={2} sm={2} xs={2}>
                   <img
-                    src={item.imageUrl}
+                    src={item.images && item.images[0]}
                     alt={item.name}
                     className="cart-image"
                   />
                 </Col>
-                <Col md={5}>
+                <Col md={5} sm={5} xs={5}>
                   <Link
                     to={`/products/${item.product}`}
                     className="cart-product-name"
@@ -54,8 +54,10 @@ function CartScreen({ match, location, history }) {
                     {item.name}
                   </Link>
                 </Col>
-                <Col md={2}>${item.price}</Col>
-                <Col md={2}>
+                <Col md={2} sm={2} xs={2}>
+                  ${item.price}
+                </Col>
+                <Col md={2} sm={2} xs={2}>
                   <FormControl
                     as="select"
                     value={item.quantity}
@@ -70,7 +72,7 @@ function CartScreen({ match, location, history }) {
                     ))}
                   </FormControl>
                 </Col>
-                <Col md={1}>
+                <Col md={1} sm={1} xs={1}>
                   <button
                     type="button"
                     className="cart-remove-item-btn"
