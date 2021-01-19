@@ -168,6 +168,11 @@ body {
 
   @media #{$mq-760-down} {
     text-align: center;
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
   }
 }
 
@@ -397,49 +402,8 @@ body {
   @extend %box-shadow-container;
   margin: 0 auto;
   padding: 1rem;
-}
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .nav-link {
-    text-align: center;
-  }
-  .navbar i {
-    margin-left: 50%;
-    transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-  }
-  .navbar .searchInput {
+  @media #{$mq-620-down} {
     width: 100%;
   }
-
-  .product-price {
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-
-  .search-btn {
-    display: none;
-  }
-
-  .register-container,
-  .login-container {
-    width: 100%;
-  }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
 }
