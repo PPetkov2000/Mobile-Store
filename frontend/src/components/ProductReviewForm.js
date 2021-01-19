@@ -74,6 +74,7 @@ function ProductReviewForm({ productId }) {
               row="3"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              placeholder="Enter your comment"
             ></Form.Control>
           </Form.Group>
           <button
