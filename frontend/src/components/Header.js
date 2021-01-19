@@ -53,7 +53,7 @@ function Header() {
             <FormControl
               type="text"
               placeholder="Search..."
-              className="mr-sm-2"
+              className="mr-sm-2 searchInput"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
