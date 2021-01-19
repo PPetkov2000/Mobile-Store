@@ -91,7 +91,7 @@ function PlaceOrderScreen({ history }) {
             ) : (
               cart.cartItems.map((item, index) => (
                 <Row key={index} className="place-order-item">
-                  <Col md={2} xs={2} sm={2}>
+                  <Col md={2} xs={1} sm={1}>
                     <img
                       src={item.images && item.images[0]}
                       alt={item.name}
@@ -106,7 +106,7 @@ function PlaceOrderScreen({ history }) {
                       {item.name}
                     </Link>
                   </Col>
-                  <Col md={5} xs={4} sm={4}>
+                  <Col md={5} xs={5} sm={5}>
                     {item.quantity} * {item.price} = $
                     {item.quantity * item.price}
                   </Col>
@@ -137,10 +137,12 @@ function PlaceOrderScreen({ history }) {
               <Col className="text-right">${cart.taxPrice}</Col>
             </Row>
             <Row className="total-price-row">
-              <Col>
+              <Col md={4} sm={6} xs={6}>
                 <strong>Total</strong>
               </Col>
-              <Col className="text-right">${cart.totalPrice}</Col>
+              <Col md={8} sm={6} xs={6} className="text-right">
+                ${cart.totalPrice}
+              </Col>
             </Row>
             <div>{error && <Message variant="danger">{error}</Message>}</div>
             <button
