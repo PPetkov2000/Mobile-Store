@@ -241,16 +241,25 @@ body {
       width: 50%;
       height: 70%;
 
-      @media #{$mq-620-down} {
-        width: 40px;
+      @media #{$mq-1000-down} {
+        width: 80%;
+      }
+
+      @media #{$mq-760-down} {
+        width: 33px;
       }
     }
 
     .product-name {
       color: #212529;
+      text-decoration: none;
 
       &:hover {
         color: $primary-color;
+      }
+
+      @media #{$mq-760-down} {
+        margin-left: 1rem;
       }
     }
   }
@@ -288,6 +297,14 @@ body {
       padding: 0.5rem 1rem;
       text-decoration: none;
       border-bottom: 3px solid black;
+
+      @media #{$mq-760-down} {
+        padding: 0.5rem 0.8rem;
+      }
+    }
+
+    @media #{$mq-760-down} {
+      font-size: 1rem;
     }
   }
 }
