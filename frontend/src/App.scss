@@ -309,12 +309,22 @@ body {
   }
 }
 
+.order-title {
+  @media #{$mq-760-down} {
+    font-size: 1.5rem;
+  }
+}
+
 .order-item-div {
   @extend %box-shadow-container;
   padding: 1rem;
 
   .title-color {
     color: $primary-title-color;
+
+    @media #{$mq-760-down} {
+      font-size: 1.3rem;
+    }
   }
 
   .order-item {
