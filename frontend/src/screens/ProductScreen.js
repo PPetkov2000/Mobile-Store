@@ -152,16 +152,16 @@ function ProductScreen({ match, history }) {
                   className="btn full-width add-to-favourites"
                   onClick={addToFavouritesHandler}
                 >
-                  <i className="fa fa-heart" aria-hidden="true"></i> add to
-                  favourites
+                  <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
+                  add to favourites
                 </button>
               ) : (
                 <button
                   className="btn full-width remove-from-favourites"
                   onClick={removeFromFavouritesHandler}
                 >
-                  <i className="fa fa-heart" aria-hidden="true"></i> remove from
-                  favourites
+                  <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
+                  remove from favourites
                 </button>
               ))}
             {loadingRemoveFavourites && <Loader />}
