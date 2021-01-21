@@ -36,12 +36,6 @@
     }
   }
 
-  .search-btn {
-    @media #{$mq-760-down} {
-      display: none;
-    }
-  }
-
   .cart-badge {
     font-size: 0.7rem;
   }
