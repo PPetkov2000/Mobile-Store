@@ -86,18 +86,6 @@
   font-size: 0.9rem;
 }
 
-.profile-order-details-btn {
-  width: 100%;
-  padding: 0;
-  color: rgb(63, 63, 240);
-  border: 1px solid rgb(63, 63, 240);
-
-  &:hover {
-    background-color: rgb(63, 63, 240);
-    color: white;
-  }
-}
-
 .user-edit-btn,
 .product-list-edit-btn {
   color: rgb(45, 45, 226);
@@ -127,9 +115,9 @@
   font-size: 0.9rem;
 }
 
+.profile-order-details-btn,
 .order-list-details-btn {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   padding: 0;
   color: rgb(63, 63, 240);
   border: 1px solid rgb(63, 63, 240);
@@ -138,11 +126,6 @@
     background-color: rgb(63, 63, 240);
     color: white;
   }
-}
-
-.fav-product-delete-btn {
-  color: red;
-  border: none;
 }
 
 .register-btn,
