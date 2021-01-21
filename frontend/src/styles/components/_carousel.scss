@@ -22,5 +22,9 @@
     .img {
       height: 100%;
     }
+
+    @media #{$mq-760-down} {
+      width: 77%;
+    }
   }
 }
