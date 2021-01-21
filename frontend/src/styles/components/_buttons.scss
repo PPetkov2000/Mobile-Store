@@ -17,6 +17,10 @@
     background-color: green;
     color: white;
   }
+
+  @media #{$mq-900-down} {
+    display: none;
+  }
 }
 
 .add-to-cart {
