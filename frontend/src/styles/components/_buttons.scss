@@ -20,45 +20,25 @@
 }
 
 .add-to-cart {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   margin-top: 1rem;
   font-size: 1rem;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .add-to-favourites {
-  background-color: lightgray;
+  @include button-bg(lightgray);
   margin-top: 0.5rem;
   font-size: 1rem;
-
-  &:hover {
-    background-color: rgb(160, 158, 158);
-    border: 1px solid black;
-  }
 }
 
 .remove-from-favourites {
-  background-color: rgb(235, 45, 45);
+  @include button-bg(rgb(235, 45, 45));
   margin-top: 0.5rem;
   font-size: 0.9rem;
-
-  &:hover {
-    background-color: rgb(214, 5, 5);
-    border: 1px solid black;
-  }
 }
 
 .cart-btn {
-  background-color: $primary-color;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
+  @include button-bg($primary-color);
 }
 
 .cart-remove-item-btn {
@@ -69,48 +49,28 @@
 }
 
 .continue-btn {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   font-size: 0.9rem;
   width: 100%;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .payment-btn {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   font-size: 0.8rem;
   padding-left: 1.3rem;
   padding-right: 1.3rem;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .place-order-button {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   margin-top: 1rem;
   font-size: 0.9rem;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .update-profile-btn {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   margin-top: 0.5rem;
   font-size: 0.9rem;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .product-review-delete-btn {
@@ -121,14 +81,9 @@
 }
 
 .review-btn {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   margin-top: 1rem;
   font-size: 0.9rem;
-
-  &:hover {
-    background-color: $primary-color-hover;
-    border: 1px solid black;
-  }
 }
 
 .profile-order-details-btn {
@@ -168,14 +123,8 @@
 
 .user-edit-page-btn,
 .product-edit-page-btn {
-  background-color: $primary-color;
+  @include button-bg($primary-color);
   font-size: 0.9rem;
-}
-
-.user-edit-page-btn:hover,
-.product-edit-page-btn:hover {
-  background-color: $primary-color-hover;
-  border: 1px solid black;
 }
 
 .order-list-details-btn {
@@ -198,14 +147,8 @@
 
 .register-btn,
 .login-btn {
+  @include button-bg($primary-color);
   width: 100%;
   font-size: 0.9rem;
-  background-color: $primary-color;
   margin-top: 1rem;
-}
-
-.register-btn:hover,
-.login-btn:hover {
-  background-color: $primary-color-hover;
-  border: 1px solid black;
 }
