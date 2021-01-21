@@ -27,12 +27,20 @@
   @include button-bg($primary-color);
   margin-top: 1rem;
   font-size: 1rem;
+
+  @media #{$mq-760-down} {
+    font-size: 0.9rem;
+  }
 }
 
 .add-to-favourites {
   @include button-bg(lightgray);
   margin-top: 0.5rem;
   font-size: 1rem;
+
+  @media #{$mq-760-down} {
+    font-size: 0.9rem;
+  }
 }
 
 .remove-from-favourites {
