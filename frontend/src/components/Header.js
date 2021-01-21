@@ -39,7 +39,7 @@ function Header() {
     <header>
       <Navbar
         collapseOnSelect
-        expand="lg"
+        expand="md"
         bg="light"
         variant="light"
         fixed="top"
