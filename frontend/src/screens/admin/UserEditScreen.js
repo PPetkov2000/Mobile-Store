@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserDetails, updateUser } from "../../actions/userActions";
+import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
-import { USER_UPDATE_RESET } from "../../constants/userConstants";
+import FormInput from "../../components/FormInput";
 
 function UserEditScreen({ match, history }) {
   const userId = match.params.id;
@@ -56,26 +57,20 @@ function UserEditScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="email">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
+          <FormInput
+            type="text"
+            name="Username"
+            placeholder="Enter username"
+            value={username}
+            handleChange={(e) => setUsername(e.target.value)}
+          />
+          <FormInput
+            type="email"
+            name="Email Address"
+            placeholder="Enter email"
+            value={email}
+            handleChange={(e) => setEmail(e.target.value)}
+          />
           <Form.Group controlId="isadmin">
             <Form.Check
               type="checkbox"
