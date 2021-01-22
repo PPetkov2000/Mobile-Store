@@ -5,6 +5,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { login } from "../actions/userActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import FormInput from "../components/FormInput";
 
 function LoginScreen({ history, location }) {
   const [email, setEmail] = useState("");
@@ -34,24 +35,20 @@ function LoginScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="login-form">
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        <FormInput
+          type="email"
+          name="Email"
+          placeholder="Enter email"
+          value={email}
+          handleChange={(e) => setEmail(e.target.value)}
+        />
+        <FormInput
+          type="password"
+          name="Password"
+          placeholder="Enter password"
+          value={password}
+          handleChange={(e) => setPassword(e.target.value)}
+        />
 
         <button type="submit" className="btn login-btn">
           Login
