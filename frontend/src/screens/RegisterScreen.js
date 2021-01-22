@@ -5,6 +5,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { register } from "../actions/userActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import FormInput from "../components/FormInput";
 
 function RegisterScreen({ history, location }) {
   const [username, setUsername] = useState("");
@@ -43,42 +44,34 @@ function RegisterScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="register-form">
-        <Form.Group controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        <FormInput
+          type="text"
+          name="Username"
+          placeholder="Enter username"
+          value={username}
+          handleChange={(e) => setUsername(e.target.value)}
+        />
+        <FormInput
+          type="email"
+          name="Email"
+          placeholder="Enter email"
+          value={email}
+          handleChange={(e) => setEmail(e.target.value)}
+        />
+        <FormInput
+          type="password"
+          name="Password"
+          placeholder="Enter password"
+          value={password}
+          handleChange={(e) => setPassword(e.target.value)}
+        />
+        <FormInput
+          type="password"
+          name="Confirm Password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          handleChange={(e) => setConfirmPassword(e.target.value)}
+        />
 
         <button type="submit" className="btn register-btn">
           Register
