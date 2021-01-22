@@ -33,7 +33,6 @@ function RegisterScreen({ history, location }) {
       setMessage("Passwords do not match!");
     } else {
       dispatch(register(username, email, password, confirmPassword));
-      history.push("/");
     }
   };
 
