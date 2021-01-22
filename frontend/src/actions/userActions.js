@@ -33,19 +33,21 @@ import {
   USER_REMOVE_FAVOURITES_FAIL,
 } from "../constants/userConstants";
 
-export const register = (username, email, password) => async (dispatch) => {
+export const register = (username, email, password, confirmPassword) => async (
+  dispatch
+) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.post(
       "/api/users/register",
-      { username, email, password },
+      { username, email, password, confirmPassword },
       config
     );
 
-    dispatch({ type: USER_REGISTER_SUCCESS, paylaod: data });
-    dispatch({ type: USER_LOGIN_SUCCESS, paylaod: data });
+    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
