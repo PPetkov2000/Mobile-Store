@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Form, Table } from "react-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 import { listMyOrders } from "../actions/orderActions";
 import { Link } from "react-router-dom";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 import Product from "../components/Product";
 import Paginate from "../components/Paginate";
+import FormInput from "../components/FormInput";
 
 function ProfileScreen({ history, match }) {
   const pageNumber = match.params.pageNumber || 1;
@@ -79,42 +80,34 @@ function ProfileScreen({ history, match }) {
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} className="update-profile-form">
-              <Form.Group controlId="username">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Confirm password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+              <FormInput
+                type="text"
+                name="Username"
+                placeholder="Enter username"
+                value={username}
+                handleChange={(e) => setUsername(e.target.value)}
+              />
+              <FormInput
+                type="email"
+                name="Email"
+                placeholder="Enter email"
+                value={email}
+                handleChange={(e) => setEmail(e.target.value)}
+              />
+              <FormInput
+                type="password"
+                name="Password"
+                placeholder="Enter password"
+                value={password}
+                handleChange={(e) => setPassword(e.target.value)}
+              />
+              <FormInput
+                type="password"
+                name="Confirm Password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                handleChange={(e) => setConfirmPassword(e.target.value)}
+              />
 
               <button
                 type="submit"
