@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Form } from "react-bootstrap";
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
+import FormInput from "../components/FormInput";
 
 function ShippingScreen({ history }) {
   const cart = useSelector((state) => state.cart);
@@ -28,59 +29,54 @@ function ShippingScreen({ history }) {
         <Col xs={12} md={8} className="mx-auto">
           <h3>Shipping</h3>
           <Form onSubmit={submitHandler} className="shipping-address-form">
-            <Form.Group controlId="address">
-              <Form.Label>
-                <i className="fa fa-address-book" aria-hidden="true"></i>{" "}
-                Address
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter address"
-                value={address}
-                required
-                onChange={(e) => setAddress(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="city">
-              <Form.Label>
-                <i className="fa fa-home" aria-hidden="true"></i> City
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter city"
-                value={city}
-                required
-                onChange={(e) => setCity(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="postalCode">
-              <Form.Label>
-                <i className="fa fa-envelope-open" aria-hidden="true"></i>{" "}
-                Postal Code
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter postal code"
-                value={postalCode}
-                required
-                onChange={(e) => setPostalCode(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="country">
-              <Form.Label>
-                <i className="fa fa-globe" aria-hidden="true"></i> Country
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter country"
-                value={country}
-                required
-                onChange={(e) => setCountry(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+            <FormInput
+              type="text"
+              name={[
+                <i
+                  key="address"
+                  className="fa fa-address-book"
+                  aria-hidden="true"
+                ></i>,
+                " Address",
+              ]}
+              placeholder="Enter address"
+              value={address}
+              handleChange={(e) => setAddress(e.target.value)}
+            />
+            <FormInput
+              type="text"
+              name={[
+                <i key="city" className="fa fa-home" aria-hidden="true"></i>,
+                " City",
+              ]}
+              placeholder="Enter city"
+              value={city}
+              handleChange={(e) => setCity(e.target.value)}
+            />
+            <FormInput
+              type="text"
+              name={[
+                <i
+                  key="postalCode"
+                  className="fa fa-envelope-open"
+                  aria-hidden="true"
+                ></i>,
+                " Postal Code",
+              ]}
+              placeholder="Enter postal code"
+              value={postalCode}
+              handleChange={(e) => setPostalCode(e.target.value)}
+            />
+            <FormInput
+              type="text"
+              name={[
+                <i key="county" className="fa fa-globe" aria-hidden="true"></i>,
+                " Country",
+              ]}
+              placeholder="Enter country"
+              value={country}
+              handleChange={(e) => setCountry(e.target.value)}
+            />
 
             <button type="submit" className="btn continue-btn">
               Continue
