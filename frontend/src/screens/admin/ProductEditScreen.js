@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
+import FormInput from "../../components/FormInput";
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 import {
   listProductDetails,
@@ -99,132 +100,104 @@ function ProductEditScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="images">
-            <Form.Label>Images</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter images comma separated"
-              value={images}
-              onChange={(e) => setImages(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="brand">
-            <Form.Label>Brand</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="price">
-            <Form.Label>Price</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="cpu">
-            <Form.Label>CPU</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter CPU"
-              value={cpu}
-              onChange={(e) => setCpu(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="camera">
-            <Form.Label>Camera</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter camera"
-              value={camera}
-              onChange={(e) => setCamera(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="size">
-            <Form.Label>Size</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter size"
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="weight">
-            <Form.Label>Weight</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter weight"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="display">
-            <Form.Label>Display</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter display"
-              value={display}
-              onChange={(e) => setDisplay(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="battery">
-            <Form.Label>Battery</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter battery"
-              value={battery}
-              onChange={(e) => setBattery(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="memory">
-            <Form.Label>Memory</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter memory"
-              value={memory}
-              onChange={(e) => setMemory(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="countInStock">
-            <Form.Label>Count In Stock</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter countInStock"
-              value={countInStock}
-              onChange={(e) => setCountInStock(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="quantity">
-            <Form.Label>Quantity</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
+          <FormInput
+            type="text"
+            name="Name"
+            placeholder="Enter name"
+            value={name}
+            handleChange={(e) => setName(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Images"
+            placeholder="Enter images"
+            value={images}
+            handleChange={(e) => setImages(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Brand"
+            placeholder="Enter brand"
+            value={brand}
+            handleChange={(e) => setBrand(e.target.value)}
+          />
+          <FormInput
+            type="number"
+            name="Price"
+            placeholder="Enter price"
+            value={price}
+            handleChange={(e) => setPrice(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="CPU"
+            placeholder="Enter cpu"
+            value={cpu}
+            handleChange={(e) => setCpu(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Camera"
+            placeholder="Enter camera"
+            value={camera}
+            handleChange={(e) => setCamera(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Size"
+            placeholder="Enter size"
+            value={size}
+            handleChange={(e) => setSize(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Weight"
+            placeholder="Enter weight"
+            value={weight}
+            handleChange={(e) => setWeight(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Display"
+            placeholder="Enter display"
+            value={display}
+            handleChange={(e) => setDisplay(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Battery"
+            placeholder="Enter battery"
+            value={battery}
+            handleChange={(e) => setBattery(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Memory"
+            placeholder="Enter memory"
+            value={memory}
+            handleChange={(e) => setMemory(e.target.value)}
+          />
+          <FormInput
+            type="number"
+            name="Count In Stock"
+            placeholder="Enter count in stock"
+            value={countInStock}
+            handleChange={(e) => setCountInStock(e.target.value)}
+          />
+          <FormInput
+            type="number"
+            name="Quantity"
+            placeholder="Enter quantity"
+            value={quantity}
+            handleChange={(e) => setQuantity(e.target.value)}
+          />
+          <FormInput
+            type="text"
+            name="Description"
+            placeholder="Enter description"
+            value={description}
+            handleChange={(e) => setDescription(e.target.value)}
+          />
 
           <button
             type="submit"
