@@ -349,8 +349,11 @@ body {
     border-top: 1px solid gray;
 
     .item-img {
-      width: 50%;
-      height: 70%;
+      width: 33px;
+
+      @media #{$mq-900-up} {
+        width: 38px;
+      }
     }
 
     .item-name {
@@ -389,6 +392,12 @@ body {
   @extend %box-shadow-container;
   padding: 1rem;
   margin-top: 5rem;
+
+  h3 {
+    @media #{$mq-620-down} {
+      font-size: 1.4rem;
+    }
+  }
 
   .product-review-header {
     display: flex;
