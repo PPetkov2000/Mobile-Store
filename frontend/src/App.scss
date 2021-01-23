@@ -46,6 +46,10 @@ body {
       font-size: 1.3rem;
       margin-top: 0.5rem;
     }
+
+    @media #{$mq-1000-up} {
+      font-size: 1.7rem;
+    }
   }
 }
 
@@ -116,12 +120,16 @@ body {
     border-top: 1px solid gray;
 
     .cart-image {
-      width: 50%;
-      height: 50%;
+      width: 33px;
+
+      @media #{$mq-900-up} {
+        width: 43px;
+      }
     }
 
     .cart-product-name {
       color: #212529;
+      margin-left: 1rem;
 
       &:hover {
         color: $primary-color;
@@ -399,8 +407,8 @@ body {
 
 .user-edit-page-container,
 .product-edit-page-container {
-  max-width: 720px;
   @extend %box-shadow-container;
+  max-width: 720px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -427,8 +435,8 @@ body {
 /* Register and Login pages */
 .register-container,
 .login-container {
-  width: 60%;
   @extend %box-shadow-container;
+  width: 60%;
   margin: 0 auto;
   padding: 1rem;
 
