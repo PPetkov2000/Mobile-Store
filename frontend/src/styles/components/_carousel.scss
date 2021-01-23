@@ -8,23 +8,29 @@
 
     .carousel-item {
       height: 100%;
-    }
-  }
 
-  .img-link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 60%;
-    height: 100%;
-    margin: 0 auto;
+      .img-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60%;
+        height: 100%;
+        margin: 0 auto;
 
-    .img {
-      height: 100%;
-    }
+        .img {
+          object-fit: cover;
+          height: 100%;
+        }
 
-    @media #{$mq-760-down} {
-      width: 77%;
+        @media #{$mq-760-down} {
+          width: 77%;
+
+          .carousel-caption h2 {
+            width: 80% !important;
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }
