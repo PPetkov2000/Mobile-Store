@@ -39,7 +39,7 @@ function CartScreen({ match, location, history }) {
           cartItems.map((item) => {
             return (
               <Row key={item.product} className="cart-info-item">
-                <Col md={2} sm={2} xs={2}>
+                <Col md={1} sm={1} xs={1}>
                   <img
                     src={item.images && item.images[0]}
                     alt={item.name}
@@ -54,7 +54,7 @@ function CartScreen({ match, location, history }) {
                     {item.name}
                   </Link>
                 </Col>
-                <Col md={2} sm={2} xs={2}>
+                <Col md={3} sm={3} xs={3}>
                   ${item.price}
                 </Col>
                 <Col md={2} sm={2} xs={2}>
