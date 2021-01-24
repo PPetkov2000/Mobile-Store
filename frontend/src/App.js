@@ -18,6 +18,7 @@ import UserEditScreen from "./screens/admin/UserEditScreen";
 import ProductListScreen from "./screens/admin/ProductListScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
 import OrderListScreen from "./screens/admin/OrderListScreen";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
             exact
             component={OrderListScreen}
           />
+          <Route path="*" component={PageNotFound} />
         </Container>
       </main>
       <Footer />
