@@ -85,6 +85,43 @@ function Header() {
               </>
             )}
           </Nav>
+          {userInfo && userInfo.isAdmin && (
+            <>
+              <NavDropdown
+                title="Admin"
+                id="admin-menu"
+                show={show}
+                onMouseEnter={() => setShow(true)}
+                onMouseLeave={() => setShow(false)}
+              >
+                <NavDropdown.Item
+                  onClick={() => history.push("/admin/userlist")}
+                >
+                  Users
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => history.push("/admin/productlist")}
+                >
+                  Products
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => history.push("/admin/orderlist")}
+                >
+                  Orders
+                </NavDropdown.Item>
+              </NavDropdown>
+              {/* Mobile view */}
+              <NavLink to="/admin/userlist" className="nav-link mobile-view">
+                Users
+              </NavLink>
+              <NavLink to="/admin/productlist" className="nav-link mobile-view">
+                Products
+              </NavLink>
+              <NavLink to="/admin/orderlist" className="nav-link mobile-view">
+                Orders
+              </NavLink>
+            </>
+          )}
           {userInfo && (
             <Link to="/cart">
               <i className="icon fa fa-shopping-cart" aria-hidden="true">
@@ -95,29 +132,6 @@ function Header() {
                 )}
               </i>
             </Link>
-          )}
-          {userInfo && userInfo.isAdmin && (
-            <NavDropdown
-              title="Admin"
-              id="admin-menu"
-              show={show}
-              onMouseEnter={() => setShow(true)}
-              onMouseLeave={() => setShow(false)}
-            >
-              <NavDropdown.Item onClick={() => history.push("/admin/userlist")}>
-                Users
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                onClick={() => history.push("/admin/productlist")}
-              >
-                Products
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                onClick={() => history.push("/admin/orderlist")}
-              >
-                Orders
-              </NavDropdown.Item>
-            </NavDropdown>
           )}
         </Navbar.Collapse>
       </Navbar>
