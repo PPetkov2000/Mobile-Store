@@ -30,6 +30,14 @@
     }
   }
 
+  .nav-link.mobile-view {
+    color: rgba(0, 0, 0, 0.5);
+
+    @media #{$mq-760-up} {
+      display: none;
+    }
+  }
+
   .searchInput {
     @media #{$mq-760-down} {
       width: 100%;
@@ -42,5 +50,9 @@
 
   #admin-menu {
     color: #000;
+
+    @media #{$mq-760-down} {
+      display: none;
+    }
   }
 }
