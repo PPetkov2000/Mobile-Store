@@ -88,7 +88,7 @@ function OrderScreen({ match, history }) {
       <Row>
         <Col md={8}>
           <div className="order-item-div mb-3">
-            <h4 className="title-color">Shipping</h4>
+            <h3 className="title-color">Shipping</h3>
             <p className="mb-0">
               <strong>Username: </strong>
               {order.creator.username}
@@ -105,7 +105,7 @@ function OrderScreen({ match, history }) {
             </p>
           </div>
           <div className="order-item-div mb-3">
-            <h4 className="title-color">Payment Method</h4>
+            <h3 className="title-color">Payment Method</h3>
             <p className="mb">
               <strong>Method: </strong>
               {order.paymentMethod}
@@ -122,7 +122,7 @@ function OrderScreen({ match, history }) {
             )}
           </div>
           <div className="order-item-div mb-3">
-            <h4 className="mb-3 title-color">Order Items</h4>
+            <h3 className="mb-3 title-color">Order Items</h3>
             {order.orderItems.length === 0 ? (
               <Message>Order is empty</Message>
             ) : (
@@ -154,7 +154,7 @@ function OrderScreen({ match, history }) {
         </Col>
         <Col md={4}>
           <div className="order-summary-div">
-            <h4 className="text-center mb-3">Order Summary</h4>
+            <h3 className="text-center mb-3">Order Summary</h3>
             <Row>
               <Col>
                 <strong>Items</strong>
