@@ -27,7 +27,7 @@ function ShippingScreen({ history }) {
       <CheckoutSteps step1 step2 />
       <Row>
         <Col xs={12} md={8} className="mx-auto">
-          <h3>Shipping</h3>
+          <h2>Shipping</h2>
           <Form onSubmit={submitHandler} className="shipping-address-form">
             <FormInput
               type="text"
