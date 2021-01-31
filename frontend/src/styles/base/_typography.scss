@@ -1,0 +1,19 @@
+h2 {
+  @media #{$mq-900-down} {
+    font-size: 1.8rem;
+  }
+
+  @media #{$mq-620-down} {
+    font-size: 1.4rem;
+  }
+}
+
+h3 {
+  @media #{$mq-900-down} {
+    font-size: 1.6rem;
+  }
+
+  @media #{$mq-620-down} {
+    font-size: 1.3rem;
+  }
+}
