@@ -91,7 +91,7 @@ function ProductEditScreen({ match, history }) {
 
   return (
     <div className="product-edit-page-container">
-      <h3 className="text-center">Edit Product</h3>
+      <h2 className="text-center">Edit Product</h2>
       {loadingUpdate && <Loader />}
       {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
       {loading ? (
