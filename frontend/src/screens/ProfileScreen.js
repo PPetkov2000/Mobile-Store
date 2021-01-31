@@ -71,7 +71,7 @@ function ProfileScreen({ history, match }) {
     <>
       <Row>
         <Col md={4} className="mb-5">
-          <h3 className="profile-title-color">User Profile</h3>
+          <h2 className="profile-title-color">User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
@@ -119,7 +119,7 @@ function ProfileScreen({ history, match }) {
           )}
         </Col>
         <Col md={8}>
-          <h3 className="profile-title-color mb-3">My Orders</h3>
+          <h2 className="profile-title-color mb-3">My Orders</h2>
           {loadingOrders ? (
             <Loader />
           ) : errorOrders ? (
