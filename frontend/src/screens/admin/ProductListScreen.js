@@ -74,7 +74,7 @@ function ProductListScreen({ match, history }) {
     <>
       <Row className="align-items-center">
         <Col>
-          <h3>Products</h3>
+          <h2>Products</h2>
         </Col>
         <Col className="text-right">
           <button
