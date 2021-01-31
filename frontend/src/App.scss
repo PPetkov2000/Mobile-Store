@@ -449,7 +449,11 @@ body {
   margin: 0 auto;
   padding: 1rem;
 
-  @media #{$mq-620-down} {
-    width: 100%;
+  @media #{$mq-1000-down} {
+    width: 70%;
+  }
+
+  @media #{$mq-760-down} {
+    width: 90%;
   }
 }
