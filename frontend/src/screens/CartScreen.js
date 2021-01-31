@@ -30,7 +30,7 @@ function CartScreen({ match, location, history }) {
   return (
     <Row>
       <Col md={8} className="cart-info-column">
-        <h3 className="mb-3">Shopping Cart</h3>
+        <h2 className="mb-3">Shopping Cart</h2>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to="/">Go Back</Link>
@@ -88,13 +88,13 @@ function CartScreen({ match, location, history }) {
       </Col>
       <Col md={4}>
         <Card className="cart-card">
-          <h6 className="cart-title">
+          <h5 className="cart-title">
             Subtotal ({cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}{" "}
             {cartItems.length === 1 ? "item" : "items"}) : $
             {cartItems
               .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
               .toFixed(2)}
-          </h6>
+          </h5>
           <button
             className="btn full-width cart-btn"
             onClick={checkoutHandler}
