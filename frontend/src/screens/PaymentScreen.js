@@ -1,84 +1,55 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Form } from "react-bootstrap";
-import { saveShippingAddress } from "../actions/cartActions";
+import { Form, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { savePaymentMethod } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
-import FormInput from "../components/FormInput";
 
-function ShippingScreen({ history }) {
+const PaymentScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
-  const [address, setAddress] = useState(shippingAddress.address);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
-  const [country, setCountry] = useState(shippingAddress.country);
+  if (!shippingAddress) {
+    history.push("/shipping");
+  }
+
+  const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
-    history.push("/payment");
+    dispatch(savePaymentMethod(paymentMethod));
+    history.push("/placeorder");
   };
 
   return (
     <>
-      <CheckoutSteps step1 step2 />
+      <CheckoutSteps step1 step2 step3 />
       <Row>
         <Col xs={12} md={8} className="mx-auto">
-          <h2>Shipping</h2>
-          <Form onSubmit={submitHandler} className="shipping-address-form">
-            <FormInput
-              type="text"
-              name={[
-                <i
-                  key="address"
-                  className="fa fa-address-book"
-                  aria-hidden="true"
-                ></i>,
-                " Address",
-              ]}
-              placeholder="Enter address"
-              value={address}
-              handleChange={(e) => setAddress(e.target.value)}
-            />
-            <FormInput
-              type="text"
-              name={[
-                <i key="city" className="fa fa-home" aria-hidden="true"></i>,
-                " City",
-              ]}
-              placeholder="Enter city"
-              value={city}
-              handleChange={(e) => setCity(e.target.value)}
-            />
-            <FormInput
-              type="text"
-              name={[
-                <i
-                  key="postalCode"
-                  className="fa fa-envelope-open"
-                  aria-hidden="true"
-                ></i>,
-                " Postal Code",
-              ]}
-              placeholder="Enter postal code"
-              value={postalCode}
-              handleChange={(e) => setPostalCode(e.target.value)}
-            />
-            <FormInput
-              type="text"
-              name={[
-                <i key="county" className="fa fa-globe" aria-hidden="true"></i>,
-                " Country",
-              ]}
-              placeholder="Enter country"
-              value={country}
-              handleChange={(e) => setCountry(e.target.value)}
-            />
+          <h2>Payment Method</h2>
+          <Form
+            onSubmit={submitHandler}
+            className="payment-method-form text-center"
+          >
+            <Form.Group>
+              <Form.Label as="legend" className="payment-method-label">
+                Select Method
+              </Form.Label>
+              <Col>
+                <Form.Check
+                  type="radio"
+                  label="PayPal or Credit Card"
+                  id="PayPal"
+                  name="paymentMethod"
+                  value="PayPal"
+                  checked
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                ></Form.Check>
+              </Col>
+            </Form.Group>
 
-            <button type="submit" className="btn continue-btn">
+            <button type="submit" className="btn payment-btn">
               Continue
             </button>
           </Form>
@@ -86,6 +57,6 @@ function ShippingScreen({ history }) {
       </Row>
     </>
   );
-}
+};
 
-export default ShippingScreen;
+export default PaymentScreen;
