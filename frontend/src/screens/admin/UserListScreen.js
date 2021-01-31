@@ -37,7 +37,7 @@ function UserListScreen({ history, match }) {
 
   return (
     <>
-      <h3>Users</h3>
+      <h2>Users</h2>
       {loading ? (
         <Loader />
       ) : error ? (
