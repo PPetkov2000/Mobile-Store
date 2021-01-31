@@ -72,7 +72,7 @@ function PlaceOrderScreen({ history }) {
       <Row>
         <Col md={8}>
           <div className="place-order-div mb-3">
-            <h4 className="title-color">Shipping</h4>
+            <h3 className="title-color">Shipping</h3>
             <p className="mb-0">
               <strong>Address: </strong>
               {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
@@ -80,12 +80,12 @@ function PlaceOrderScreen({ history }) {
             </p>
           </div>
           <div className="place-order-div mb-3">
-            <h4 className="title-color">Payment Method</h4>
+            <h3 className="title-color">Payment Method</h3>
             <strong>Method: </strong>
             {cart.paymentMethod}
           </div>
           <div className="place-order-div">
-            <h4 className="title-color mb-3">Order Items</h4>
+            <h3 className="title-color mb-3">Order Items</h3>
             {cart.cartItems.length === 0 ? (
               <Message>Your cart is empty</Message>
             ) : (
@@ -117,7 +117,7 @@ function PlaceOrderScreen({ history }) {
         </Col>
         <Col md={4}>
           <div className="place-order-summary-div">
-            <h4 className="text-center mb-3">Order Summary</h4>
+            <h3 className="text-center mb-3">Order Summary</h3>
             <Row>
               <Col>
                 <strong>Items</strong>
