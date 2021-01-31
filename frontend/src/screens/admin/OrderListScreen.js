@@ -28,7 +28,7 @@ function OrderListScreen({ history, match }) {
 
   return (
     <>
-      <h3>Orders</h3>
+      <h2>Orders</h2>
       {loading ? (
         <Loader />
       ) : error ? (
