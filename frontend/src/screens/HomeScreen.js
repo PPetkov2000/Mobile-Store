@@ -43,7 +43,7 @@ function HomeScreen({ match }) {
               products
             </h4>
             <div className="content">
-              <Row xs={1} sm={1} md={4} lg={4} xl={4}>
+              <Row xs={1} sm={1} md={3} lg={4} xl={4}>
                 {products.map((product) => {
                   return (
                     <Col key={product._id}>
