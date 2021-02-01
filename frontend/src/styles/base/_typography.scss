@@ -17,3 +17,33 @@ h3 {
     font-size: 1.3rem;
   }
 }
+
+h4 {
+  @media #{$mq-900-down} {
+    font-size: 1.4rem;
+  }
+
+  @media #{$mq-620-down} {
+    font-size: 1.2rem;
+  }
+}
+
+h5 {
+  @media #{$mq-900-down} {
+    font-size: 1.25rem;
+  }
+
+  @media #{$mq-620-down} {
+    font-size: 1.1rem;
+  }
+}
+
+h6 {
+  @media #{$mq-900-down} {
+    font-size: 1rem;
+  }
+
+  @media #{$mq-620-down} {
+    font-size: 0.9rem;
+  }
+}
