@@ -7,9 +7,9 @@ import { listMyOrders } from "../actions/orderActions";
 import { Link } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import Product from "../components/Product";
 import Paginate from "../components/Paginate";
 import FormInput from "../components/FormInput";
+import Products from "../components/Products";
 
 function ProfileScreen({ history, match }) {
   const pageNumber = match.params.pageNumber || 1;
@@ -126,7 +126,7 @@ function ProfileScreen({ history, match }) {
             <Message variant="danger">{errorOrders}</Message>
           ) : (
             <Table striped bordered hover responsive size="sm">
-              <thead style={{ backgroundColor: "#f3be2d" }}>
+              <thead>
                 <tr>
                   <th>ID</th>
                   <th>DATE</th>
@@ -164,26 +164,13 @@ function ProfileScreen({ history, match }) {
           <Paginate page={page} pages={pages} paginateStr="/profile" />
         </Col>
       </Row>
-      <div className="fav-products-container">
-        <h2 className="fav-products-title">Favourites</h2>
-        <div className="fav-product-div">
-          {user &&
-          user.favouriteProducts &&
-          user.favouriteProducts.length === 0 ? (
-            <Message>No favouirites</Message>
-          ) : (
-            <Row xs={1} sm={1} md={3} lg={4} xl={4}>
-              {user &&
-                user.favouriteProducts &&
-                user.favouriteProducts.map((product) => (
-                  <Col key={product._id}>
-                    <Product product={product} />
-                  </Col>
-                ))}
-            </Row>
-          )}
-        </div>
-      </div>
+      {user.favouriteProducts && (
+        <Products
+          title="favourite products"
+          icon={<i className="fa fa-book-heart" aria-hidden="true"></i>}
+          products={user.favouriteProducts}
+        />
+      )}
     </>
   );
 }
