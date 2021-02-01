@@ -36,7 +36,7 @@ function OrderListScreen({ history, match }) {
       ) : (
         <>
           <Table striped bordered hover responsive className="table-sm">
-            <thead style={{ backgroundColor: "#f3be2d" }}>
+            <thead>
               <tr>
                 <th>ID</th>
                 <th>USER</th>
