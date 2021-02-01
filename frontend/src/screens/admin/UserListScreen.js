@@ -45,7 +45,7 @@ function UserListScreen({ history, match }) {
       ) : (
         <>
           <Table striped bordered hover responsive size="sm">
-            <thead style={{ backgroundColor: "#f3be2d" }}>
+            <thead>
               <tr>
                 <th>ID</th>
                 <th>NAME</th>
