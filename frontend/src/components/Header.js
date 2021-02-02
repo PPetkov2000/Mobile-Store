@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  Badge,
-  NavDropdown,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Nav, Badge, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
-import { listProducts } from "../actions/productActions";
+import ProductSearchForm from "./ProductSearchForm";
 
 function Header() {
   const [show, setShow] = useState(false);
-  const [keyword, setKeyword] = useState("");
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -27,12 +19,6 @@ function Header() {
 
   const logoutHandler = () => {
     dispatch(logout());
-  };
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    dispatch(listProducts(keyword));
-    setKeyword("");
   };
 
   return (
@@ -49,18 +35,7 @@ function Header() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Form inline className="mx-auto" onSubmit={searchHandler}>
-            <FormControl
-              type="text"
-              placeholder="Search..."
-              className="mr-sm-2 searchInput"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-            />
-            <button type="submit" className="btn search-btn">
-              Search
-            </button>
-          </Form>
+          <ProductSearchForm />
           <Nav className="ml-auto">
             <NavLink to="/" exact className="nav-link">
               Home
