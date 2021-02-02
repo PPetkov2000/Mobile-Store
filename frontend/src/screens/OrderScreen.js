@@ -85,8 +85,8 @@ function OrderScreen({ match, history }) {
       <h2 className="mb-3 order-title">
         <i className="fa fa-id-badge" aria-hidden="true"></i> Order: {order._id}
       </h2>
-      <Row>
-        <Col md={8}>
+      <Row xs={1} sm={1} md={1} lg={2} xl={2}>
+        <Col lg={8} xl={8}>
           <div className="order-item-div mb-3">
             <h3 className="title-color">Shipping</h3>
             <p className="mb-0">
@@ -106,7 +106,7 @@ function OrderScreen({ match, history }) {
           </div>
           <div className="order-item-div mb-3">
             <h3 className="title-color">Payment Method</h3>
-            <p className="mb">
+            <p>
               <strong>Method: </strong>
               {order.paymentMethod}
             </p>
@@ -128,7 +128,7 @@ function OrderScreen({ match, history }) {
             ) : (
               order.orderItems.map((item, index) => (
                 <Row key={index} className="order-item">
-                  <Col md={2} xs={2} sm={2}>
+                  <Col xs={2} sm={2} md={2}>
                     <img
                       src={item.imageUrl}
                       alt={item.name}
@@ -143,7 +143,7 @@ function OrderScreen({ match, history }) {
                       {item.name}
                     </Link>
                   </Col>
-                  <Col md={5} xs={4} sm={4}>
+                  <Col xs={5} sm={5} md={5}>
                     {item.quantity} * {item.price} = $
                     {item.quantity * item.price}
                   </Col>
@@ -152,32 +152,28 @@ function OrderScreen({ match, history }) {
             )}
           </div>
         </Col>
-        <Col md={4}>
+        <Col lg={4} xl={4}>
           <div className="order-summary-div">
             <h3 className="text-center mb-3">Order Summary</h3>
             <Row>
-              <Col>
-                <strong>Items</strong>
-              </Col>
+              <Col>Items</Col>
               <Col className="text-right">${order.itemsPrice}</Col>
             </Row>
             <Row>
-              <Col>
-                <strong>Shipping</strong>
-              </Col>
+              <Col>Shipping</Col>
               <Col className="text-right">${order.shippingPrice}</Col>
             </Row>
             <Row>
-              <Col>
-                <strong>Tax</strong>
-              </Col>
+              <Col>Tax</Col>
               <Col className="text-right">${order.taxPrice}</Col>
             </Row>
             <Row className="total-price-row">
               <Col>
-                <strong>Total</strong>
+                <p>Total</p>
               </Col>
-              <Col className="text-right">${order.totalPrice}</Col>
+              <Col className="text-right">
+                <p>${order.totalPrice}</p>
+              </Col>
             </Row>
             {!order.isPaid && (
               <Row className="paypal-button-row">
