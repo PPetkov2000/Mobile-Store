@@ -27,16 +27,9 @@ function ProductCarousel() {
           <Link to={`/products/${product._id}`} className="img-link">
             <img src={product.images[2]} alt={product.name} className="img" />
             <Carousel.Caption>
-              <h2
-                style={{
-                  backgroundColor: "black",
-                  opacity: "0.7",
-                  width: "60%",
-                  margin: "auto",
-                }}
-              >
+              <h3 className="carousel-caption-title">
                 {product.name} ${product.price}
-              </h2>
+              </h3>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
