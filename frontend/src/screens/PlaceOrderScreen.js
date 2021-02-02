@@ -69,8 +69,8 @@ function PlaceOrderScreen({ history }) {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
-      <Row>
-        <Col md={8}>
+      <Row xs={1} sm={1} md={1} lg={2} xl={2}>
+        <Col lg={8} xl={8}>
           <div className="place-order-div mb-3">
             <h3 className="title-color">Shipping</h3>
             <p className="mb-0">
@@ -115,7 +115,7 @@ function PlaceOrderScreen({ history }) {
             )}
           </div>
         </Col>
-        <Col md={4}>
+        <Col lg={4} xl={4}>
           <div className="place-order-summary-div">
             <h3 className="text-center mb-3">Order Summary</h3>
             <Row>
