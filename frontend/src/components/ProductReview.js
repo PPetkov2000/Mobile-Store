@@ -31,7 +31,7 @@ function ProductReview({ productId, productReviews }) {
 
   return (
     <div className="product-review-container">
-      <h3>Reviews</h3>
+      <h2 className="product-review-title">Reviews</h2>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {successDelete && <Message variant="success">Review removed</Message>}
@@ -41,7 +41,7 @@ function ProductReview({ productId, productReviews }) {
           <div key={review._id} style={{ borderBottom: "1px solid grey" }}>
             <div className="product-review-header">
               <strong className="px-2">{review.name}</strong>
-              {review.creator === userInfo && userInfo._id && (
+              {(review.creator === userInfo._id || userInfo.isAdmin) && (
                 <button
                   className="product-review-delete-btn"
                   onClick={deleteReviewHandler}
@@ -50,14 +50,14 @@ function ProductReview({ productId, productReviews }) {
                 </button>
               )}
             </div>
-            <div className="px-2">
+            <div className="product-review-content">
               <Rating value={review.rating} />
-              <div className="d-flex align-items-center justify-content-between">
-                <p className="mb-1">{review.comment}</p>
-                <Badge variant="dark" className="align-self-end mb-1">
+              <p>
+                {review.comment}
+                <Badge variant="dark">
                   {review.createdAt.substring(0, 10)}
                 </Badge>
-              </div>
+              </p>
             </div>
           </div>
         );
@@ -68,7 +68,12 @@ function ProductReview({ productId, productReviews }) {
           !productReviews.find(
             (r) => r.creator.toString() === userInfo._id.toString()
           )
-        ) && <ProductReviewForm productId={productId} />}
+        ) && (
+          <>
+            <hr className="bg-secondary" />
+            <ProductReviewForm productId={productId} />
+          </>
+        )}
     </div>
   );
 }
