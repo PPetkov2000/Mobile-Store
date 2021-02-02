@@ -43,7 +43,7 @@ function ProductReviewForm({ productId }) {
   return (
     <>
       <div>
-        <h3>Write a Customer Review</h3>
+        <h2 className="product-review-form-title">Write a Customer Review</h2>
         {loading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
         {success && (
