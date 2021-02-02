@@ -108,7 +108,6 @@ function ProfileScreen({ history, match }) {
                 value={confirmPassword}
                 handleChange={(e) => setConfirmPassword(e.target.value)}
               />
-
               <button
                 type="submit"
                 className="btn full-width update-profile-btn"
@@ -167,7 +166,7 @@ function ProfileScreen({ history, match }) {
       {user.favouriteProducts && (
         <Products
           title="favourite products"
-          icon={<i className="fa fa-book-heart" aria-hidden="true"></i>}
+          icon={<i className="fa fa-heart"></i>}
           products={user.favouriteProducts}
         />
       )}
