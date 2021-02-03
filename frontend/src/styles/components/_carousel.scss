@@ -22,13 +22,19 @@
           height: 100%;
         }
 
+        .carousel-caption-title {
+          background-color: black;
+          opacity: 0.7;
+          width: 70%;
+          margin: auto;
+
+          @media #{$mq-760-down} {
+            width: 80% !important;
+          }
+        }
+
         @media #{$mq-760-down} {
           width: 77%;
-
-          .carousel-caption h2 {
-            width: 80% !important;
-            font-size: 1.5rem;
-          }
         }
       }
     }
