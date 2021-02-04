@@ -82,13 +82,13 @@ function OrderScreen({ match, history }) {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
-      <h2 className="mb-3 order-title">
+      <h2 className="mb-3">
         <i className="fa fa-id-badge" aria-hidden="true"></i> Order: {order._id}
       </h2>
       <Row xs={1} sm={1} md={1} lg={2} xl={2}>
         <Col lg={8} xl={8}>
-          <div className="order-item-div mb-3">
-            <h3 className="title-color">Shipping</h3>
+          <div className="order-details">
+            <h3 className="order-title">Shipping</h3>
             <p className="mb-0">
               <strong>Username: </strong>
               {order.creator.username}
@@ -104,8 +104,8 @@ function OrderScreen({ match, history }) {
               {order.shippingAddress.country}
             </p>
           </div>
-          <div className="order-item-div mb-3">
-            <h3 className="title-color">Payment Method</h3>
+          <div className="order-details">
+            <h3 className="order-title">Payment Method</h3>
             <p>
               <strong>Method: </strong>
               {order.paymentMethod}
@@ -121,24 +121,24 @@ function OrderScreen({ match, history }) {
               </Message>
             )}
           </div>
-          <div className="order-item-div mb-3">
-            <h3 className="mb-3 title-color">Order Items</h3>
+          <div className="order-details">
+            <h3 className="order-title mb-3">Order Items</h3>
             {order.orderItems.length === 0 ? (
               <Message>Order is empty</Message>
             ) : (
               order.orderItems.map((item, index) => (
-                <Row key={index} className="order-item">
+                <Row key={index} className="order-content">
                   <Col xs={2} sm={2} md={2}>
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="item-img"
+                      className="order-img"
                     />
                   </Col>
                   <Col>
                     <Link
                       to={`/products/${item.product}`}
-                      className="item-name"
+                      className="order-name"
                     >
                       {item.name}
                     </Link>
@@ -153,7 +153,7 @@ function OrderScreen({ match, history }) {
           </div>
         </Col>
         <Col lg={4} xl={4}>
-          <div className="order-summary-div">
+          <div className="order-summary">
             <h3 className="text-center mb-3">Order Summary</h3>
             <Row>
               <Col>Items</Col>
@@ -168,11 +168,11 @@ function OrderScreen({ match, history }) {
               <Col className="text-right">${order.taxPrice}</Col>
             </Row>
             <Row className="total-price-row">
-              <Col>
-                <p>Total</p>
+              <Col md={4} sm={6} xs={6}>
+                Total
               </Col>
-              <Col className="text-right">
-                <p>${order.totalPrice}</p>
+              <Col md={8} sm={6} xs={6} className="text-right">
+                ${order.totalPrice}
               </Col>
             </Row>
             {!order.isPaid && (
