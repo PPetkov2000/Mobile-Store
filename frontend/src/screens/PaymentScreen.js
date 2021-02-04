@@ -23,7 +23,7 @@ const PaymentScreen = ({ history }) => {
   };
 
   return (
-    <>
+    <div className="payment-method-container">
       <CheckoutSteps step1 step2 step3 />
       <Row>
         <Col xs={12} md={8} className="mx-auto">
@@ -55,7 +55,7 @@ const PaymentScreen = ({ history }) => {
           </Form>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
