@@ -343,9 +343,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #444;
+    background-color: #555;
     color: #fff;
     font-size: 1.1rem;
+
+    .product-rating {
+      margin-bottom: 0;
+    }
   }
 
   .product-review-content {
@@ -355,6 +359,7 @@ body {
       background-color: lightgray;
       position: relative;
       padding: 0.5rem;
+      border-bottom: 3px solid #444;
 
       .badge {
         position: absolute;
