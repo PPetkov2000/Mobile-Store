@@ -31,6 +31,10 @@
           @media #{$mq-760-down} {
             width: 80% !important;
           }
+
+          @media #{$mq-1180-up} {
+            width: 60% !important;
+          }
         }
 
         @media #{$mq-760-down} {
