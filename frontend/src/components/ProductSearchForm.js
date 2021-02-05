@@ -14,7 +14,7 @@ function ProductSearchForm() {
   };
 
   return (
-    <Form inline className="mx-auto" onSubmit={searchHandler}>
+    <Form inline className="search-form mx-auto" onSubmit={searchHandler}>
       <FormControl
         type="text"
         placeholder="Search..."
