@@ -38,20 +38,23 @@ function ProductReview({ productId, productReviews }) {
       {productReviews.length === 0 && <Message>No Reviews</Message>}
       {productReviews.map((review) => {
         return (
-          <div key={review._id} style={{ borderBottom: "1px solid grey" }}>
+          <div key={review._id}>
             <div className="product-review-header">
-              <strong className="px-2">{review.name}</strong>
-              {(review.creator === userInfo._id || userInfo.isAdmin) && (
-                <button
-                  className="product-review-delete-btn"
-                  onClick={deleteReviewHandler}
-                >
-                  <i className="fa fa-trash"></i>
-                </button>
-              )}
+              <div className="px-2 d-flex">
+                <p className="mb-0 mr-4">{review.name}</p>
+                <Rating value={review.rating} />
+              </div>
+              {userInfo &&
+                (review.creator === userInfo._id || userInfo.isAdmin) && (
+                  <button
+                    className="product-review-delete-btn"
+                    onClick={deleteReviewHandler}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                )}
             </div>
             <div className="product-review-content">
-              <Rating value={review.rating} />
               <p>
                 {review.comment}
                 <Badge variant="dark">
