@@ -5,7 +5,10 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
 import Rating from "../components/Rating";
-import { USER_ADD_FAVOURITES_RESET } from "../constants/userConstants";
+import {
+  USER_ADD_FAVOURITES_RESET,
+  USER_REMOVE_FAVOURITES_RESET,
+} from "../constants/userConstants";
 import ProductReview from "../components/ProductReview";
 import {
   addToFavourites,
@@ -54,6 +57,10 @@ function ProductScreen({ match, history }) {
 
     if (successRemoveFavourites || successFavourites) {
       dispatch(getUserDetails("profile"));
+      setTimeout(() => {
+        dispatch({ type: USER_ADD_FAVOURITES_RESET });
+        dispatch({ type: USER_REMOVE_FAVOURITES_RESET });
+      }, 4000);
     }
   }, [
     productId,
@@ -86,7 +93,7 @@ function ProductScreen({ match, history }) {
     <Message variant="danger">{error}</Message>
   ) : (
     <section className="product-details">
-      <Row xs={1} sm={1} md={3}>
+      <Row xs={1} sm={2} md={2} lg={3} xl={3}>
         <Col>
           <img
             src={product.images && product.images[0]}
@@ -95,7 +102,7 @@ function ProductScreen({ match, history }) {
           />
         </Col>
         <Col>
-          <h2 className="product-details-title">{product.name}</h2>
+          <h3 className="product-name">{product.name}</h3>
           <Rating
             value={product.rating}
             text={`Clients reviewed: ${
@@ -129,7 +136,7 @@ function ProductScreen({ match, history }) {
             </p>
           </div>
         </Col>
-        <Col>
+        <Col className="col-sm-12 col-md-12">
           <div className="product-order-container">
             <h3 className="product-price">Price: ${product.price}</h3>
             <i className="fa fa-truck" aria-hidden="true"></i>
@@ -166,11 +173,21 @@ function ProductScreen({ match, history }) {
               ))}
             {loadingRemoveFavourites && <Loader />}
             {errorRemoveFavourites && (
-              <p className="mb-0 text-danger">{errorRemoveFavourites}</p>
+              <Message variant="danger">{errorRemoveFavourites}</Message>
+            )}
+            {successRemoveFavourites && (
+              <div className="mt-3">
+                <Message variant="success">Removed from favourites</Message>
+              </div>
             )}
             {loadingFavourites && <Loader />}
             {errorFavourites && (
-              <p className="mb-0 text-danger">{errorFavourites}</p>
+              <Message variant="danger">{errorFavourites}</Message>
+            )}
+            {successFavourites && (
+              <div className="mt-3">
+                <Message variant="success">Added to favourites</Message>
+              </div>
             )}
           </div>
         </Col>
