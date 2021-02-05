@@ -32,6 +32,7 @@ import {
   USER_REMOVE_FAVOURITES_REQUEST,
   USER_REMOVE_FAVOURITES_SUCCESS,
   USER_REMOVE_FAVOURITES_FAIL,
+  USER_REMOVE_FAVOURITES_RESET,
 } from "../constants/userConstants";
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -165,6 +166,8 @@ export const userRemoveFavouritesReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case USER_REMOVE_FAVOURITES_FAIL:
       return { loading: false, error: action.payload };
+    case USER_REMOVE_FAVOURITES_RESET:
+      return {};
     default:
       return state;
   }
