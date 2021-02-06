@@ -36,14 +36,14 @@ function UserListScreen({ history, match }) {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <h2>Users</h2>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <>
+        <div className="table-wrapper">
           <Table striped bordered hover responsive size="sm">
             <thead>
               <tr>
@@ -94,9 +94,9 @@ function UserListScreen({ history, match }) {
             isAdmin={true}
             adminPage="userlist"
           />
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
