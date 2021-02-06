@@ -23,18 +23,13 @@
         }
 
         .carousel-caption-title {
-          background-color: black;
+          background-color: #000;
           opacity: 0.7;
-          width: 70%;
+          width: fit-content;
           margin: auto;
-
-          @media #{$mq-760-down} {
-            width: 80% !important;
-          }
-
-          @media #{$mq-1180-up} {
-            width: 60% !important;
-          }
+          padding: 0.5rem 1rem;
+          max-width: 80%;
+          overflow: hidden;
         }
 
         @media #{$mq-760-down} {
