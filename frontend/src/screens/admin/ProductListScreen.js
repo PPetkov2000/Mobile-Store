@@ -71,7 +71,7 @@ function ProductListScreen({ match, history }) {
   };
 
   return (
-    <>
+    <div className="admin-container">
       <Row className="align-items-center">
         <Col>
           <h2>Products</h2>
@@ -94,7 +94,7 @@ function ProductListScreen({ match, history }) {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <>
+        <div className="table-wrapper">
           <Table striped bordered hover responsive size="sm">
             <thead>
               <tr>
@@ -137,9 +137,9 @@ function ProductListScreen({ match, history }) {
             isAdmin={true}
             adminPage="productlist"
           />
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
