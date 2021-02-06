@@ -384,7 +384,6 @@ body {
   padding: 1rem;
 }
 
-/* Register and Login pages */
 .register-container,
 .login-container {
   @extend %box-shadow-container;
@@ -398,5 +397,17 @@ body {
 
   @media #{$mq-760-down} {
     width: 90%;
+  }
+}
+
+.login-container {
+  margin-bottom: 3.6rem;
+}
+
+.admin-container {
+  margin-top: -30px;
+
+  @media #{$mq-900-down} {
+    margin-top: -26px;
   }
 }
