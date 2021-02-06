@@ -27,14 +27,14 @@ function OrderListScreen({ history, match }) {
   }, [dispatch, history, userInfo, pageNumber]);
 
   return (
-    <>
+    <div className="admin-container">
       <h2>Orders</h2>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <>
+        <div className="table-wrapper">
           <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
@@ -80,9 +80,9 @@ function OrderListScreen({ history, match }) {
             isAdmin={true}
             adminPage="orderlist"
           />
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
