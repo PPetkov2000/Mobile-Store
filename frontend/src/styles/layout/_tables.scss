@@ -10,3 +10,10 @@ table {
     white-space: nowrap;
   }
 }
+
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 52.7vh;
+}
