@@ -30,7 +30,7 @@ h3 {
 
 h4 {
   @media #{$mq-900-down} {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   @media #{$mq-620-down} {
@@ -40,23 +40,19 @@ h4 {
 
 h5 {
   @media #{$mq-900-down} {
-    font-size: 1.25rem;
-  }
-
-  @media #{$mq-620-down} {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 
 h6 {
   @media #{$mq-900-down} {
-    font-size: 1rem;
-  }
-
-  @media #{$mq-620-down} {
     font-size: 0.9rem;
   }
 }
+
+// $headingsSize: (h1: 2.5rem, h2: 2rem, h3: 1.75rem, h4: 1.5rem, h5: 1.25rem, h6: 1rem);
+// $headingsSizeMedium: (h1: 2.2rem, h2: 1.8rem, h3: 1.6rem, h4: 1.3rem, h5: 1.15rem, h6: 0.9rem);
+// $headingsSizeSmall: (h1: 1.8rem, h2: 1.4rem, h3: 1.3rem, h4: 1.2rem);
 
 // @each $header,
 //   $size in (h1: 2.5rem, h2: 2rem, h3: 1.75rem, h4: 1.5rem, h5: 1.25rem, h6: 1rem)
