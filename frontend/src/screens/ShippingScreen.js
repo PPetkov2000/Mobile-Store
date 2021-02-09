@@ -77,7 +77,6 @@ function ShippingScreen({ history }) {
               value={country}
               handleChange={(e) => setCountry(e.target.value)}
             />
-
             <button type="submit" className="btn btn-continue">
               Continue
             </button>
