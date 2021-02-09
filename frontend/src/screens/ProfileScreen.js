@@ -110,7 +110,7 @@ function ProfileScreen({ history, match }) {
               />
               <button
                 type="submit"
-                className="btn full-width update-profile-btn"
+                className="btn full-width btn-update-profile"
               >
                 Update
               </button>
@@ -150,7 +150,7 @@ function ProfileScreen({ history, match }) {
                     <td className="text-center">
                       <Link
                         to={`/order/${order._id}`}
-                        className="btn profile-order-details-btn"
+                        className="btn btn-order-details"
                       >
                         Details
                       </Link>
