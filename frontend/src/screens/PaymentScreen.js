@@ -48,8 +48,7 @@ const PaymentScreen = ({ history }) => {
                 ></Form.Check>
               </Col>
             </Form.Group>
-
-            <button type="submit" className="btn payment-btn">
+            <button type="submit" className="btn btn-payment">
               Continue
             </button>
           </Form>
