@@ -3,24 +3,66 @@
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: bold;
-}
 
-.btn-icon {
-  font-size: 1.1rem;
-}
-
-.search-btn {
-  border: 1px solid green;
-  color: green;
-  font-size: 0.8rem;
-
-  &:hover {
-    background-color: green;
-    color: white;
+  &-icon {
+    font-size: 1.1rem;
   }
 
-  @media #{$mq-1000-down} {
-    display: none;
+  &-search {
+    border: 1px solid green;
+    color: green;
+    font-size: 0.8rem;
+
+    &:hover {
+      background-color: green;
+      color: white;
+    }
+
+    @media #{$mq-1000-down} {
+      display: none;
+    }
+  }
+
+  &-cart {
+    @include button-bg($primary-color);
+  }
+
+  &-continue {
+    @include button-bg($primary-color);
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  &-payment {
+    @include button-bg($primary-color);
+    font-size: 0.8rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+  }
+
+  &-place-order {
+    @include button-bg($primary-color);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  &-update-profile {
+    @include button-bg($primary-color);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  &-order-details {
+    width: 100%;
+    padding: 0;
+    color: rgb(63, 63, 240);
+    border: 1px solid rgb(63, 63, 240);
+    font-size: 0.8rem;
+
+    &:hover {
+      background-color: rgb(63, 63, 240);
+      color: white;
+    }
   }
 }
 
@@ -50,40 +92,11 @@
   font-size: 0.9rem;
 }
 
-.cart-btn {
-  @include button-bg($primary-color);
-}
-
 .cart-remove-item-btn {
   background-color: transparent;
   color: red;
   font-size: 1.3rem;
   border: none;
-}
-
-.continue-btn {
-  @include button-bg($primary-color);
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-.payment-btn {
-  @include button-bg($primary-color);
-  font-size: 0.8rem;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
-}
-
-.place-order-button {
-  @include button-bg($primary-color);
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.update-profile-btn {
-  @include button-bg($primary-color);
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
 }
 
 .product-review-delete-btn {
@@ -126,20 +139,6 @@
 .product-edit-page-btn {
   @include button-bg($primary-color);
   font-size: 0.9rem;
-}
-
-.profile-order-details-btn,
-.order-list-details-btn {
-  width: 100%;
-  padding: 0;
-  color: rgb(63, 63, 240);
-  border: 1px solid rgb(63, 63, 240);
-  font-size: 0.8rem;
-
-  &:hover {
-    background-color: rgb(63, 63, 240);
-    color: white;
-  }
 }
 
 .register-btn,
