@@ -72,12 +72,12 @@ function UserListScreen({ history, match }) {
                   <td>
                     <div className="user-list-buttons">
                       <Link to={`/admin/user/${user._id}/edit`}>
-                        <button className="user-edit-btn">
+                        <button className="btn-blue">
                           <i className="fa fa-edit"></i>
                         </button>
                       </Link>
                       <button
-                        className="user-delete-btn"
+                        className="btn-red"
                         onClick={() => deleteHandler(user._id)}
                       >
                         <i className="fa fa-trash"></i>
