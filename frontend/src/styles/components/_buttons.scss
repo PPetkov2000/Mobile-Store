@@ -4,12 +4,45 @@
   font-size: 1rem;
   font-weight: bold;
 
-  &-icon {
-    font-size: 1.1rem;
+  &-main {
+    @include button-bg($primary-color);
+    font-size: 0.9rem;
   }
 
-  &-search {
-    border: 1px solid green;
+  &-red {
+    background-color: transparent;
+    color: red;
+    border: none;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &-blue {
+    background-color: transparent;
+    color: rgb(45, 45, 226);
+    border: none;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    &--bordered {
+      padding: 0;
+      color: rgb(45, 45, 226);
+      border: 1px solid rgb(45, 45, 226);
+      font-size: 0.9rem;
+
+      &:hover {
+        background-color: rgb(45, 45, 226);
+        color: white;
+      }
+    }
+  }
+
+  &-green {
+    border: 2px solid green;
     color: green;
     font-size: 0.8rem;
 
@@ -18,51 +51,23 @@
       color: white;
     }
 
-    @media #{$mq-1000-down} {
-      display: none;
+    &--hidden-below-1000 {
+      @media #{$mq-1000-down} {
+        display: none;
+      }
     }
+  }
+
+  &-full-width {
+    width: 100%;
+  }
+
+  &-icon {
+    font-size: 1.1rem;
   }
 
   &-cart {
     @include button-bg($primary-color);
-  }
-
-  &-continue {
-    @include button-bg($primary-color);
-    font-size: 0.9rem;
-    width: 100%;
-  }
-
-  &-payment {
-    @include button-bg($primary-color);
-    font-size: 0.8rem;
-    padding-left: 1.3rem;
-    padding-right: 1.3rem;
-  }
-
-  &-place-order {
-    @include button-bg($primary-color);
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-
-  &-update-profile {
-    @include button-bg($primary-color);
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  &-order-details {
-    width: 100%;
-    padding: 0;
-    color: rgb(63, 63, 240);
-    border: 1px solid rgb(63, 63, 240);
-    font-size: 0.8rem;
-
-    &:hover {
-      background-color: rgb(63, 63, 240);
-      color: white;
-    }
   }
 }
 
@@ -95,56 +100,6 @@
 .cart-remove-item-btn {
   background-color: transparent;
   color: red;
+  border: none;
   font-size: 1.3rem;
-  border: none;
-}
-
-.product-review-delete-btn {
-  background-color: transparent;
-  color: red;
-  margin-right: 0.5rem;
-  border: none;
-}
-
-.review-btn {
-  @include button-bg($primary-color);
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.user-edit-btn,
-.product-list-edit-btn {
-  color: rgb(45, 45, 226);
-  border: none;
-}
-
-.user-delete-btn,
-.product-list-delete-btn {
-  color: red;
-  border: none;
-}
-
-.product-list-create-btn {
-  background-color: green;
-  color: white;
-
-  &:hover {
-    background-color: transparent;
-    color: green;
-    border: 2px solid green;
-  }
-}
-
-.user-edit-page-btn,
-.product-edit-page-btn {
-  @include button-bg($primary-color);
-  font-size: 0.9rem;
-}
-
-.register-btn,
-.login-btn {
-  @include button-bg($primary-color);
-  width: 100%;
-  font-size: 0.9rem;
-  margin-top: 1rem;
 }
