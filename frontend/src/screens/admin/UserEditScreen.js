@@ -79,8 +79,7 @@ function UserEditScreen({ match, history }) {
               onChange={(e) => setIsAdmin(e.target.checked)}
             ></Form.Check>
           </Form.Group>
-
-          <button type="submit" className="btn full-width user-edit-page-btn">
+          <button type="submit" className="btn btn-main btn-full-width">
             Update
           </button>
         </Form>
