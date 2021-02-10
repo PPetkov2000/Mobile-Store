@@ -80,7 +80,7 @@ function ProductReviewForm({ productId }) {
           <button
             disabled={loading}
             type="submit"
-            className="btn full-width review-btn"
+            className="btn btn-main btn-full-width"
           >
             Submit
           </button>
