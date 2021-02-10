@@ -140,7 +140,7 @@ function PlaceOrderScreen({ history }) {
             <div>{error && <Message variant="danger">{error}</Message>}</div>
             <button
               type="button"
-              className="btn full-width btn-place-order"
+              className="btn btn-main btn-full-width"
               disabled={cart.cartItems.length === 0}
               onClick={placeOrderHandler}
             >
