@@ -22,7 +22,7 @@ function ProductSearchForm() {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button type="submit" className="btn btn-search">
+      <button type="submit" className="btn btn-green--hidden-below-1000">
         Search
       </button>
     </Form>
