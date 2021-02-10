@@ -198,11 +198,7 @@ function ProductEditScreen({ match, history }) {
             value={description}
             handleChange={(e) => setDescription(e.target.value)}
           />
-
-          <button
-            type="submit"
-            className="btn full-width product-edit-page-btn"
-          >
+          <button type="submit" className="btn btn-main btn-full-width">
             Update
           </button>
         </Form>
