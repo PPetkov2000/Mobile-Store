@@ -50,7 +50,7 @@ function LoginScreen({ history, location }) {
           handleChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="btn login-btn">
+        <button type="submit" className="btn btn-main btn-full-width">
           Login
         </button>
 
