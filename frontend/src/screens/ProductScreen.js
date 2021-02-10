@@ -142,7 +142,7 @@ function ProductScreen({ match, history }) {
             <i className="fa fa-truck" aria-hidden="true"></i>
             <span className="free-delivery">free delivery</span>
             <button
-              className="btn full-width add-to-cart"
+              className="btn btn-full-width add-to-cart"
               onClick={addToCartHandler}
             >
               <i className="fa fa-cart-plus btn-icon" aria-hidden="true"></i>{" "}
@@ -156,7 +156,7 @@ function ProductScreen({ match, history }) {
                 )
               ) ? (
                 <button
-                  className="btn full-width add-to-favourites"
+                  className="btn btn-full-width add-to-favourites"
                   onClick={addToFavouritesHandler}
                 >
                   <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
@@ -164,7 +164,7 @@ function ProductScreen({ match, history }) {
                 </button>
               ) : (
                 <button
-                  className="btn full-width remove-from-favourites"
+                  className="btn btn-full-width remove-from-favourites"
                   onClick={removeFromFavouritesHandler}
                 >
                   <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
