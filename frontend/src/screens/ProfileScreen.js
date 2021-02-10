@@ -108,10 +108,7 @@ function ProfileScreen({ history, match }) {
                 value={confirmPassword}
                 handleChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <button
-                type="submit"
-                className="btn full-width btn-update-profile"
-              >
+              <button type="submit" className="btn btn-main btn-full-width">
                 Update
               </button>
             </Form>
@@ -150,7 +147,7 @@ function ProfileScreen({ history, match }) {
                     <td className="text-center">
                       <Link
                         to={`/order/${order._id}`}
-                        className="btn btn-order-details"
+                        className="btn btn-full-width btn-blue--bordered"
                       >
                         Details
                       </Link>
