@@ -72,7 +72,7 @@ function RegisterScreen({ history, location }) {
           handleChange={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <button type="submit" className="btn register-btn">
+        <button type="submit" className="btn btn-main btn-full-width">
           Register
         </button>
 
