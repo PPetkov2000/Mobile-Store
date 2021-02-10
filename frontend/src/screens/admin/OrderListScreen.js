@@ -65,7 +65,9 @@ function OrderListScreen({ history, match }) {
                       to={`/order/${order._id}`}
                       className="d-flex justify-content-center"
                     >
-                      <button className="btn btn-order-details">Details</button>
+                      <button className="btn btn-full-width btn-blue--bordered">
+                        Details
+                      </button>
                     </Link>
                   </td>
                 </tr>
