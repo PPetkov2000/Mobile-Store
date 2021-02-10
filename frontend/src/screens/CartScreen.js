@@ -100,7 +100,7 @@ function CartScreen({ match, location, history }) {
                 .toFixed(2)}
             </h5>
             <button
-              className="btn full-width btn-cart"
+              className="btn btn-cart"
               onClick={checkoutHandler}
               disabled={cartItems.length === 0}
             >
