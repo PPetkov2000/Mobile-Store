@@ -57,7 +57,7 @@ function OrderListScreen({ history, match }) {
                     {order.isPaid ? (
                       new Date(Number(order.paidAt)).toLocaleDateString()
                     ) : (
-                      <i className="fa fa-times" style={{ color: "red" }}></i>
+                      <i className="fa fa-times btn-red--icon"></i>
                     )}
                   </td>
                   <td>
@@ -65,7 +65,7 @@ function OrderListScreen({ history, match }) {
                       to={`/order/${order._id}`}
                       className="d-flex justify-content-center"
                     >
-                      <button className="btn btn-full-width btn-blue--bordered">
+                      <button className="btn btn-full-width btn-blue--bordered p-0">
                         Details
                       </button>
                     </Link>
