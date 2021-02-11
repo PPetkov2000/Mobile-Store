@@ -147,7 +147,7 @@ function ProfileScreen({ history, match }) {
                     <td className="text-center">
                       <Link
                         to={`/order/${order._id}`}
-                        className="btn btn-full-width btn-blue--bordered"
+                        className="btn btn-full-width btn-blue--bordered p-0"
                       >
                         Details
                       </Link>
