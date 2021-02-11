@@ -139,14 +139,13 @@ function ProductScreen({ match, history }) {
         <Col className="col-sm-12 col-md-12">
           <div className="product-order-container">
             <h3 className="product-price">Price: ${product.price}</h3>
-            <i className="fa fa-truck" aria-hidden="true"></i>
+            <i className="fa fa-truck btn-green--icon" aria-hidden="true"></i>
             <span className="free-delivery">free delivery</span>
             <button
               className="btn btn-full-width add-to-cart"
               onClick={addToCartHandler}
             >
-              <i className="fa fa-cart-plus btn-icon" aria-hidden="true"></i>{" "}
-              add to cart
+              <i className="fa fa-cart-plus" aria-hidden="true"></i> add to cart
             </button>
             {Object.keys(user).length > 0 &&
               (user.favouriteProducts &&
@@ -159,16 +158,16 @@ function ProductScreen({ match, history }) {
                   className="btn btn-full-width add-to-favourites"
                   onClick={addToFavouritesHandler}
                 >
-                  <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
-                  add to favourites
+                  <i className="fa fa-heart" aria-hidden="true"></i> add to
+                  favourites
                 </button>
               ) : (
                 <button
                   className="btn btn-full-width remove-from-favourites"
                   onClick={removeFromFavouritesHandler}
                 >
-                  <i className="fa fa-heart btn-icon" aria-hidden="true"></i>{" "}
-                  remove from favourites
+                  <i className="fa fa-heart" aria-hidden="true"></i> remove from
+                  favourites
                 </button>
               ))}
             {loadingRemoveFavourites && <Loader />}
