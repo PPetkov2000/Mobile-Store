@@ -77,7 +77,10 @@ function ProductListScreen({ match, history }) {
           <h2>Products</h2>
         </Col>
         <Col className="text-right">
-          <button className="btn btn-green" onClick={createProductHandler}>
+          <button
+            className="btn btn-green--bordered"
+            onClick={createProductHandler}
+          >
             <i className="fa fa-plus"></i> Create Product
           </button>
         </Col>
@@ -112,12 +115,12 @@ function ProductListScreen({ match, history }) {
                   <td>
                     <div className="product-list-buttons">
                       <Link to={`/admin/product/${product._id}/edit`}>
-                        <button className="btn-blue">
+                        <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
                         </button>
                       </Link>
                       <button
-                        className="btn-red"
+                        className="btn-red--icon"
                         onClick={() => deleteProductHandler(product._id)}
                       >
                         <i className="fa fa-trash"></i>
