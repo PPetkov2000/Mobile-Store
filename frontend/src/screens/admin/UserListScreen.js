@@ -64,20 +64,20 @@ function UserListScreen({ history, match }) {
                   </td>
                   <td className="text-center">
                     {user.isAdmin ? (
-                      <i className="fa fa-check" style={{ color: "green" }}></i>
+                      <i className="fa fa-check btn-green--icon"></i>
                     ) : (
-                      <i className="fa fa-times" style={{ color: "red" }}></i>
+                      <i className="fa fa-times btn-red--icon"></i>
                     )}
                   </td>
                   <td>
                     <div className="user-list-buttons">
                       <Link to={`/admin/user/${user._id}/edit`}>
-                        <button className="btn-blue">
+                        <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
                         </button>
                       </Link>
                       <button
-                        className="btn-red"
+                        className="btn-red--icon"
                         onClick={() => deleteHandler(user._id)}
                       >
                         <i className="fa fa-trash"></i>
