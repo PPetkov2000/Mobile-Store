@@ -78,7 +78,7 @@ function CartScreen({ match, location, history }) {
                   <Col md={1} sm={1} xs={1}>
                     <button
                       type="button"
-                      className="cart-remove-item-btn"
+                      className="btn btn-red--icon cart-remove-item-btn"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fa fa-trash"></i>
