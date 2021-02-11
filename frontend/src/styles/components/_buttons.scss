@@ -9,65 +9,25 @@
     font-size: 0.9rem;
   }
 
-  &-red {
-    background-color: transparent;
-    color: red;
-    border: none;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
-
-  &-blue {
-    background-color: transparent;
-    color: rgb(45, 45, 226);
-    border: none;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-
-    &--bordered {
-      padding: 0;
-      color: rgb(45, 45, 226);
-      border: 1px solid rgb(45, 45, 226);
-      font-size: 0.9rem;
-
-      &:hover {
-        background-color: rgb(45, 45, 226);
-        color: white;
-      }
-    }
-  }
-
-  &-green {
-    border: 2px solid green;
-    color: green;
-    font-size: 0.8rem;
-
-    &:hover {
-      background-color: green;
-      color: white;
-    }
-
-    &--hidden-below-1000 {
-      @media #{$mq-1000-down} {
-        display: none;
-      }
-    }
-  }
-
   &-full-width {
     width: 100%;
   }
 
-  &-icon {
-    font-size: 1.1rem;
-  }
-
   &-cart {
     @include button-bg($primary-color);
+  }
+
+  $colors: red, green, blue;
+  @each $color in $colors {
+    &-#{$color} {
+      @include button-variant($color);
+    }
+  }
+
+  &.hidden-below-1000 {
+    @media #{$mq-1000-down} {
+      display: none;
+    }
   }
 }
 
@@ -79,6 +39,10 @@
   @media #{$mq-760-down} {
     font-size: 0.9rem;
   }
+
+  i {
+    font-size: 1.1rem;
+  }
 }
 
 .add-to-favourites {
@@ -89,17 +53,22 @@
   @media #{$mq-760-down} {
     font-size: 0.9rem;
   }
+
+  i {
+    font-size: 1.1rem;
+  }
 }
 
 .remove-from-favourites {
   @include button-bg(rgb(235, 45, 45));
   margin-top: 0.5rem;
   font-size: 0.9rem;
+
+  i {
+    font-size: 1.1rem;
+  }
 }
 
 .cart-remove-item-btn {
-  background-color: transparent;
-  color: red;
-  border: none;
   font-size: 1.3rem;
 }
