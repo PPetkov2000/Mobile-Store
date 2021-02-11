@@ -46,7 +46,10 @@ function ProductReview({ productId, productReviews }) {
               </div>
               {userInfo &&
                 (review.creator === userInfo._id || userInfo.isAdmin) && (
-                  <button className="btn-red" onClick={deleteReviewHandler}>
+                  <button
+                    className="btn-red--icon"
+                    onClick={deleteReviewHandler}
+                  >
                     <i className="fa fa-trash"></i>
                   </button>
                 )}
