@@ -5,11 +5,3 @@
   padding: 1rem;
   margin-top: 1rem;
 }
-
-.search-form {
-  @media #{$mq-900-down} {
-    .searchInput {
-      width: 100%;
-    }
-  }
-}
