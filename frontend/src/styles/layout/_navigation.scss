@@ -2,7 +2,6 @@
   .icon {
     font-size: 1.5rem !important;
     color: $primary-color;
-    margin-left: 0.5rem;
     cursor: pointer;
 
     @media #{$mq-760-down} {
@@ -38,14 +37,14 @@
     }
   }
 
-  .searchInput {
-    @media #{$mq-760-down} {
-      width: 100%;
-    }
-  }
-
   .cart-badge {
     font-size: 0.7rem;
+  }
+
+  .searchInput {
+    @media #{$mq-900-down} {
+      width: 100%;
+    }
   }
 
   #admin-menu {
