@@ -138,15 +138,11 @@ body {
 }
 
 .product-details {
-  .row {
-    justify-content: center;
+  .col {
+    margin-top: 1rem;
 
-    .col {
-      margin-top: 2rem;
-
-      &:first-child {
-        margin-top: 0;
-      }
+    &:first-child {
+      margin-top: 0;
     }
   }
 
