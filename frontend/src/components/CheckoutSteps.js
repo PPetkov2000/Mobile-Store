@@ -5,9 +5,9 @@ import { Nav } from "react-bootstrap";
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
     <Nav className="checkout-steps">
-      <Nav.Item className="nav-item">
+      <Nav.Item className="checkout-steps__nav-item">
         {step1 ? (
-          <Link to="/login" className="nav-item-link">
+          <Link to="/login" className="checkout-steps__nav-link">
             <i className="fa fa-check-square" aria-hidden="true"></i> Sign In
           </Link>
         ) : (
@@ -15,9 +15,9 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         )}
       </Nav.Item>
 
-      <Nav.Item className="nav-item">
+      <Nav.Item className="checkout-steps__nav-item">
         {step2 ? (
-          <Link to="/shipping" className="nav-item-link">
+          <Link to="/shipping" className="checkout-steps__nav-link">
             <i className="fa fa-check-square" aria-hidden="true"></i> Shipping
           </Link>
         ) : (
@@ -25,9 +25,9 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         )}
       </Nav.Item>
 
-      <Nav.Item className="nav-item">
+      <Nav.Item className="checkout-steps__nav-item">
         {step3 ? (
-          <Link to="/payment" className="nav-item-link">
+          <Link to="/payment" className="checkout-steps__nav-link">
             <i className="fa fa-check-square" aria-hidden="true"></i> Payment
           </Link>
         ) : (
@@ -35,9 +35,9 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
         )}
       </Nav.Item>
 
-      <Nav.Item className="nav-item">
+      <Nav.Item className="checkout-steps__nav-item">
         {step4 ? (
-          <Link to="/placeorder" className="nav-item-link">
+          <Link to="/placeorder" className="checkout-steps__nav-link">
             <i className="fa fa-check-square" aria-hidden="true"></i> Place
             Order
           </Link>
