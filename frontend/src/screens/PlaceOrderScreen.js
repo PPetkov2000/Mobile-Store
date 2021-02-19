@@ -67,40 +67,40 @@ function PlaceOrderScreen({ history }) {
   };
 
   return (
-    <>
+    <section class="order-info">
       <CheckoutSteps step1 step2 step3 step4 />
       <Row xs={1} sm={1} md={1} lg={2} xl={2}>
         <Col lg={8} xl={8}>
-          <div className="order-details">
-            <h3 className="order-title">Shipping</h3>
+          <div className="order-info__details">
+            <h3 className="order-info__title">Shipping</h3>
             <p className="mb-0">
               Address: {cart.shippingAddress.address},{" "}
               {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{" "}
               {cart.shippingAddress.country}
             </p>
           </div>
-          <div className="order-details">
-            <h3 className="order-title">Payment Method</h3>
+          <div className="order-info__details">
+            <h3 className="order-info__title">Payment Method</h3>
             Method: {cart.paymentMethod}
           </div>
-          <div className="order-details">
-            <h3 className="order-title mb-3">Order Items</h3>
+          <div className="order-info__details">
+            <h3 className="order-info__title mb-3">Order Items</h3>
             {cart.cartItems.length === 0 ? (
               <Message>Your cart is empty</Message>
             ) : (
               cart.cartItems.map((item, index) => (
-                <Row key={index} className="order-content">
+                <Row key={index} className="order-info__content">
                   <Col md={2} xs={2} sm={2}>
                     <img
                       src={item.images && item.images[0]}
                       alt={item.name}
-                      className="order-img"
+                      className="order-info__product-image"
                     />
                   </Col>
                   <Col>
                     <Link
                       to={`/products/${item.product}`}
-                      className="order-name"
+                      className="order-info__product-name"
                     >
                       {item.name}
                     </Link>
@@ -115,8 +115,8 @@ function PlaceOrderScreen({ history }) {
           </div>
         </Col>
         <Col lg={4} xl={4}>
-          <div className="order-summary">
-            <h3 className="text-center mb-3">Order Summary</h3>
+          <div className="order-info__summary">
+            <h3 className="order-info__summary-title">Order Summary</h3>
             <Row>
               <Col>Items</Col>
               <Col className="text-right">${cart.itemsPrice}</Col>
@@ -129,7 +129,7 @@ function PlaceOrderScreen({ history }) {
               <Col>Tax</Col>
               <Col className="text-right">${cart.taxPrice}</Col>
             </Row>
-            <Row className="total-price-row">
+            <Row className="order-info__summary-total-price">
               <Col md={4} sm={6} xs={6}>
                 Total
               </Col>
@@ -140,7 +140,7 @@ function PlaceOrderScreen({ history }) {
             <div>{error && <Message variant="danger">{error}</Message>}</div>
             <button
               type="button"
-              className="btn btn-main btn-full-width"
+              className="order-info__button btn btn-main btn-full-width"
               disabled={cart.cartItems.length === 0}
               onClick={placeOrderHandler}
             >
@@ -149,7 +149,7 @@ function PlaceOrderScreen({ history }) {
           </div>
         </Col>
       </Row>
-    </>
+    </section>
   );
 }
 
