@@ -28,9 +28,9 @@ function CartScreen({ match, location, history }) {
   };
 
   return (
-    <div className="cart-container">
+    <section className="cart__container">
       <Row>
-        <Col md={8} className="cart-info-column">
+        <Col md={8} className="cart__info">
           <h2 className="mb-3">Shopping Cart</h2>
           {cartItems.length === 0 ? (
             <Message>
@@ -39,18 +39,18 @@ function CartScreen({ match, location, history }) {
           ) : (
             cartItems.map((item) => {
               return (
-                <Row key={item.product} className="cart-info-item">
+                <Row key={item.product} className="cart__info-item">
                   <Col md={1} sm={1} xs={1}>
                     <img
                       src={item.images && item.images[0]}
                       alt={item.name}
-                      className="cart-image"
+                      className="cart__info-image"
                     />
                   </Col>
                   <Col md={5} sm={5} xs={5}>
                     <Link
                       to={`/products/${item.product}`}
-                      className="cart-product-name"
+                      className="cart__info-product-name"
                     >
                       {item.name}
                     </Link>
@@ -90,8 +90,8 @@ function CartScreen({ match, location, history }) {
           )}
         </Col>
         <Col md={4}>
-          <Card className="cart-card">
-            <h5 className="cart-title">
+          <Card className="cart__purchase-info">
+            <h5 className="cart__purchase-info-title">
               Subtotal (
               {cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}{" "}
               {cartItems.length === 1 ? "item" : "items"}) : $
@@ -109,7 +109,7 @@ function CartScreen({ match, location, history }) {
           </Card>
         </Col>
       </Row>
-    </div>
+    </section>
   );
 }
 
