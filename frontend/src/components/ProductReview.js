@@ -30,8 +30,8 @@ function ProductReview({ productId, productReviews }) {
   };
 
   return (
-    <div className="product-review-container">
-      <h2 className="product-review-title">Reviews</h2>
+    <div className="product-review">
+      <h2 className="product-review__title">Reviews</h2>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {successDelete && <Message variant="success">Review removed</Message>}
@@ -39,7 +39,7 @@ function ProductReview({ productId, productReviews }) {
       {productReviews.map((review) => {
         return (
           <div key={review._id}>
-            <div className="product-review-header">
+            <div className="product-review__header">
               <div className="d-flex">
                 <p className="mb-0 mr-4">{review.name}</p>
                 <Rating value={review.rating} />
@@ -54,7 +54,7 @@ function ProductReview({ productId, productReviews }) {
                   </button>
                 )}
             </div>
-            <div className="product-review-content">
+            <div className="product-review__content">
               <p>
                 {review.comment}
                 <Badge variant="dark">
