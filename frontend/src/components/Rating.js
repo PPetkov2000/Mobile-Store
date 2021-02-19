@@ -3,7 +3,7 @@ import React from "react";
 function Rating({ value, text }) {
   return (
     <div className="product-rating">
-      {text && <p className="product-rating-text">{text}</p>}
+      {text && <p className="product-rating__text">{text}</p>}
       <span>
         <i
           className={
