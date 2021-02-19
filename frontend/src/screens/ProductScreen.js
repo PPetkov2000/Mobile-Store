@@ -98,18 +98,18 @@ function ProductScreen({ match, history }) {
           <img
             src={product.images && product.images[0]}
             alt={product.name}
-            className="product-details-img"
+            className="product-details__image"
           />
         </Col>
         <Col>
-          <h3 className="product-name">{product.name}</h3>
+          <h3 className="product-details__name">{product.name}</h3>
           <Rating
             value={product.rating}
             text={`Clients reviewed: ${
               product.reviews && product.reviews.length
             }`}
           />
-          <div className="product-features">
+          <div className="product-details__features">
             <p>
               <strong>Memory:</strong> {product.memory}
             </p>
@@ -137,8 +137,10 @@ function ProductScreen({ match, history }) {
           </div>
         </Col>
         <Col className="col-sm-12 col-md-12">
-          <div className="product-order-container">
-            <h3 className="product-price">Price: ${product.price}</h3>
+          <div className="product-details__order-container">
+            <h3 className="product-details__order-price">
+              Price: ${product.price}
+            </h3>
             <i className="fa fa-truck btn-green--icon" aria-hidden="true"></i>
             <span className="free-delivery">free delivery</span>
             <button
