@@ -1,6 +1,6 @@
-.payment-method-form,
-.shipping-address-form,
-.update-profile-form {
+.payment-method__form,
+.shipping-address__form,
+.profile__form {
   @extend %box-shadow-container;
   padding: 1rem;
   margin-top: 1rem;
