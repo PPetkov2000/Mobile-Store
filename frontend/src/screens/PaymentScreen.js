@@ -23,17 +23,17 @@ const PaymentScreen = ({ history }) => {
   };
 
   return (
-    <div className="payment-method-container">
+    <div className="payment-method__container">
       <CheckoutSteps step1 step2 step3 />
       <Row>
         <Col xs={12} md={8} className="mx-auto">
           <h2>Payment Method</h2>
           <Form
             onSubmit={submitHandler}
-            className="payment-method-form text-center"
+            className="payment-method__form text-center"
           >
             <Form.Group>
-              <Form.Label as="legend" className="payment-method-label">
+              <Form.Label as="legend" className="payment-method__label">
                 Select Method
               </Form.Label>
               <Col>
