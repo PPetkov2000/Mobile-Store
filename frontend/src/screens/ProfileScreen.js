@@ -79,7 +79,7 @@ function ProfileScreen({ history, match }) {
           ) : error ? (
             <Message variant="danger">{error}</Message>
           ) : (
-            <Form onSubmit={submitHandler} className="update-profile-form">
+            <Form onSubmit={submitHandler} className="profile__form">
               <FormInput
                 type="text"
                 name="Username"
