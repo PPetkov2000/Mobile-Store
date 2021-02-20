@@ -67,7 +67,7 @@ function PlaceOrderScreen({ history }) {
   };
 
   return (
-    <section class="order-info">
+    <section className="order-info">
       <CheckoutSteps step1 step2 step3 step4 />
       <Row xs={1} sm={1} md={1} lg={2} xl={2}>
         <Col lg={8} xl={8}>
