@@ -227,8 +227,15 @@ body {
   font-size: 1.1rem;
 }
 
-.profile-title-color {
-  color: $primary-title-color;
+.profile {
+  &__title {
+    color: $primary-title-color;
+  }
+
+  &__table {
+    min-height: 315px;
+    margin-top: 0.5rem;
+  }
 }
 
 .order-info {
