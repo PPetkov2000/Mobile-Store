@@ -28,7 +28,7 @@ function ShippingScreen({ history }) {
       <Row>
         <Col xs={12} md={8} className="mx-auto">
           <h2>Shipping</h2>
-          <Form onSubmit={submitHandler} className="shipping-address-form">
+          <Form onSubmit={submitHandler} className="shipping-address__form">
             <FormInput
               type="text"
               name={[
