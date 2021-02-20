@@ -68,10 +68,10 @@ function ProfileScreen({ history, match }) {
   };
 
   return (
-    <>
+    <section className="profile">
       <Row>
         <Col md={4} className="mb-5">
-          <h2 className="profile-title-color">User Profile</h2>
+          <h2 className="profile__title">User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
@@ -115,13 +115,20 @@ function ProfileScreen({ history, match }) {
           )}
         </Col>
         <Col md={8}>
-          <h2 className="profile-title-color mb-3">My Orders</h2>
+          <h2 className="profile__title">My Orders</h2>
           {loadingOrders ? (
             <Loader />
           ) : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (
-            <Table striped bordered hover responsive size="sm">
+            <Table
+              striped
+              bordered
+              hover
+              responsive
+              size="sm"
+              className="profile__table"
+            >
               <thead>
                 <tr>
                   <th>ID</th>
@@ -141,7 +148,7 @@ function ProfileScreen({ history, match }) {
                       {order.isPaid ? (
                         new Date(Number(order.paidAt)).toLocaleDateString()
                       ) : (
-                        <i className="fa fa-times profile-title-color"></i>
+                        <i className="fa fa-times btn-red--icon"></i>
                       )}
                     </td>
                     <td className="text-center">
@@ -167,7 +174,7 @@ function ProfileScreen({ history, match }) {
           products={user.favouriteProducts}
         />
       )}
-    </>
+    </section>
   );
 }
 
