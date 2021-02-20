@@ -81,7 +81,7 @@ function OrderScreen({ match, history }) {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <section class="order-info">
+    <section className="order-info">
       <h2 className="mb-3">
         <i className="fa fa-id-badge" aria-hidden="true"></i> Order: {order._id}
       </h2>
