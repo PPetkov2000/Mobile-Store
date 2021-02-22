@@ -71,7 +71,7 @@ function ProductListScreen({ match, history }) {
   };
 
   return (
-    <div className="admin-container">
+    <div className="admin__container">
       <Row className="align-items-center">
         <Col>
           <h2>Products</h2>
@@ -113,7 +113,7 @@ function ProductListScreen({ match, history }) {
                   <td>${product.price}</td>
                   <td>{product.brand}</td>
                   <td>
-                    <div className="product-list-buttons">
+                    <div className="admin__buttons-wrapper">
                       <Link to={`/admin/product/${product._id}/edit`}>
                         <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
