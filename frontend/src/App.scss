@@ -222,11 +222,6 @@ body {
   }
 }
 
-.payment-method-container {
-  min-height: 55vh;
-  font-size: 1.1rem;
-}
-
 .profile {
   &__title {
     color: $primary-title-color;
@@ -377,10 +372,9 @@ body {
   }
 }
 
-.user-list-buttons,
-.product-list-buttons {
-  display: flex;
-  justify-content: space-evenly;
+.payment-method__container {
+  min-height: 55vh;
+  font-size: 1.1rem;
 }
 
 .user-edit-page-container,
@@ -411,10 +405,15 @@ body {
   margin-bottom: 4.6rem;
 }
 
-.admin-container {
+.admin__container {
   margin-top: -30px;
 
   @media #{$mq-900-down} {
     margin-top: -26px;
   }
+}
+
+.admin__buttons-wrapper {
+  display: flex;
+  justify-content: space-evenly;
 }
