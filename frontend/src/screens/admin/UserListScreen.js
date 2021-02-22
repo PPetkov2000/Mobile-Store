@@ -36,7 +36,7 @@ function UserListScreen({ history, match }) {
   };
 
   return (
-    <div className="admin-container">
+    <div className="admin__container">
       <h2>Users</h2>
       {loading ? (
         <Loader />
@@ -70,7 +70,7 @@ function UserListScreen({ history, match }) {
                     )}
                   </td>
                   <td>
-                    <div className="user-list-buttons">
+                    <div className="admin__buttons-wrapper">
                       <Link to={`/admin/user/${user._id}/edit`}>
                         <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
