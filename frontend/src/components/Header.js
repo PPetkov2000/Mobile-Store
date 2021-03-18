@@ -99,7 +99,10 @@ function Header() {
           )}
           {userInfo && (
             <Link to="/cart">
-              <i className="icon fa fa-shopping-cart" aria-hidden="true">
+              <i
+                className="navbar__icon fa fa-shopping-cart"
+                aria-hidden="true"
+              >
                 {cartItems.length > 0 && (
                   <Badge variant="danger" className="cart-badge">
                     {cartItems.reduce((acc, curr) => acc + curr.quantity, 0)}
