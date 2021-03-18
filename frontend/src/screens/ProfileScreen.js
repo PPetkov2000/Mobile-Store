@@ -168,11 +168,12 @@ function ProfileScreen({ history, match }) {
         </Col>
       </Row>
       {user.favouriteProducts && (
-        <Products
-          title="favourite products"
-          icon={<i className="fa fa-heart"></i>}
-          products={user.favouriteProducts}
-        />
+        <section className="products">
+          <h2 className="products__title">
+            <i className="fa fa-heart"></i> favourite products
+          </h2>
+          <Products products={user.favouriteProducts} />
+        </section>
       )}
     </section>
   );
