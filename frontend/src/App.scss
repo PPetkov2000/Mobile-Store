@@ -20,8 +20,9 @@ body {
   color: $primary-color !important;
 }
 
-.products__container {
+.products {
   @extend %box-shadow-container;
+  padding: 0;
 
   .row {
     margin-left: 0;
@@ -32,7 +33,7 @@ body {
     }
   }
 
-  .products__title {
+  &__title {
     background-color: $primary-color;
     padding: 0.5rem 1rem;
     margin-bottom: 0;
