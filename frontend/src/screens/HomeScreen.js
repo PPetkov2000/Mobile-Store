@@ -19,7 +19,6 @@ function HomeScreen({ match }) {
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
-    console.log(keyword);
   }, [dispatch, keyword, pageNumber]);
 
   return (
