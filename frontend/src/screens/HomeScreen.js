@@ -19,6 +19,7 @@ function HomeScreen({ match }) {
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
+    console.log(keyword);
   }, [dispatch, keyword, pageNumber]);
 
   return (
@@ -30,22 +31,24 @@ function HomeScreen({ match }) {
           Go Back
         </Link>
       )}
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <Container>
+      <Container className="products">
+        <h2 className="products__title">
+          <i className="fa fa-shopping-bag" aria-hidden="true"></i> featured
+          products
+        </h2>
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">{error}</Message>
+        ) : (
           <Products
-            title="featured products"
-            icon={<i className="fa fa-shopping-bag" aria-hidden="true"></i>}
             products={products}
             page={page}
             pages={pages}
             keyword={keyword ? keyword : ""}
           />
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 }
