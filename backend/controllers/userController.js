@@ -1,4 +1,5 @@
 const User = require("../models/UserModel");
+const Product = require("../models/ProductModel");
 const generateToken = require("../utils/generateToken");
 
 const getUsers = async (req, res, next) => {
@@ -105,8 +106,14 @@ const updateUserProfile = async (req, res, next) => {
     );
 
     if (user) {
+      if (req.body.username && req.body.username !== user.username) {
+        await Product.updateMany(
+          { "reviews.creator": user._id },
+          { $set: { "reviews.$.name": req.body.username } }
+        );
+        user.username = req.body.username;
+      }
       user.email = req.body.email || user.email;
-      user.username = req.body.username || user.username;
       if (req.body.password) {
         user.password = req.body.password;
       }
@@ -120,6 +127,7 @@ const updateUserProfile = async (req, res, next) => {
         favouriteProducts: updatedUser.favouriteProducts,
         token: generateToken(updatedUser._id),
       });
+
       // res.json({ ...updatedUser, token: generateToken(updatedUser._id) });
     } else {
       res.status(404);
