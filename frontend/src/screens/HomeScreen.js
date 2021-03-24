@@ -21,6 +21,8 @@ function HomeScreen({ match }) {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
+  console.log(products);
+
   return (
     <>
       {!keyword ? (
@@ -39,6 +41,8 @@ function HomeScreen({ match }) {
           <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
+        ) : products.length === 0 ? (
+          <h2 className="text-center p-3">Products not found</h2>
         ) : (
           <Products
             products={products}
