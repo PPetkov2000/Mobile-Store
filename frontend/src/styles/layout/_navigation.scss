@@ -11,7 +11,64 @@
     }
   }
 
+  .nav-link {.navbar {
+  &__icon {
+    font-size: 1.5rem !important;
+    color: $primary-color;
+    cursor: pointer;
+
+    @media #{$mq-760-down} {
+      margin-left: 50%;
+      transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+  }
+
   .nav-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+      color: $primary-color !important;
+    }
+
+    @media #{$mq-760-down} {
+      text-align: center;
+
+      &:hover {
+        background-color: $primary-color;
+        color: #000 !important;
+      }
+    }
+  }
+
+  .nav-link.mobile-view {
+    color: rgba(0, 0, 0, 0.5);
+
+    @media #{$mq-760-up} {
+      display: none;
+    }
+  }
+
+  .cart-badge {
+    font-size: 0.7rem;
+  }
+
+  .searchInput {
+    @media #{$mq-900-down} {
+      width: 100%;
+    }
+  }
+
+  #admin-menu {
+    color: #777;
+
+    @media #{$mq-760-down} {
+      display: none;
+    }
+  }
+}
+
     font-size: 1.2rem;
     font-weight: bold;
 
