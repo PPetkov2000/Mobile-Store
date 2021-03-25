@@ -12,6 +12,10 @@ body {
   font-family: $primary-font-family;
 }
 
+main {
+  min-height: 67.6vh;
+}
+
 .logo {
   width: 10rem;
 }
@@ -81,8 +85,6 @@ body {
 }
 
 .cart__container {
-  min-height: 55vh;
-
   .cart__info {
     @extend %box-shadow-container;
     padding: 1rem;
@@ -226,6 +228,12 @@ body {
 .profile {
   &__title {
     color: $primary-title-color;
+  }
+
+  .products {
+    @media #{$mq-760-down} {
+      margin-top: 2rem;
+    }
   }
 
   &__table {
@@ -374,7 +382,6 @@ body {
 }
 
 .payment-method__container {
-  min-height: 55vh;
   font-size: 1.1rem;
 }
 
@@ -400,10 +407,6 @@ body {
   @media #{$mq-760-down} {
     width: 90%;
   }
-}
-
-.login-container {
-  margin-bottom: 4.6rem;
 }
 
 .admin__container {
