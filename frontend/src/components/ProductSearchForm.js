@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { Form, FormControl } from "react-bootstrap";
-import { listProducts } from "../actions/productActions";
 
 function ProductSearchForm() {
   const [keyword, setKeyword] = useState("");
-  const dispatch = useDispatch();
+  const history = useHistory();
 
   const searchHandler = (e) => {
     e.preventDefault();
-    dispatch(listProducts(keyword));
+    history.push(`/search/${keyword}`);
     setKeyword("");
   };
 
