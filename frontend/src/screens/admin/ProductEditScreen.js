@@ -90,7 +90,7 @@ function ProductEditScreen({ match, history }) {
   };
 
   return (
-    <div className="product-edit-page-container">
+    <div className="edit-page__container">
       <h2 className="text-center">Edit Product</h2>
       {loadingUpdate && <Loader />}
       {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
