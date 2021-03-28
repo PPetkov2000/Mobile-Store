@@ -1,0 +1,16 @@
+.profile {
+  &__title {
+    color: $primary-title-color;
+  }
+
+  .products {
+    @media #{$mq-760-down} {
+      margin-top: 2rem;
+    }
+  }
+
+  &__table {
+    min-height: 315px;
+    margin-top: 0.5rem;
+  }
+}
