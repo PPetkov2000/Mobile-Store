@@ -113,7 +113,7 @@ function ProductListScreen({ match, history }) {
                   <td>${product.price}</td>
                   <td>{product.brand}</td>
                   <td>
-                    <div className="admin__buttons-wrapper">
+                    <div className="admin__actions">
                       <Link to={`/admin/product/${product._id}/edit`}>
                         <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
