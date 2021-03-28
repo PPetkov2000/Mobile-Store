@@ -229,8 +229,7 @@ main {
   }
 }
 
-.user-edit-page-container,
-.product-edit-page-container {
+.edit-page__container {
   @extend %box-shadow-container;
   max-width: 720px;
   margin: 0 auto;
@@ -252,15 +251,17 @@ main {
   }
 }
 
-.admin__container {
-  margin-top: -30px;
+.admin {
+  &__container {
+    margin-top: -30px;
 
-  @media #{$mq-900-down} {
-    margin-top: -26px;
+    @media #{$mq-900-down} {
+      margin-top: -26px;
+    }
   }
-}
 
-.admin__buttons-wrapper {
-  display: flex;
-  justify-content: space-evenly;
+  &__actions {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
