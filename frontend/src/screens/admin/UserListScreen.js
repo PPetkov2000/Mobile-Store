@@ -70,7 +70,7 @@ function UserListScreen({ history, match }) {
                     )}
                   </td>
                   <td>
-                    <div className="admin__buttons-wrapper">
+                    <div className="admin__actions">
                       <Link to={`/admin/user/${user._id}/edit`}>
                         <button className="btn-blue--icon">
                           <i className="fa fa-edit"></i>
