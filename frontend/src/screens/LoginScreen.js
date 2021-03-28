@@ -30,11 +30,11 @@ function LoginScreen({ history, location }) {
   };
 
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <h2 className="text-center">Login</h2>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler} className="login-form">
+      <Form onSubmit={submitHandler} className="auth-form">
         <FormInput
           type="email"
           name="Email"
