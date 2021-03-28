@@ -37,12 +37,12 @@ function RegisterScreen({ history, location }) {
   };
 
   return (
-    <div className="register-container">
+    <div className="auth__container">
       <h2 className="text-center">Sign Up</h2>
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler} className="register-form">
+      <Form onSubmit={submitHandler} className="auth-form">
         <FormInput
           type="text"
           name="Username"
