@@ -47,7 +47,7 @@ function UserEditScreen({ match, history }) {
   };
 
   return (
-    <div className="user-edit-page-container">
+    <div className="edit-page__container">
       <h2 className="text-center">Edit User</h2>
       {loadingUpdate && <Loader />}
       {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
