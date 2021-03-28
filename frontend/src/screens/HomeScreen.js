@@ -34,15 +34,8 @@ function HomeScreen({ match }) {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : products.length === 0 ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "1rem",
-            }}
-          >
-            <h2 className="text-center p-3">Products not found</h2>
+          <div className="products__empty">
+            <h2 className="products__empty-text">Products not found</h2>
             <Link to="/" className="btn btn-light">
               Go Back
             </Link>
