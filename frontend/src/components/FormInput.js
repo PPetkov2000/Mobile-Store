@@ -2,11 +2,16 @@ import React from "react";
 import { Form } from "react-bootstrap";
 
 function FormInput({ type = "text", name, placeholder, value, handleChange }) {
+  const capitalize = (str) => {
+    return str[0].toUpperCase() + str.slice(1);
+  };
+
   return (
     <Form.Group controlId={name}>
-      <Form.Label>{name}</Form.Label>
+      <Form.Label>{capitalize(name)}</Form.Label>
       <Form.Control
         type={type}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
