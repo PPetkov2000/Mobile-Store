@@ -30,7 +30,7 @@ function LoginScreen({ history, location }) {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth__container">
       <h2 className="text-center">Login</h2>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
