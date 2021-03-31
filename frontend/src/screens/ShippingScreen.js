@@ -31,51 +31,51 @@ function ShippingScreen({ history }) {
           <Form onSubmit={submitHandler} className="shipping-address__form">
             <FormInput
               type="text"
-              name={[
-                <i
-                  key="address"
-                  className="fa fa-address-book"
-                  aria-hidden="true"
-                ></i>,
-                " Address",
-              ]}
+              name="address"
               placeholder="Enter address"
               value={address}
               handleChange={(e) => setAddress(e.target.value)}
+              icon={
+                <i
+                  key={address}
+                  className="fa fa-address-book"
+                  aria-hidden="true"
+                ></i>
+              }
             />
             <FormInput
               type="text"
-              name={[
-                <i key="city" className="fa fa-home" aria-hidden="true"></i>,
-                " City",
-              ]}
+              name="city"
               placeholder="Enter city"
               value={city}
               handleChange={(e) => setCity(e.target.value)}
+              icon={
+                <i key={city} className="fa fa-home" aria-hidden="true"></i>
+              }
             />
             <FormInput
               type="text"
-              name={[
-                <i
-                  key="postalCode"
-                  className="fa fa-envelope-open"
-                  aria-hidden="true"
-                ></i>,
-                " Postal Code",
-              ]}
+              name="postal code"
               placeholder="Enter postal code"
               value={postalCode}
               handleChange={(e) => setPostalCode(e.target.value)}
+              icon={
+                <i
+                  key={postalCode}
+                  className="fa fa-envelope-open"
+                  aria-hidden="true"
+                ></i>
+              }
             />
             <FormInput
               type="text"
-              name={[
-                <i key="county" className="fa fa-globe" aria-hidden="true"></i>,
-                " Country",
-              ]}
+              name="country"
               placeholder="Enter country"
               value={country}
               handleChange={(e) => setCountry(e.target.value)}
+              icon={
+                <i key={country} className="fa fa-globe" aria-hidden="true"></i>
+              }
             />
             <button type="submit" className="btn btn-main btn-full-width">
               Continue
