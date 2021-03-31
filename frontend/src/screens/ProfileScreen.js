@@ -82,28 +82,28 @@ function ProfileScreen({ history, match }) {
             <Form onSubmit={submitHandler} className="profile__form">
               <FormInput
                 type="text"
-                name="Username"
+                name="username"
                 placeholder="Enter username"
                 value={username}
                 handleChange={(e) => setUsername(e.target.value)}
               />
               <FormInput
                 type="email"
-                name="Email"
+                name="email"
                 placeholder="Enter email"
                 value={email}
                 handleChange={(e) => setEmail(e.target.value)}
               />
               <FormInput
                 type="password"
-                name="Password"
+                name="password"
                 placeholder="Enter password"
                 value={password}
                 handleChange={(e) => setPassword(e.target.value)}
               />
               <FormInput
                 type="password"
-                name="Confirm Password"
+                name="confirm password"
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 handleChange={(e) => setConfirmPassword(e.target.value)}
