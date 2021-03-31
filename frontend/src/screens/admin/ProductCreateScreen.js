@@ -33,30 +33,35 @@ const ProductCreateScreen = () => {
   useEffect(() => {
     if (success) {
       dispatch({ type: PRODUCT_CREATE_RESET });
-      history.push(`/admin/productlist`);
+      history.push("/admin/productlist");
     }
   }, [dispatch, history, success, product]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(
-      createProduct({
-        name,
-        images,
-        brand,
-        price,
-        cpu,
-        camera,
-        size,
-        weight,
-        display,
-        battery,
-        memory,
-        countInStock,
-        quantity,
-        description,
-      })
-    );
+
+    try {
+      dispatch(
+        createProduct({
+          name,
+          images,
+          brand,
+          price,
+          cpu,
+          camera,
+          size,
+          weight,
+          display,
+          battery,
+          memory,
+          countInStock,
+          quantity,
+          description,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -67,98 +72,98 @@ const ProductCreateScreen = () => {
       <Form onSubmit={submitHandler}>
         <FormInput
           type="text"
-          name="Name"
+          name="name"
           placeholder="Enter name"
           value={name}
           handleChange={(e) => setName(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Images"
-          placeholder="Enter images"
+          name="images"
+          placeholder="Enter images urls (start with /images/:name)"
           value={images}
           handleChange={(e) => setImages(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Brand"
+          name="brand"
           placeholder="Enter brand"
           value={brand}
           handleChange={(e) => setBrand(e.target.value)}
         />
         <FormInput
           type="number"
-          name="Price"
+          name="price"
           placeholder="Enter price"
           value={price}
           handleChange={(e) => setPrice(e.target.value)}
         />
         <FormInput
           type="text"
-          name="CPU"
+          name="cpu"
           placeholder="Enter cpu"
           value={cpu}
           handleChange={(e) => setCpu(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Camera"
+          name="camera"
           placeholder="Enter camera"
           value={camera}
           handleChange={(e) => setCamera(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Size"
+          name="size"
           placeholder="Enter size"
           value={size}
           handleChange={(e) => setSize(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Weight"
+          name="weight"
           placeholder="Enter weight"
           value={weight}
           handleChange={(e) => setWeight(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Display"
+          name="display"
           placeholder="Enter display"
           value={display}
           handleChange={(e) => setDisplay(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Battery"
+          name="battery"
           placeholder="Enter battery"
           value={battery}
           handleChange={(e) => setBattery(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Memory"
+          name="memory"
           placeholder="Enter memory"
           value={memory}
           handleChange={(e) => setMemory(e.target.value)}
         />
         <FormInput
           type="number"
-          name="Count In Stock"
+          name="count in stock"
           placeholder="Enter count in stock"
           value={countInStock}
           handleChange={(e) => setCountInStock(e.target.value)}
         />
         <FormInput
           type="number"
-          name="Quantity"
+          name="quantity"
           placeholder="Enter quantity"
           value={quantity}
           handleChange={(e) => setQuantity(e.target.value)}
         />
         <FormInput
           type="text"
-          name="Description"
+          name="description"
           placeholder="Enter description"
           value={description}
           handleChange={(e) => setDescription(e.target.value)}
