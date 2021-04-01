@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import "./App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PageNotFound from "./components/PageNotFound";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
-import { Container } from "react-bootstrap";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
-import CartScreen from "./screens/CartScreen";
-import ShippingScreen from "./screens/ShippingScreen";
-import PaymentScreen from "./screens/PaymentScreen";
-import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import CartScreen from "./screens/cart/CartScreen";
+import ShippingScreen from "./screens/cart/ShippingScreen";
+import PaymentScreen from "./screens/cart/PaymentScreen";
+import PlaceOrderScreen from "./screens/cart/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import UserListScreen from "./screens/admin/UserListScreen";
@@ -18,7 +19,6 @@ import UserEditScreen from "./screens/admin/UserEditScreen";
 import ProductListScreen from "./screens/admin/ProductListScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
 import OrderListScreen from "./screens/admin/OrderListScreen";
-import PageNotFound from "./components/PageNotFound";
 import ProductCreateScreen from "./screens/admin/ProductCreateScreen";
 
 function App() {
