@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { listProducts } from "../actions/productActions";
-import ProductCarousel from "../components/ProductCarousel";
-import { Link } from "react-router-dom";
 import Products from "../components/Products";
+import ProductCarousel from "../components/ProductCarousel";
+import { listProducts } from "../actions/productActions";
 
 function HomeScreen({ match }) {
   const keyword = match.params.keyword;
