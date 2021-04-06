@@ -19,7 +19,7 @@ function PlaceOrderScreen({ history }) {
   }
 
   const formatPrice = (price) => {
-    return Math.round((price * 100) / 100).toFixed(2);
+    return (Math.round(price * 100) / 100).toFixed(2);
   };
 
   cart.itemsPrice = formatPrice(
