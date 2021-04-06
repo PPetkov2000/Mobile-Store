@@ -71,7 +71,7 @@ function ProfileScreen({ history, match }) {
     <section className="profile">
       <Row>
         <Col md={4} className="mb-5">
-          <h2 className="profile__title">User Profile</h2>
+          <h2 className="profile__title">My Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
@@ -172,7 +172,15 @@ function ProfileScreen({ history, match }) {
           <h2 className="products__title">
             <i className="fa fa-heart"></i> favourite products
           </h2>
-          <Products products={user.favouriteProducts} />
+          {user.favouriteProducts.length === 0 ? (
+            <div className="products__empty">
+              <h3 className="products__empty-text">
+                You don't have favourite products yet.
+              </h3>
+            </div>
+          ) : (
+            <Products products={user.favouriteProducts} />
+          )}
         </section>
       )}
     </section>
