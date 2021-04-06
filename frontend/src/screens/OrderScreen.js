@@ -28,7 +28,7 @@ function OrderScreen({ match, history }) {
 
   if (!loading) {
     const formatPrice = (price) => {
-      return Math.round((price * 100) / 100).toFixed(2);
+      return (Math.round(price * 100) / 100).toFixed(2);
     };
 
     order.itemsPrice = formatPrice(
