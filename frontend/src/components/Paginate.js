@@ -13,7 +13,7 @@ function Paginate({
   const history = useHistory();
 
   return (
-    <div className="d-flex justify-content-center p-3">
+    <div className="paginate">
       {pages > 1 && (
         <Pagination className="mb-0">
           {[...Array(pages).keys()].map((x) => (
