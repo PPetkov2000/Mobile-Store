@@ -229,6 +229,12 @@ main {
   }
 }
 
+.paginate {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
 .edit-page__container {
   @extend %box-shadow-container;
   max-width: 720px;
