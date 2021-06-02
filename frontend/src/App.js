@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./App.scss";
+import PrivateRoute from "./router/PrivateRoute";
+import AdminRoute from "./router/AdminRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Forbidden from "./components/Forbidden";
 import PageNotFound from "./components/PageNotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 import HomeScreen from "./screens/HomeScreen";
@@ -42,54 +45,62 @@ function App() {
             <Container>
               <Route path="/products/:id" component={ProductScreen} />
               <Route path="/cart/:id?" component={CartScreen} />
-              <Route path="/order/:id" component={OrderScreen} />
+              <PrivateRoute path="/order/:id" component={OrderScreen} />
               <Route path="/shipping" component={ShippingScreen} />
               <Route path="/payment" component={PaymentScreen} />
               <Route path="/placeorder" component={PlaceOrderScreen} />
-              <Route path="/profile" exact component={ProfileScreen} />
-              <Route
+              <PrivateRoute path="/profile" exact component={ProfileScreen} />
+              <PrivateRoute
                 path="/profile/page/:pageNumber"
                 exact
                 component={ProfileScreen}
               />
               <Route path="/register" component={RegisterScreen} />
               <Route path="/login" component={LoginScreen} />
-              <Route path="/admin/userlist" exact component={UserListScreen} />
-              <Route
+              <AdminRoute
+                path="/admin/userlist"
+                exact
+                component={UserListScreen}
+              />
+              <AdminRoute
                 path="/admin/userlist/:pageNumber"
                 exact
                 component={UserListScreen}
               />
-              <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-              <Route
+              <AdminRoute
+                path="/admin/user/:id/edit"
+                component={UserEditScreen}
+              />
+              <AdminRoute
                 path="/admin/productlist"
                 exact
                 component={ProductListScreen}
               />
-              <Route
+              <AdminRoute
                 path="/admin/productlist/:pageNumber"
                 exact
                 component={ProductListScreen}
               />
-              <Route
+              <AdminRoute
                 path="/admin/product/:id/edit"
                 component={ProductEditScreen}
               />
-              <Route
+              <AdminRoute
                 path="/admin/product/create"
                 exact
                 component={ProductCreateScreen}
               />
-              <Route
+              <AdminRoute
                 path="/admin/orderlist"
                 exact
                 component={OrderListScreen}
               />
-              <Route
+              <AdminRoute
                 path="/admin/orderlist/:pageNumber"
                 exact
                 component={OrderListScreen}
               />
+              <Route path="/forbidden" component={Forbidden} />
             </Container>
             <Route path="*" component={PageNotFound} />
           </Switch>
