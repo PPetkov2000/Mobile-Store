@@ -22,15 +22,9 @@ function ProductListScreen({ match, history }) {
     success: successDelete,
   } = productDelete;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   useEffect(() => {
-    if (!userInfo || !userInfo.isAdmin) {
-      history.push("/login");
-    }
     dispatch(listProducts("", pageNumber));
-  }, [dispatch, history, successDelete, userInfo, pageNumber]);
+  }, [dispatch, history, successDelete, pageNumber]);
 
   const deleteProductHandler = (productId) => {
     if (window.confirm("Are you sure?")) {
