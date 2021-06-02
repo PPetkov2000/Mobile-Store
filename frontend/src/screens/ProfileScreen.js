@@ -11,7 +11,7 @@ import Paginate from "../components/Paginate";
 import FormInput from "../components/FormInput";
 import Products from "../components/Products";
 
-function ProfileScreen({ history, match }) {
+function ProfileScreen({ match }) {
   const pageNumber = match.params.pageNumber || 1;
 
   const [email, setEmail] = useState("");
@@ -24,9 +24,6 @@ function ProfileScreen({ history, match }) {
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
@@ -41,18 +38,14 @@ function ProfileScreen({ history, match }) {
   } = orderListMy;
 
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
+    if (!user || !user.username || success) {
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+      dispatch(getUserDetails("profile"));
     } else {
-      if (!user || !user.username || success) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
-      } else {
-        setEmail(user.email);
-        setUsername(user.username);
-      }
+      setEmail(user.email);
+      setUsername(user.username);
     }
-  }, [dispatch, history, userInfo, user, success]);
+  }, [dispatch, user, success]);
 
   useEffect(() => {
     dispatch(listMyOrders(pageNumber));
