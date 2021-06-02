@@ -7,7 +7,7 @@ import { listOrders } from "../../actions/orderActions";
 import { Link } from "react-router-dom";
 import Paginate from "../../components/Paginate";
 
-function OrderListScreen({ history, match }) {
+function OrderListScreen({ match }) {
   const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
@@ -15,16 +15,9 @@ function OrderListScreen({ history, match }) {
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders, page, pages } = orderList;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listOrders(pageNumber));
-    } else {
-      history.push("/login");
-    }
-  }, [dispatch, history, userInfo, pageNumber]);
+    dispatch(listOrders(pageNumber));
+  }, [dispatch, pageNumber]);
 
   return (
     <div className="admin-container">
