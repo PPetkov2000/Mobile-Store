@@ -23,9 +23,6 @@ function OrderScreen({ match, history }) {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   if (!loading) {
     const formatPrice = (price) => {
       return (Math.round(price * 100) / 100).toFixed(2);
@@ -43,10 +40,6 @@ function OrderScreen({ match, history }) {
   }
 
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
-    }
-
     const addPaypalScript = async () => {
       const { data } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
@@ -69,7 +62,7 @@ function OrderScreen({ match, history }) {
         setSdkReady(true);
       }
     }
-  }, [dispatch, history, userInfo, order, orderId, successPay]);
+  }, [dispatch, history, order, orderId, successPay]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
