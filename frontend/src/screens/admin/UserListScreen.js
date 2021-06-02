@@ -15,19 +15,12 @@ function UserListScreen({ history, match }) {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users, page, pages } = userList;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers(pageNumber));
-    } else {
-      history.push("/login");
-    }
-  }, [dispatch, history, successDelete, userInfo, pageNumber]);
+    dispatch(listUsers(pageNumber));
+  }, [dispatch, history, successDelete, pageNumber]);
 
   const deleteHandler = (userId) => {
     if (window.confirm("Are you sure?")) {
