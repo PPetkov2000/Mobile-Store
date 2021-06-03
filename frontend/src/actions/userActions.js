@@ -32,6 +32,7 @@ import {
   USER_REMOVE_FAVOURITES_SUCCESS,
   USER_REMOVE_FAVOURITES_FAIL,
 } from "../constants/userConstants";
+import actionsErrorHandler from "../utils/actionsErrorHandler";
 
 export const register =
   (username, email, password, confirmPassword) => async (dispatch) => {
@@ -49,10 +50,7 @@ export const register =
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: actionsErrorHandler(error),
       });
     }
   };
@@ -64,13 +62,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
-    dispatch({
-      type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    dispatch({ type: USER_LOGIN_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
@@ -94,13 +86,7 @@ export const listUsers =
       const { data } = await api.get(`/api/users?pageNumber=${pageNumber}`);
       dispatch({ type: USER_LIST_SUCCESS, payload: data });
     } catch (error) {
-      dispatch({
-        type: USER_LIST_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
+      dispatch({ type: USER_LIST_FAIL, payload: actionsErrorHandler(error) });
     }
   };
 
@@ -110,13 +96,7 @@ export const getUserDetails = (userId) => async (dispatch) => {
     const { data } = await api.get(`/api/users/${userId}`);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: USER_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    dispatch({ type: USER_DETAILS_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
@@ -128,13 +108,7 @@ export const updateUser = (user) => async (dispatch) => {
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
     dispatch({ type: USER_DETAILS_RESET });
   } catch (error) {
-    dispatch({
-      type: USER_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    dispatch({ type: USER_UPDATE_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
@@ -144,13 +118,7 @@ export const deleteUser = (userId) => async (dispatch) => {
     await api.delete(`/api/users/${userId}`);
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (error) {
-    dispatch({
-      type: USER_DELETE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    dispatch({ type: USER_DELETE_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
@@ -164,10 +132,7 @@ export const updateUserProfile = (user) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -180,10 +145,7 @@ export const addToFavourites = (productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_ADD_FAVOURITES_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -196,10 +158,7 @@ export const removeFromFavourites = (productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_REMOVE_FAVOURITES_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
