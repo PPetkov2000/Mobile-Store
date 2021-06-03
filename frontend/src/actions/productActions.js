@@ -25,6 +25,7 @@ import {
   PRODUCT_DELETE_REVIEW_SUCCESS,
   PRODUCT_DELETE_REVIEW_FAIL,
 } from "../constants/productConstants";
+import actionsErrorHandler from "../utils/actionsErrorHandler";
 
 export const listProducts =
   (keyword = "", pageNumber = "") =>
@@ -38,10 +39,7 @@ export const listProducts =
     } catch (error) {
       dispatch({
         type: PRODUCT_LIST_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: actionsErrorHandler(error),
       });
     }
   };
@@ -54,10 +52,7 @@ export const listProductDetails = (productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -70,10 +65,7 @@ export const createProduct = (product) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -87,10 +79,7 @@ export const updateProduct = (product) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -103,10 +92,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_DELETE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -117,13 +103,7 @@ export const listTopProducts = () => async (dispatch) => {
     const { data } = await api.get("/api/products/top");
     dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_TOP_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    dispatch({ type: PRODUCT_TOP_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
@@ -135,10 +115,7 @@ export const createProductReview = (productId, review) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: actionsErrorHandler(error),
     });
   }
 };
@@ -155,10 +132,7 @@ export const deleteProductReview =
     } catch (error) {
       dispatch({
         type: PRODUCT_DELETE_REVIEW_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: actionsErrorHandler(error),
       });
     }
   };
