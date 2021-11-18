@@ -24,15 +24,7 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
-  USER_UPDATE_PROFILE_RESET,
-  USER_ADD_FAVOURITES_REQUEST,
-  USER_ADD_FAVOURITES_SUCCESS,
-  USER_ADD_FAVOURITES_FAIL,
-  USER_ADD_FAVOURITES_RESET,
-  USER_REMOVE_FAVOURITES_REQUEST,
-  USER_REMOVE_FAVOURITES_SUCCESS,
-  USER_REMOVE_FAVOURITES_FAIL,
-  USER_REMOVE_FAVOURITES_RESET,
+  USER_UPDATE_PROFILE_RESET
 } from "../constants/userConstants";
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -132,36 +124,6 @@ export const userUpdateProfileReducer = (state = {}, action) => {
     case USER_UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload };
     case USER_UPDATE_PROFILE_RESET:
-      return {};
-    default:
-      return state;
-  }
-};
-
-export const userAddFavouritesReducer = (state = {}, action) => {
-  switch (action.type) {
-    case USER_ADD_FAVOURITES_REQUEST:
-      return { loading: true };
-    case USER_ADD_FAVOURITES_SUCCESS:
-      return { loading: false, success: true };
-    case USER_ADD_FAVOURITES_FAIL:
-      return { loading: false, error: action.payload };
-    case USER_ADD_FAVOURITES_RESET:
-      return {};
-    default:
-      return state;
-  }
-};
-
-export const userRemoveFavouritesReducer = (state = {}, action) => {
-  switch (action.type) {
-    case USER_REMOVE_FAVOURITES_REQUEST:
-      return { loading: true };
-    case USER_REMOVE_FAVOURITES_SUCCESS:
-      return { loading: false, success: true };
-    case USER_REMOVE_FAVOURITES_FAIL:
-      return { loading: false, error: action.payload };
-    case USER_REMOVE_FAVOURITES_RESET:
       return {};
     default:
       return state;

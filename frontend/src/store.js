@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productReviewDeleteReducer, productTopRatedReducer, productUpdateReducer } from "./reducers/productReducers";
-import { userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer, userDeleteReducer, userAddFavouritesReducer, userRemoveFavouritesReducer } from "./reducers/userReducers";
+import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productReviewDeleteReducer, productTopRatedReducer, productUpdateReducer, productAddFavouritesReducer, productRemoveFavouritesReducer } from "./reducers/productReducers";
+import { userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer, userDeleteReducer } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer } from "./reducers/orderReducers";
 
@@ -28,8 +28,8 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   userDelete: userDeleteReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  userAddFavourites: userAddFavouritesReducer,
-  userRemoveFavourites: userRemoveFavouritesReducer,
+  productAddFavourites: productAddFavouritesReducer,
+  productRemoveFavourites: productRemoveFavouritesReducer,
 });
 
 const initialState = {

@@ -24,6 +24,12 @@ import {
   PRODUCT_DELETE_REVIEW_REQUEST,
   PRODUCT_DELETE_REVIEW_SUCCESS,
   PRODUCT_DELETE_REVIEW_FAIL,
+  PRODUCT_ADD_FAVOURITES_REQUEST,
+  PRODUCT_ADD_FAVOURITES_SUCCESS,
+  PRODUCT_ADD_FAVOURITES_FAIL,
+  PRODUCT_REMOVE_FAVOURITES_REQUEST,
+  PRODUCT_REMOVE_FAVOURITES_SUCCESS,
+  PRODUCT_REMOVE_FAVOURITES_FAIL,
 } from "../constants/productConstants";
 import actionsErrorHandler from "../utils/actionsErrorHandler";
 
@@ -106,5 +112,25 @@ export const deleteProductReview = (productId, reviewId) => async (dispatch) => 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({ type: PRODUCT_DELETE_REVIEW_FAIL, payload: actionsErrorHandler(error) });
+  }
+};
+
+export const addToFavourites = (productId) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_ADD_FAVOURITES_REQUEST });
+    await api.put(`/api/v1/products/${productId}/like`);
+    dispatch({ type: PRODUCT_ADD_FAVOURITES_SUCCESS });
+  } catch (error) {
+    dispatch({ type: PRODUCT_ADD_FAVOURITES_FAIL, payload: actionsErrorHandler(error) });
+  }
+};
+
+export const removeFromFavourites = (productId) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_REMOVE_FAVOURITES_REQUEST });
+    await api.put(`/api/v1/products/${productId}/dislike`);
+    dispatch({ type: PRODUCT_REMOVE_FAVOURITES_SUCCESS });
+  } catch (error) {
+    dispatch({ type: PRODUCT_REMOVE_FAVOURITES_FAIL, payload: actionsErrorHandler(error) });
   }
 };

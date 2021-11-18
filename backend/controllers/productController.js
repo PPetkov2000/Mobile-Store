@@ -1,4 +1,5 @@
 const Product = require("../models/ProductModel");
+const User = require("../models/UserModel");
 const asyncWrapper = require("../middleware/asyncWrapper");
 
 const getProducts = asyncWrapper(async (req, res) => {
@@ -131,4 +132,50 @@ const deleteProductReview = asyncWrapper(async (req, res) => {
   }
 });
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, getTopProducts, createProductReview, deleteProductReview };
+const addToFavourites = asyncWrapper(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    if (user.favouriteProducts.includes(req.params.id)) {
+      res.status(400);
+      throw new Error("Product is already in favourites");
+    }
+
+    user.favouriteProducts.push(req.params.id);
+    await user.save();
+    res.json({ message: `Product with id: ${req.params.id} added to favourites` });
+  } else {
+    res.status(404);
+    throw new Error(`User with id: ${req.params.id} not found`);
+  }
+});
+
+const removeFromFavourites = asyncWrapper(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    if (!user.favouriteProducts.includes(req.params.id)) {
+      res.status(400);
+      throw new Error("Product is already removed from favourites");
+    }
+    user.favouriteProducts = user.favouriteProducts.filter((x) => x._id.toString() !== req.params.id);
+    await user.save();
+    res.json({ message: `Product with id: ${req.params.id} removed from favourites` });
+  } else {
+    res.status(404);
+    throw new Error(`User with id: ${req.params.id} not found`);
+  }
+});
+
+module.exports = {
+  getProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getTopProducts,
+  createProductReview,
+  deleteProductReview,
+  addToFavourites,
+  removeFromFavourites
+};

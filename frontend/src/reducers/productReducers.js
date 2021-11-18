@@ -27,6 +27,14 @@ import {
   PRODUCT_DELETE_REVIEW_SUCCESS,
   PRODUCT_DELETE_REVIEW_FAIL,
   PRODUCT_DELETE_REVIEW_RESET,
+  PRODUCT_ADD_FAVOURITES_REQUEST,
+  PRODUCT_ADD_FAVOURITES_SUCCESS,
+  PRODUCT_ADD_FAVOURITES_FAIL,
+  PRODUCT_ADD_FAVOURITES_RESET,
+  PRODUCT_REMOVE_FAVOURITES_REQUEST,
+  PRODUCT_REMOVE_FAVOURITES_SUCCESS,
+  PRODUCT_REMOVE_FAVOURITES_FAIL,
+  PRODUCT_REMOVE_FAVOURITES_RESET,
 } from "../constants/productConstants";
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -135,6 +143,36 @@ export const productReviewDeleteReducer = (state = {}, action) => {
     case PRODUCT_DELETE_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_DELETE_REVIEW_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const productAddFavouritesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_ADD_FAVOURITES_REQUEST:
+      return { loading: true };
+    case PRODUCT_ADD_FAVOURITES_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_ADD_FAVOURITES_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_ADD_FAVOURITES_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const productRemoveFavouritesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_REMOVE_FAVOURITES_REQUEST:
+      return { loading: true };
+    case PRODUCT_REMOVE_FAVOURITES_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_REMOVE_FAVOURITES_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_REMOVE_FAVOURITES_RESET:
       return {};
     default:
       return state;

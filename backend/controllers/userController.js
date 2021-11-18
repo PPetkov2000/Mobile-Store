@@ -98,43 +98,6 @@ const updateUserProfile = asyncWrapper(async (req, res) => {
   }
 });
 
-const addToFavourites = asyncWrapper(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    if (user.favouriteProducts.includes(req.body.productId)) {
-      res.status(400);
-      throw new Error("Product is already in favourites");
-    }
-
-    user.favouriteProducts.push(req.body.productId);
-
-    const updatedUser = await user.save();
-    res.json(updatedUser);
-  } else {
-    res.status(404);
-    throw new Error(`User with id: ${req.params.id} not found`);
-  }
-});
-
-const removeFromFavourites = asyncWrapper(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    if (!user.favouriteProducts.includes(req.body.productId)) {
-      res.status(400);
-      throw new Error("Product is already removed");
-    }
-    user.favouriteProducts = user.favouriteProducts.filter((x) => x._id.toString() !== req.body.productId);
-
-    const updatedUser = await user.save();
-    res.json(updatedUser);
-  } else {
-    res.status(404);
-    throw new Error(`User with id: ${req.params.id} not found`);
-  }
-});
-
 const registerUser = asyncWrapper(async (req, res) => {
   const { email, username, password, confirmPassword } = req.body;
 
@@ -179,4 +142,4 @@ const authUser = asyncWrapper(async (req, res) => {
   }
 });
 
-module.exports = { getUsers, getUserById, updateUser, deleteUser, getUserProfile, updateUserProfile, addToFavourites, removeFromFavourites, registerUser, authUser };
+module.exports = { getUsers, getUserById, updateUser, deleteUser, getUserProfile, updateUserProfile, registerUser, authUser };
