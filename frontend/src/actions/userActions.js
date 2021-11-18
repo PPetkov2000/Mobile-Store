@@ -24,13 +24,7 @@ import {
   USER_DELETE_FAIL,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
-  USER_UPDATE_PROFILE_FAIL,
-  USER_ADD_FAVOURITES_REQUEST,
-  USER_ADD_FAVOURITES_SUCCESS,
-  USER_ADD_FAVOURITES_FAIL,
-  USER_REMOVE_FAVOURITES_REQUEST,
-  USER_REMOVE_FAVOURITES_SUCCESS,
-  USER_REMOVE_FAVOURITES_FAIL,
+  USER_UPDATE_PROFILE_FAIL
 } from "../constants/userConstants";
 import actionsErrorHandler from "../utils/actionsErrorHandler";
 
@@ -120,25 +114,5 @@ export const updateUserProfile = (user) => async (dispatch) => {
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: actionsErrorHandler(error) });
-  }
-};
-
-export const addToFavourites = (productId) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_ADD_FAVOURITES_REQUEST });
-    await api.put(`/api/v1/users/like`, { productId });
-    dispatch({ type: USER_ADD_FAVOURITES_SUCCESS });
-  } catch (error) {
-    dispatch({ type: USER_ADD_FAVOURITES_FAIL, payload: actionsErrorHandler(error) });
-  }
-};
-
-export const removeFromFavourites = (productId) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_REMOVE_FAVOURITES_REQUEST });
-    await api.put(`/api/v1/users/dislike`, { productId });
-    dispatch({ type: USER_REMOVE_FAVOURITES_SUCCESS });
-  } catch (error) {
-    dispatch({ type: USER_REMOVE_FAVOURITES_FAIL, payload: actionsErrorHandler(error) });
   }
 };

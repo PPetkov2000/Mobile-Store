@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { listProductDetails } from "../actions/productActions";
 import Rating from "../components/Rating";
-import { USER_ADD_FAVOURITES_RESET, USER_REMOVE_FAVOURITES_RESET } from "../constants/userConstants";
 import ProductReview from "../components/ProductReview";
-import { addToFavourites, getUserDetails, removeFromFavourites } from "../actions/userActions";
+import { listProductDetails, addToFavourites, removeFromFavourites } from "../actions/productActions";
+import { getUserDetails } from "../actions/userActions";
+import { PRODUCT_ADD_FAVOURITES_RESET, PRODUCT_REMOVE_FAVOURITES_RESET } from "../constants/productConstants";
 
 function ProductScreen({ match, history }) {
   const productId = match.params.id;
@@ -23,16 +23,16 @@ function ProductScreen({ match, history }) {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userAddFavourites = useSelector((state) => state.userAddFavourites);
-  const { loading: loadingFavourites, error: errorFavourites, success: successFavourites } = userAddFavourites;
+  const productAddFavourites = useSelector((state) => state.productAddFavourites);
+  const { loading: loadingFavourites, error: errorFavourites, success: successFavourites } = productAddFavourites;
 
-  const userRemoveFavourites = useSelector((state) => state.userRemoveFavourites);
-  const { loading: loadingRemoveFavourites, error: errorRemoveFavourites, success: successRemoveFavourites } = userRemoveFavourites;
+  const productRemoveFavourites = useSelector((state) => state.productRemoveFavourites);
+  const { loading: loadingRemoveFavourites, error: errorRemoveFavourites, success: successRemoveFavourites } = productRemoveFavourites;
 
   useEffect(() => {
     if (!product || product._id !== productId) {
       dispatch(listProductDetails(productId));
-      dispatch({ type: USER_ADD_FAVOURITES_RESET });
+      dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET });
       if (userInfo) {
         dispatch(getUserDetails("profile"));
       }
@@ -41,8 +41,8 @@ function ProductScreen({ match, history }) {
     if (successRemoveFavourites || successFavourites) {
       dispatch(getUserDetails("profile"));
       setTimeout(() => {
-        dispatch({ type: USER_ADD_FAVOURITES_RESET });
-        dispatch({ type: USER_REMOVE_FAVOURITES_RESET });
+        dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET });
+        dispatch({ type: PRODUCT_REMOVE_FAVOURITES_RESET });
       }, 4000);
     }
   }, [productId, dispatch, product, successFavourites, successRemoveFavourites, userInfo]);
