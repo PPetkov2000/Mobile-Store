@@ -69,10 +69,7 @@ function UserListScreen({ history, match }) {
                           <i className="fa fa-edit"></i>
                         </button>
                       </Link>
-                      <button
-                        className="btn-red--icon"
-                        onClick={() => deleteHandler(user._id)}
-                      >
+                      <button className="btn-red--icon" onClick={() => deleteHandler(user._id)}>
                         <i className="fa fa-trash"></i>
                       </button>
                     </div>
@@ -81,12 +78,7 @@ function UserListScreen({ history, match }) {
               ))}
             </tbody>
           </Table>
-          <Paginate
-            page={page}
-            pages={pages}
-            isAdmin={true}
-            adminPage="userlist"
-          />
+          <Paginate page={page} pages={pages} isAdmin={true} adminPage="userlist" />
         </div>
       )}
     </div>

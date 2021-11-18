@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class ErrorBoundary extends Component {
-  state = {
-    error: "",
-    errorInfo: "",
-    hasError: false,
-  };
+  state = { error: "", errorInfo: "", hasError: false };
 
   static getDerivedStateFromError(error) {
     return { hasError: true, error };

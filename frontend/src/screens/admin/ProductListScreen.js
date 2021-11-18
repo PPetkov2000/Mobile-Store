@@ -16,11 +16,7 @@ function ProductListScreen({ match, history }) {
   const { loading, error, products, page, pages } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = productDelete;
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
   useEffect(() => {
     dispatch(listProducts("", pageNumber));
@@ -72,10 +68,7 @@ function ProductListScreen({ match, history }) {
                           <i className="fa fa-edit"></i>
                         </button>
                       </Link>
-                      <button
-                        className="btn-red--icon"
-                        onClick={() => deleteProductHandler(product._id)}
-                      >
+                      <button className="btn-red--icon" onClick={() => deleteProductHandler(product._id)}>
                         <i className="fa fa-trash"></i>
                       </button>
                     </div>
@@ -84,12 +77,7 @@ function ProductListScreen({ match, history }) {
               ))}
             </tbody>
           </Table>
-          <Paginate
-            page={page}
-            pages={pages}
-            isAdmin={true}
-            adminPage="productlist"
-          />
+          <Paginate page={page} pages={pages} isAdmin={true} adminPage="productlist" />
         </div>
       )}
     </div>

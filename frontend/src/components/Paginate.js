@@ -2,14 +2,7 @@ import React from "react";
 import { Pagination } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-function Paginate({
-  page,
-  pages,
-  isAdmin = false,
-  adminPage = "",
-  keyword = "",
-  paginateStr = "",
-}) {
+const Paginate = ({ page, pages, isAdmin = false, adminPage = "", keyword = "", paginateStr = "" }) => {
   const history = useHistory();
 
   return (

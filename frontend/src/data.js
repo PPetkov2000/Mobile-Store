@@ -21,9 +21,9 @@ export const data = {
     {
       name: "Samsung Galaxy J6",
       images: [
-        "/assets/samsung-galaxy-j6.png",
-        "/assets/samsung-galaxy-j6(back-side).png",
-        "/assets/samsung-galaxy-j6(carousel).png",
+        "/images/samsung-galaxy-j6.png",
+        "/images/samsung-galaxy-j6(back-side).png",
+        "/images/samsung-galaxy-j6(carousel).png",
       ],
       brand: "samsung",
       price: 359.99,
@@ -43,9 +43,9 @@ export const data = {
     {
       name: "Samsung Galaxy S10",
       images: [
-        "/assets/samsung-galaxy-s10.png",
-        "/assets/samsung-galaxy-s10(back-side).png",
-        "/assets/samsung-galaxy-s10(carousel).png",
+        "/images/samsung-galaxy-s10.png",
+        "/images/samsung-galaxy-s10(back-side).png",
+        "/images/samsung-galaxy-s10(carousel).png",
       ],
       brand: "samsung",
       price: 499.99,
@@ -65,9 +65,9 @@ export const data = {
     {
       name: "Samsung Galaxy a71",
       images: [
-        "/assets/samsung-galaxy-a71.png",
-        "/assets/samsung-galaxy-a71(back-side).png",
-        "/assets/samsung-galaxy-a71(carousel).png",
+        "/images/samsung-galaxy-a71.png",
+        "/images/samsung-galaxy-a71(back-side).png",
+        "/images/samsung-galaxy-a71(carousel).png",
       ],
       brand: "samsung",
       price: 529.99,
@@ -87,9 +87,9 @@ export const data = {
     {
       name: "Samsung Galaxy a51",
       images: [
-        "/assets/samsung-galaxy-a51.png",
-        "/assets/samsung-galaxy-a51(back-side).png",
-        "/assets/samsung-galaxy-a51(carousel).png",
+        "/images/samsung-galaxy-a51.png",
+        "/images/samsung-galaxy-a51(back-side).png",
+        "/images/samsung-galaxy-a51(carousel).png",
       ],
       brand: "samsung",
       price: 459.99,
@@ -109,9 +109,9 @@ export const data = {
     {
       name: "Huawei p20 PRO",
       images: [
-        "/assets/huawei-p20.png",
-        "/assets/huawei-p20(back-side).png",
-        "/assets/huawei-p20(carousel).png",
+        "/images/huawei-p20.png",
+        "/images/huawei-p20(back-side).png",
+        "/images/huawei-p20(carousel).png",
       ],
       brand: "huawei",
       price: 479.99,
@@ -131,9 +131,9 @@ export const data = {
     {
       name: "Huawei p40 LITE",
       images: [
-        "/assets/huawei-p40-lite.png",
-        "/assets/huawei-p40-lite(back-side).png",
-        "/assets/huawei-p40-lite(carousel).png",
+        "/images/huawei-p40-lite.png",
+        "/images/huawei-p40-lite(back-side).png",
+        "/images/huawei-p40-lite(carousel).png",
       ],
       brand: "huawei",
       price: 499.99,
@@ -153,9 +153,9 @@ export const data = {
     {
       name: "Lenovo k6 NOTE",
       images: [
-        "/assets/lenovo-k6-note.png",
-        "/assets/lenovo-k6-note(back-side).png",
-        "/assets/lenovo-k6-note(carousel).png",
+        "/images/lenovo-k6-note.png",
+        "/images/lenovo-k6-note(back-side).png",
+        "/images/lenovo-k6-note(carousel).png",
       ],
       brand: "lenovo",
       price: 329.99,
@@ -175,9 +175,9 @@ export const data = {
     {
       name: "Huawei Y6p",
       images: [
-        "/assets/huawei-y6p.png",
-        "/assets/huawei-y6p(back-side).png",
-        "/assets/huawei-y6p(carousel).png",
+        "/images/huawei-y6p.png",
+        "/images/huawei-y6p(back-side).png",
+        "/images/huawei-y6p(carousel).png",
       ],
       brand: "huawei",
       price: 469.99,
@@ -197,9 +197,9 @@ export const data = {
     {
       name: "Huawei Y7",
       images: [
-        "/assets/huawei-y7.png",
-        "/assets/huawei-y7(back-side).png",
-        "/assets/huawei-y7(carousel).png",
+        "/images/huawei-y7.png",
+        "/images/huawei-y7(back-side).png",
+        "/images/huawei-y7(carousel).png",
       ],
       brand: "huawei",
       price: 599.99,

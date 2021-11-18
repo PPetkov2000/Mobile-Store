@@ -14,17 +14,11 @@ function ProductReview({ productId, productReviews }) {
   const { userInfo } = userLogin;
 
   const productReviewDelete = useSelector((state) => state.productReviewDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = productReviewDelete;
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productReviewDelete;
 
   const deleteReviewHandler = () => {
     if (productReviews) {
-      const productReview = productReviews.find(
-        (r) => r.creator === userInfo._id
-      );
+      const productReview = productReviews.find((r) => r.creator === userInfo._id);
       dispatch(deleteProductReview(productId, productReview._id));
     }
   };
@@ -44,39 +38,27 @@ function ProductReview({ productId, productReviews }) {
                 <p className="mb-0 mr-4">{review.name}</p>
                 <Rating value={review.rating} />
               </div>
-              {userInfo &&
-                (review.creator === userInfo._id || userInfo.isAdmin) && (
-                  <button
-                    className="btn-red--icon"
-                    onClick={deleteReviewHandler}
-                  >
-                    <i className="fa fa-trash"></i>
-                  </button>
-                )}
+              {userInfo && (review.creator === userInfo._id || userInfo.isAdmin) && (
+                <button className="btn-red--icon" onClick={deleteReviewHandler}>
+                  <i className="fa fa-trash"></i>
+                </button>
+              )}
             </div>
             <div className="product-review__content">
               <p>
                 {review.comment}
-                <Badge variant="dark">
-                  {review.createdAt.substring(0, 10)}
-                </Badge>
+                <Badge variant="dark">{review.createdAt.substring(0, 10)}</Badge>
               </p>
             </div>
           </div>
         );
       })}
-      {productReviews &&
-        userInfo &&
-        Boolean(
-          !productReviews.find(
-            (r) => r.creator.toString() === userInfo._id.toString()
-          )
-        ) && (
-          <>
-            <hr className="bg-secondary" />
-            <ProductReviewForm productId={productId} />
-          </>
-        )}
+      {productReviews && userInfo && Boolean(!productReviews.find((r) => r.creator.toString() === userInfo._id.toString())) && (
+        <>
+          <hr className="bg-secondary" />
+          <ProductReviewForm productId={productId} />
+        </>
+      )}
     </div>
   );
 }

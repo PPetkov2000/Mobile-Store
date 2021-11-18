@@ -28,12 +28,7 @@ function OrderScreen({ match, history }) {
       return (Math.round(price * 100) / 100).toFixed(2);
     };
 
-    order.itemsPrice = formatPrice(
-      order.orderItems.reduce(
-        (acc, curr) => acc + curr.quantity * curr.price,
-        0
-      )
-    );
+    order.itemsPrice = formatPrice(order.orderItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0));
     order.shippingPrice = formatPrice(order.shippingPrice);
     order.taxPrice = formatPrice(order.taxPrice);
     order.totalPrice = formatPrice(order.totalPrice);
@@ -82,14 +77,8 @@ function OrderScreen({ match, history }) {
         <Col lg={8} xl={8}>
           <div className="order-info__details">
             <h3 className="order-info__title">Shipping</h3>
-            <p className="mb-0">
-              <strong>Username: </strong>
-              {order.creator.username}
-            </p>
-            <p className="mb-0">
-              <strong>Email: </strong>
-              {order.creator.email}
-            </p>
+            <p className="mb-0"><strong>Username: </strong>{order.creator.username}</p>
+            <p className="mb-0"><strong>Email: </strong>{order.creator.email}</p>
             <p className="mb-0">
               <strong>Address: </strong>
               {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
@@ -99,10 +88,7 @@ function OrderScreen({ match, history }) {
           </div>
           <div className="order-info__details">
             <h3 className="order-info__title">Payment Method</h3>
-            <p>
-              <strong>Method: </strong>
-              {order.paymentMethod}
-            </p>
+            <p><strong>Method: </strong>{order.paymentMethod}</p>
             {order.isPaid ? (
               <Message variant="success">
                 <i className="fa fa-check" aria-hidden="true"></i> Paid on{" "}
@@ -122,24 +108,12 @@ function OrderScreen({ match, history }) {
               order.orderItems.map((item, index) => (
                 <Row key={index} className="order-info__content">
                   <Col xs={2} sm={2} md={2}>
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      className="order-info__product-image"
-                    />
+                    <img src={item.imageUrl} alt={item.name} className="order-info__product-image" />
                   </Col>
                   <Col>
-                    <Link
-                      to={`/products/${item.product}`}
-                      className="order-info__product-name"
-                    >
-                      {item.name}
-                    </Link>
+                    <Link to={`/products/${item.product}`} className="order-info__product-name">{item.name}</Link>
                   </Col>
-                  <Col xs={5} sm={5} md={5}>
-                    {item.quantity} * {item.price} = $
-                    {item.quantity * item.price}
-                  </Col>
+                  <Col xs={5} sm={5} md={5}>{item.quantity} * {item.price} = ${item.quantity * item.price}</Col>
                 </Row>
               ))
             )}
@@ -161,12 +135,8 @@ function OrderScreen({ match, history }) {
               <Col className="text-right">${order.taxPrice}</Col>
             </Row>
             <Row className="order-info__summary-total-price">
-              <Col md={4} sm={6} xs={6}>
-                Total
-              </Col>
-              <Col md={8} sm={6} xs={6} className="text-right">
-                ${order.totalPrice}
-              </Col>
+              <Col md={4} sm={6} xs={6}>Total</Col>
+              <Col md={8} sm={6} xs={6} className="text-right">${order.totalPrice}</Col>
             </Row>
             {!order.isPaid && (
               <Row className="order-info__paypal-button-wrapper">
@@ -174,10 +144,7 @@ function OrderScreen({ match, history }) {
                 {!sdkReady ? (
                   <Loader />
                 ) : (
-                  <PayPalButton
-                    amount={order.totalPrice}
-                    onSuccess={successPaymentHandler}
-                  />
+                  <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
                 )}
               </Row>
             )}

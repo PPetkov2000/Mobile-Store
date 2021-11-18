@@ -2,8 +2,7 @@ module.exports = function (instance) {
   instance.interceptors.request.use(
     (request) => {
       if (localStorage.getItem("userInfo")) {
-        request.headers.Authorization =
-          "Bearer " + JSON.parse(localStorage.getItem("userInfo")).token;
+        request.headers.Authorization = "Bearer " + JSON.parse(localStorage.getItem("userInfo")).token;
       }
       return request;
     },

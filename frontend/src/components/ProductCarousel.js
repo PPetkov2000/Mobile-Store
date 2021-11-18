@@ -27,9 +27,7 @@ function ProductCarousel() {
           <Link to={`/products/${product._id}`} className="img-link">
             <img src={product.images[2]} alt={product.name} className="img" />
             <Carousel.Caption>
-              <h3 className="carousel-caption-title">
-                {product.name} ${product.price}
-              </h3>
+              <h3 className="carousel-caption-title">{product.name} ${product.price}</h3>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>

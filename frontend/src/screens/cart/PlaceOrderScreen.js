@@ -22,16 +22,10 @@ function PlaceOrderScreen({ history }) {
     return (Math.round(price * 100) / 100).toFixed(2);
   };
 
-  cart.itemsPrice = formatPrice(
-    cart.cartItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
-  );
+  cart.itemsPrice = formatPrice(cart.cartItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0));
   cart.shippingPrice = formatPrice(cart.itemsPrice > 100 ? 0 : 10);
   cart.taxPrice = formatPrice(Number((cart.itemsPrice * 0.15).toFixed(2)));
-  cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
-  ).toFixed(2);
+  cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2);
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { error, success, order } = orderCreate;
@@ -48,13 +42,7 @@ function PlaceOrderScreen({ history }) {
     dispatch(
       createOrder({
         orderItems: cart.cartItems.map((item) => {
-          return {
-            name: item.name,
-            imageUrl: item.images[0],
-            price: item.price,
-            quantity: item.quantity,
-            product: item.product,
-          };
+          return { name: item.name, imageUrl: item.images[0], price: item.price, quantity: item.quantity, product: item.product };
         }),
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
@@ -91,19 +79,10 @@ function PlaceOrderScreen({ history }) {
               cart.cartItems.map((item, index) => (
                 <Row key={index} className="order-info__content">
                   <Col md={2} xs={2} sm={2}>
-                    <img
-                      src={item.images && item.images[0]}
-                      alt={item.name}
-                      className="order-info__product-image"
-                    />
+                    <img src={item.images && item.images[0]} alt={item.name} className="order-info__product-image" />
                   </Col>
                   <Col>
-                    <Link
-                      to={`/products/${item.product}`}
-                      className="order-info__product-name"
-                    >
-                      {item.name}
-                    </Link>
+                    <Link to={`/products/${item.product}`} className="order-info__product-name">{item.name}</Link>
                   </Col>
                   <Col md={5} xs={5} sm={5}>
                     {item.quantity} * {item.price} = $
@@ -130,9 +109,7 @@ function PlaceOrderScreen({ history }) {
               <Col className="text-right">${cart.taxPrice}</Col>
             </Row>
             <Row className="order-info__summary-total-price">
-              <Col md={4} sm={6} xs={6}>
-                Total
-              </Col>
+              <Col md={4} sm={6} xs={6}>Total</Col>
               <Col md={8} sm={6} xs={6} className="text-right">
                 ${cart.totalPrice}
               </Col>

@@ -26,8 +26,7 @@ function HomeScreen({ match }) {
       {!keyword && <ProductCarousel />}
       <Container className="products">
         <h2 className="products__title">
-          <i className="fa fa-shopping-bag" aria-hidden="true"></i> featured
-          products
+          <i className="fa fa-shopping-bag" aria-hidden="true"></i> featured products
         </h2>
         {loading ? (
           <Loader />
@@ -36,17 +35,10 @@ function HomeScreen({ match }) {
         ) : products.length === 0 ? (
           <div className="products__empty">
             <h2 className="products__empty-text">Products not found</h2>
-            <Link to="/" className="btn btn-light">
-              Go Back
-            </Link>
+            <Link to="/" className="btn btn-light">Go Back</Link>
           </div>
         ) : (
-          <Products
-            products={products}
-            page={page}
-            pages={pages}
-            keyword={keyword ? keyword : ""}
-          />
+          <Products products={products} page={page} pages={pages} keyword={keyword ? keyword : ""} />
         )}
       </Container>
     </>

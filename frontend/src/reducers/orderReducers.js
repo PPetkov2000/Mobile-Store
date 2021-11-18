@@ -34,10 +34,7 @@ export const orderCreateReducer = (state = {}, action) => {
   }
 };
 
-export const orderDetailsReducer = (
-  state = { loading: true, orderItems: [], shippingAddress: {} },
-  action
-) => {
+export const orderDetailsReducer = (state = { loading: true, orderItems: [], shippingAddress: {} }, action) => {
   switch (action.type) {
     case ORDER_DETAILS_REQUEST:
       return { ...state, loading: true };
@@ -55,12 +52,7 @@ export const orderListReducer = (state = { orders: [] }, action) => {
     case ORDER_LIST_REQUEST:
       return { loading: true, orders: [] };
     case ORDER_LIST_SUCCESS:
-      return {
-        loading: false,
-        orders: action.payload.orders,
-        page: action.payload.page,
-        pages: action.payload.pages,
-      };
+      return { loading: false, orders: action.payload.orders, page: action.payload.page, pages: action.payload.pages };
     case ORDER_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -73,12 +65,7 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
     case ORDER_LIST_MY_REQUEST:
       return { loading: true, orders: [] };
     case ORDER_LIST_MY_SUCCESS:
-      return {
-        loading: false,
-        orders: action.payload.orders,
-        page: action.payload.page,
-        pages: action.payload.pages,
-      };
+      return { loading: false, orders: action.payload.orders, page: action.payload.page, pages: action.payload.pages };
     case ORDER_LIST_MY_FAIL:
       return { loading: false, error: action.payload };
     case ORDER_LIST_MY_RESET:

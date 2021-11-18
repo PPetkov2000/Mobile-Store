@@ -1,16 +1,13 @@
-const jwt = require("jsonwebtoken");
 const User = require("../models/UserModel");
+const { verifyToken } = require("../utils/jwt");
 
 const isAuth = async (req, res, next) => {
   let token;
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     try {
       token = req.headers.authorization.split(" ")[1];
-      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const decodedToken = verifyToken(token);
       const user = await User.findById(decodedToken.userId).select("-password");
       req.user = user;
       next();

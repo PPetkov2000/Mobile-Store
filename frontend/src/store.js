@@ -1,35 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import {
-  productCreateReducer,
-  productDeleteReducer,
-  productDetailsReducer,
-  productListReducer,
-  productReviewCreateReducer,
-  productReviewDeleteReducer,
-  productTopRatedReducer,
-  productUpdateReducer,
-} from "./reducers/productReducers";
-import {
-  userDetailsReducer,
-  userListReducer,
-  userLoginReducer,
-  userRegisterReducer,
-  userUpdateProfileReducer,
-  userUpdateReducer,
-  userDeleteReducer,
-  userAddFavouritesReducer,
-  userRemoveFavouritesReducer,
-} from "./reducers/userReducers";
+import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productReviewDeleteReducer, productTopRatedReducer, productUpdateReducer } from "./reducers/productReducers";
+import { userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer, userDeleteReducer, userAddFavouritesReducer, userRemoveFavouritesReducer } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducers";
-import {
-  orderCreateReducer,
-  orderDetailsReducer,
-  orderListMyReducer,
-  orderListReducer,
-  orderPayReducer,
-} from "./reducers/orderReducers";
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -73,10 +48,6 @@ const initialState = {
   },
 };
 
-const store = createStore(
-  reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

@@ -28,14 +28,9 @@ const PaymentScreen = ({ history }) => {
       <Row>
         <Col xs={12} md={8} className="mx-auto">
           <h2>Payment Method</h2>
-          <Form
-            onSubmit={submitHandler}
-            className="payment-method__form text-center"
-          >
+          <Form onSubmit={submitHandler} className="payment-method__form text-center">
             <Form.Group>
-              <Form.Label as="legend" className="payment-method__label">
-                Select Method
-              </Form.Label>
+              <Form.Label as="legend" className="payment-method__label">Select Method</Form.Label>
               <Col>
                 <Form.Check
                   type="radio"
@@ -48,9 +43,7 @@ const PaymentScreen = ({ history }) => {
                 ></Form.Check>
               </Col>
             </Form.Group>
-            <button type="submit" className="btn btn-main">
-              Continue
-            </button>
+            <button type="submit" className="btn btn-main">Continue</button>
           </Form>
         </Col>
       </Row>

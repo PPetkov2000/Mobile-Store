@@ -54,25 +54,15 @@ function OrderListScreen({ match }) {
                     )}
                   </td>
                   <td>
-                    <Link
-                      to={`/order/${order._id}`}
-                      className="d-flex justify-content-center"
-                    >
-                      <button className="btn btn-full-width btn-blue--bordered p-0">
-                        Details
-                      </button>
+                    <Link to={`/order/${order._id}`} className="d-flex justify-content-center">
+                      <button className="btn btn-full-width btn-blue--bordered p-0">Details</button>
                     </Link>
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          <Paginate
-            page={page}
-            pages={pages}
-            isAdmin={true}
-            adminPage="orderlist"
-          />
+          <Paginate page={page} pages={pages} isAdmin={true} adminPage="orderlist" />
         </div>
       )}
     </div>

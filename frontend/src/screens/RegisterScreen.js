@@ -43,43 +43,13 @@ function RegisterScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="auth-form">
-        <FormInput
-          type="text"
-          name="username"
-          placeholder="Enter username"
-          value={username}
-          handleChange={(e) => setUsername(e.target.value)}
-        />
-        <FormInput
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={email}
-          handleChange={(e) => setEmail(e.target.value)}
-        />
-        <FormInput
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={password}
-          handleChange={(e) => setPassword(e.target.value)}
-        />
-        <FormInput
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          handleChange={(e) => setConfirmPassword(e.target.value)}
-        />
-
-        <button type="submit" className="btn btn-main btn-full-width">
-          Register
-        </button>
-
+        <FormInput type="text" name="username" placeholder="Enter username" value={username} handleChange={(e) => setUsername(e.target.value)} />
+        <FormInput type="email" name="email" placeholder="Enter email" value={email} handleChange={(e) => setEmail(e.target.value)} />
+        <FormInput type="password" name="password" placeholder="Enter password" value={password} handleChange={(e) => setPassword(e.target.value)} />
+        <FormInput type="password" name="confirmPassword" placeholder="Confirm Password" value={confirmPassword} handleChange={(e) => setConfirmPassword(e.target.value)} />
+        <button type="submit" className="btn btn-main btn-full-width">Register</button>
         <Row className="py-3">
-          <Col>
-            Have an Account? <Link to="/login">Login</Link>
-          </Col>
+          <Col>Have an Account? <Link to="/login">Login</Link></Col>
         </Row>
       </Form>
     </div>

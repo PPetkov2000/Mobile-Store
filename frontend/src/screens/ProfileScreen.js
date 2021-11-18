@@ -29,13 +29,7 @@ function ProfileScreen({ match }) {
   const { success } = userUpdateProfile;
 
   const orderListMy = useSelector((state) => state.orderListMy);
-  const {
-    loading: loadingOrders,
-    error: errorOrders,
-    orders,
-    page,
-    pages,
-  } = orderListMy;
+  const { loading: loadingOrders, error: errorOrders, orders, page, pages } = orderListMy;
 
   useEffect(() => {
     if (!user || !user.username || success) {
@@ -73,37 +67,11 @@ function ProfileScreen({ match }) {
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} className="profile__form">
-              <FormInput
-                type="text"
-                name="username"
-                placeholder="Enter username"
-                value={username}
-                handleChange={(e) => setUsername(e.target.value)}
-              />
-              <FormInput
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                value={email}
-                handleChange={(e) => setEmail(e.target.value)}
-              />
-              <FormInput
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                value={password}
-                handleChange={(e) => setPassword(e.target.value)}
-              />
-              <FormInput
-                type="password"
-                name="confirm password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                handleChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <button type="submit" className="btn btn-main btn-full-width">
-                Update
-              </button>
+              <FormInput type="text" name="username" placeholder="Enter username" value={username} handleChange={(e) => setUsername(e.target.value)} />
+              <FormInput type="email" name="email" placeholder="Enter email" value={email} handleChange={(e) => setEmail(e.target.value)} />
+              <FormInput type="password" name="password" placeholder="Enter password" value={password} handleChange={(e) => setPassword(e.target.value)} />
+              <FormInput type="password" name="confirm password" placeholder="Confirm Password" value={confirmPassword} handleChange={(e) => setConfirmPassword(e.target.value)} />
+              <button type="submit" className="btn btn-main btn-full-width">Update</button>
             </Form>
           )}
         </Col>
@@ -114,14 +82,7 @@ function ProfileScreen({ match }) {
           ) : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (
-            <Table
-              striped
-              bordered
-              hover
-              responsive
-              size="sm"
-              className="profile__table"
-            >
+            <Table striped bordered hover responsive size="sm" className="profile__table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -145,12 +106,7 @@ function ProfileScreen({ match }) {
                       )}
                     </td>
                     <td className="text-center">
-                      <Link
-                        to={`/order/${order._id}`}
-                        className="btn btn-full-width btn-blue--bordered p-0"
-                      >
-                        Details
-                      </Link>
+                      <Link to={`/order/${order._id}`} className="btn btn-full-width btn-blue--bordered p-0">Details</Link>
                     </td>
                   </tr>
                 ))}
@@ -162,14 +118,10 @@ function ProfileScreen({ match }) {
       </Row>
       {user.favouriteProducts && (
         <section className="products">
-          <h2 className="products__title">
-            <i className="fa fa-heart"></i> favourite products
-          </h2>
+          <h2 className="products__title"><i className="fa fa-heart"></i> favourite products</h2>
           {user.favouriteProducts.length === 0 ? (
             <div className="products__empty">
-              <h3 className="products__empty-text">
-                You don't have favourite products yet.
-              </h3>
+              <h3 className="products__empty-text">You don't have favourite products yet.</h3>
             </div>
           ) : (
             <Products products={user.favouriteProducts} />

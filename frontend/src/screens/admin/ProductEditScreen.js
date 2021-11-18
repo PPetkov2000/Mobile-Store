@@ -5,10 +5,7 @@ import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormInput from "../../components/FormInput";
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
-import {
-  listProductDetails,
-  updateProduct,
-} from "../../actions/productActions";
+import { listProductDetails, updateProduct } from "../../actions/productActions";
 
 const initialFormData = {
   name: "",
@@ -37,11 +34,7 @@ function ProductEditScreen({ match, history }) {
   const { loading, error, product } = productDetails;
 
   const productUpdate = useSelector((state) => state.productUpdate);
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = productUpdate;
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
 
   useEffect(() => {
     if (successUpdate) {
@@ -92,9 +85,7 @@ function ProductEditScreen({ match, history }) {
               handleChange={handleChange}
             />
           ))}
-          <button type="submit" className="btn btn-main btn-full-width">
-            Update
-          </button>
+          <button type="submit" className="btn btn-main btn-full-width">Update</button>
         </Form>
       )}
     </div>

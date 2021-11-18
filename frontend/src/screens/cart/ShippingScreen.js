@@ -11,9 +11,7 @@ function ShippingScreen({ history }) {
 
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ""
-  );
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || "");
   const [country, setCountry] = useState(shippingAddress.country || "");
 
   const dispatch = useDispatch();
@@ -37,13 +35,7 @@ function ShippingScreen({ history }) {
               placeholder="Enter address"
               value={address}
               handleChange={(e) => setAddress(e.target.value)}
-              icon={
-                <i
-                  key={address}
-                  className="fa fa-address-book"
-                  aria-hidden="true"
-                ></i>
-              }
+              icon={<i key={address} className="fa fa-address-book" aria-hidden="true"></i>}
             />
             <FormInput
               type="text"
@@ -51,9 +43,7 @@ function ShippingScreen({ history }) {
               placeholder="Enter city"
               value={city}
               handleChange={(e) => setCity(e.target.value)}
-              icon={
-                <i key={city} className="fa fa-home" aria-hidden="true"></i>
-              }
+              icon={<i key={city} className="fa fa-home" aria-hidden="true"></i>}
             />
             <FormInput
               type="text"
@@ -61,13 +51,7 @@ function ShippingScreen({ history }) {
               placeholder="Enter postal code"
               value={postalCode}
               handleChange={(e) => setPostalCode(e.target.value)}
-              icon={
-                <i
-                  key={postalCode}
-                  className="fa fa-envelope-open"
-                  aria-hidden="true"
-                ></i>
-              }
+              icon={<i key={postalCode} className="fa fa-envelope-open" aria-hidden="true"></i>}
             />
             <FormInput
               type="text"
@@ -75,13 +59,9 @@ function ShippingScreen({ history }) {
               placeholder="Enter country"
               value={country}
               handleChange={(e) => setCountry(e.target.value)}
-              icon={
-                <i key={country} className="fa fa-globe" aria-hidden="true"></i>
-              }
+              icon={<i key={country} className="fa fa-globe" aria-hidden="true"></i>}
             />
-            <button type="submit" className="btn btn-main btn-full-width">
-              Continue
-            </button>
+            <button type="submit" className="btn btn-main btn-full-width">Continue</button>
           </Form>
         </Col>
       </Row>

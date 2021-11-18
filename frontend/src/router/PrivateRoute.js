@@ -1,4 +1,5 @@
-import React, { Redirect, Route } from "react-router-dom";
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -12,9 +13,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         return userInfo ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />
+          <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
         );
       }}
     />

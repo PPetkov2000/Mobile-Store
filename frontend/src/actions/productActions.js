@@ -27,80 +27,61 @@ import {
 } from "../constants/productConstants";
 import actionsErrorHandler from "../utils/actionsErrorHandler";
 
-export const listProducts =
-  (keyword = "", pageNumber = "") =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { data } = await api.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
-      );
-      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_LIST_FAIL,
-        payload: actionsErrorHandler(error),
-      });
-    }
-  };
+export const listProducts = (keyword = "", pageNumber = "") => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_LIST_REQUEST });
+    const { data } = await api.get(`/api/v1/products?keyword=${keyword}&pageNumber=${pageNumber}`);
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_LIST_FAIL, payload: actionsErrorHandler(error) });
+  }
+};
 
 export const listProductDetails = (productId) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await api.get(`/api/products/${productId}`);
+    const { data } = await api.get(`/api/v1/products/${productId}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_DETAILS_FAIL,
-      payload: actionsErrorHandler(error),
-    });
+    dispatch({ type: PRODUCT_DETAILS_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
 export const createProduct = (product) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REQUEST });
-    const { data } = await api.post("/api/products", product);
+    const { data } = await api.post("/api/v1/products", product);
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_CREATE_FAIL,
-      payload: actionsErrorHandler(error),
-    });
+    dispatch({ type: PRODUCT_CREATE_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
 export const updateProduct = (product) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
-    const { data } = await api.put(`/api/products/${product._id}`, product);
+    const { data } = await api.put(`/api/v1/products/${product._id}`, product);
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_UPDATE_FAIL,
-      payload: actionsErrorHandler(error),
-    });
+    dispatch({ type: PRODUCT_UPDATE_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
-    await api.delete(`/api/products/${productId}`);
+    await api.delete(`/api/v1/products/${productId}`);
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_DELETE_FAIL,
-      payload: actionsErrorHandler(error),
-    });
+    dispatch({ type: PRODUCT_DELETE_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
 export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });
-    const { data } = await api.get("/api/products/top");
+    const { data } = await api.get("/api/v1/products/top");
     dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_TOP_FAIL, payload: actionsErrorHandler(error) });
@@ -110,29 +91,20 @@ export const listTopProducts = () => async (dispatch) => {
 export const createProductReview = (productId, review) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
-    await api.post(`/api/products/${productId}/reviews`, review);
+    await api.post(`/api/v1/products/${productId}/reviews`, review);
     dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS });
   } catch (error) {
-    dispatch({
-      type: PRODUCT_CREATE_REVIEW_FAIL,
-      payload: actionsErrorHandler(error),
-    });
+    dispatch({ type: PRODUCT_CREATE_REVIEW_FAIL, payload: actionsErrorHandler(error) });
   }
 };
 
-export const deleteProductReview =
-  (productId, reviewId) => async (dispatch) => {
-    try {
-      dispatch({ type: PRODUCT_DELETE_REVIEW_REQUEST });
-      const { data } = await api.delete(
-        `/api/products/${productId}/reviews/${reviewId}`
-      );
-      dispatch({ type: PRODUCT_DELETE_REVIEW_SUCCESS });
-      dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_DELETE_REVIEW_FAIL,
-        payload: actionsErrorHandler(error),
-      });
-    }
-  };
+export const deleteProductReview = (productId, reviewId) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_DELETE_REVIEW_REQUEST });
+    const { data } = await api.delete(`/api/v1/products/${productId}/reviews/${reviewId}`);
+    dispatch({ type: PRODUCT_DELETE_REVIEW_SUCCESS });
+    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
+  } catch (error) {
+    dispatch({ type: PRODUCT_DELETE_REVIEW_FAIL, payload: actionsErrorHandler(error) });
+  }
+};

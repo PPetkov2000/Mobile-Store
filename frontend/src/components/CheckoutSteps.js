@@ -38,8 +38,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
       <Nav.Item className="checkout-steps__nav-item">
         {step4 ? (
           <Link to="/placeorder" className="checkout-steps__nav-link">
-            <i className="fa fa-check-square" aria-hidden="true"></i> Place
-            Order
+            <i className="fa fa-check-square" aria-hidden="true"></i> Place Order
           </Link>
         ) : (
           <Nav.Link disabled>Place Order</Nav.Link>

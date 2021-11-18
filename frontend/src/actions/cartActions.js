@@ -1,35 +1,29 @@
 import axios from "axios";
-import {
-  CART_ADD_ITEM,
-  CART_REMOVE_ITEM,
-  CART_SAVE_SHIPPING_ADDRESS,
-  CART_SAVE_PAYMENT_METHOD,
-} from "../constants/cartConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD } from "../constants/cartConstants";
 
 export const addToCart = (id, quantity) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
+  const { data } = await axios.get(`/api/v1/products/${id}`);
 
   dispatch({
     type: CART_ADD_ITEM,
     payload: {
-      product: data._id,
       name: data.name,
+      images: data.images,
       brand: data.brand,
-      imageUrl: data.imageUrl,
-      OS: data.OS,
-      memory: data.memory,
-      RAM: data.RAM,
-      network: data.network,
-      SIM: data.SIM,
       price: data.price,
+      cpu: data.cpu,
+      camera: data.camera,
       size: data.size,
       weight: data.weight,
-      color: data.color,
-      releaseDate: data.releaseDate,
-      reviews: data.reviews,
+      display: data.display,
+      battery: data.battery,
+      memory: data.memory,
+      description: data.description,
       countInStock: data.countInStock,
-      creator: data.creator,
-      quantity,
+      quantity: Number(quantity),
+      rating: data.rating,
+      reviews: data.reviews,
+      product: data._id,
     },
   });
 

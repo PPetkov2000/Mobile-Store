@@ -35,29 +35,11 @@ function LoginScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="auth-form">
-        <FormInput
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={email}
-          handleChange={(e) => setEmail(e.target.value)}
-        />
-        <FormInput
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={password}
-          handleChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button type="submit" className="btn btn-main btn-full-width">
-          Login
-        </button>
-
+        <FormInput type="email" name="email" placeholder="Enter email" value={email} handleChange={(e) => setEmail(e.target.value)} />
+        <FormInput type="password" name="password" placeholder="Enter password" value={password} handleChange={(e) => setPassword(e.target.value)} />
+        <button type="submit" className="btn btn-main btn-full-width">Login</button>
         <Row className="py-3">
-          <Col>
-            New Customer? <Link to="/register">Register</Link>
-          </Col>
+          <Col>New Customer? <Link to="/register">Register</Link></Col>
         </Row>
       </Form>
     </div>

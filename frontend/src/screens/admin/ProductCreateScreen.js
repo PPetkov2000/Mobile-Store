@@ -63,9 +63,7 @@ const ProductCreateScreen = ({ history }) => {
             handleChange={handleChange}
           />
         ))}
-        <button type="submit" className="btn btn-main btn-full-width">
-          Create
-        </button>
+        <button type="submit" className="btn btn-main btn-full-width">Create</button>
       </Form>
     </div>
   );

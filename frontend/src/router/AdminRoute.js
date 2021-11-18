@@ -1,4 +1,5 @@
-import React, { Redirect, Route } from "react-router-dom";
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
@@ -12,9 +13,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         return userInfo && userInfo.isAdmin ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect
-            to={{ pathname: "/forbidden", state: { from: props.location } }}
-          />
+          <Redirect to={{ pathname: "/forbidden", state: { from: props.location } }} />
         );
       }}
     />

@@ -5,16 +5,9 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
 import Rating from "../components/Rating";
-import {
-  USER_ADD_FAVOURITES_RESET,
-  USER_REMOVE_FAVOURITES_RESET,
-} from "../constants/userConstants";
+import { USER_ADD_FAVOURITES_RESET, USER_REMOVE_FAVOURITES_RESET } from "../constants/userConstants";
 import ProductReview from "../components/ProductReview";
-import {
-  addToFavourites,
-  getUserDetails,
-  removeFromFavourites,
-} from "../actions/userActions";
+import { addToFavourites, getUserDetails, removeFromFavourites } from "../actions/userActions";
 
 function ProductScreen({ match, history }) {
   const productId = match.params.id;
@@ -31,20 +24,10 @@ function ProductScreen({ match, history }) {
   const { userInfo } = userLogin;
 
   const userAddFavourites = useSelector((state) => state.userAddFavourites);
-  const {
-    loading: loadingFavourites,
-    error: errorFavourites,
-    success: successFavourites,
-  } = userAddFavourites;
+  const { loading: loadingFavourites, error: errorFavourites, success: successFavourites } = userAddFavourites;
 
-  const userRemoveFavourites = useSelector(
-    (state) => state.userRemoveFavourites
-  );
-  const {
-    loading: loadingRemoveFavourites,
-    error: errorRemoveFavourites,
-    success: successRemoveFavourites,
-  } = userRemoveFavourites;
+  const userRemoveFavourites = useSelector((state) => state.userRemoveFavourites);
+  const { loading: loadingRemoveFavourites, error: errorRemoveFavourites, success: successRemoveFavourites } = userRemoveFavourites;
 
   useEffect(() => {
     if (!product || product._id !== productId) {
@@ -62,14 +45,7 @@ function ProductScreen({ match, history }) {
         dispatch({ type: USER_REMOVE_FAVOURITES_RESET });
       }, 4000);
     }
-  }, [
-    productId,
-    dispatch,
-    product,
-    successFavourites,
-    successRemoveFavourites,
-    userInfo,
-  ]);
+  }, [productId, dispatch, product, successFavourites, successRemoveFavourites, userInfo]);
 
   const addToCartHandler = () => {
     history.push(`/cart/${productId}`);
@@ -95,19 +71,11 @@ function ProductScreen({ match, history }) {
     <section className="product-details">
       <Row xs={1} sm={2} md={2} lg={3} xl={3}>
         <Col>
-          <img
-            src={product.images && product.images[0]}
-            alt={product.name}
-            className="product-details__image"
-          />
+          <img src={product.images && product.images[0]} alt={product.name} className="product-details__image" />
         </Col>
         <Col>
           <h3 className="product-details__name">{product.name}</h3>
-          <Rating
-            value={product.rating}
-            text={`Clients reviewed: ${
-              product.reviews && product.reviews.length
-            }`}
+          <Rating value={product.rating} text={`Clients reviewed: ${product.reviews && product.reviews.length}`}
           />
           <div className="product-details__features">
             <p>
@@ -138,53 +106,32 @@ function ProductScreen({ match, history }) {
         </Col>
         <Col className="col-sm-12 col-md-12">
           <div className="product-details__order-container">
-            <h3 className="product-details__order-price">
-              Price: ${product.price}
-            </h3>
+            <h3 className="product-details__order-price">Price: ${product.price}</h3>
             <i className="fa fa-truck btn-green--icon" aria-hidden="true"></i>
             <span className="free-delivery">free delivery</span>
-            <button
-              className="btn btn-full-width add-to-cart"
-              onClick={addToCartHandler}
-            >
+            <button className="btn btn-full-width add-to-cart" onClick={addToCartHandler}>
               <i className="fa fa-cart-plus" aria-hidden="true"></i> add to cart
             </button>
             {Object.keys(user).length > 0 &&
-              (user.favouriteProducts &&
-              Boolean(
-                !user.favouriteProducts.find(
-                  (x) => x._id.toString() === productId
-                )
+              (user.favouriteProducts && Boolean(!user.favouriteProducts.find((x) => x._id.toString() === productId)
               ) ? (
-                <button
-                  className="btn btn-full-width add-to-favourites"
-                  onClick={addToFavouritesHandler}
-                >
-                  <i className="fa fa-heart" aria-hidden="true"></i> add to
-                  favourites
+                <button className="btn btn-full-width add-to-favourites" onClick={addToFavouritesHandler}>
+                  <i className="fa fa-heart" aria-hidden="true"></i> add to favourites
                 </button>
               ) : (
-                <button
-                  className="btn btn-full-width remove-from-favourites"
-                  onClick={removeFromFavouritesHandler}
-                >
-                  <i className="fa fa-heart" aria-hidden="true"></i> remove from
-                  favourites
+                <button className="btn btn-full-width remove-from-favourites" onClick={removeFromFavouritesHandler}>
+                  <i className="fa fa-heart" aria-hidden="true"></i> remove from favourites
                 </button>
               ))}
             {loadingRemoveFavourites && <Loader />}
-            {errorRemoveFavourites && (
-              <Message variant="danger">{errorRemoveFavourites}</Message>
-            )}
+            {errorRemoveFavourites && <Message variant="danger">{errorRemoveFavourites}</Message>}
             {successRemoveFavourites && (
               <div className="mt-3">
                 <Message variant="success">Removed from favourites</Message>
               </div>
             )}
             {loadingFavourites && <Loader />}
-            {errorFavourites && (
-              <Message variant="danger">{errorFavourites}</Message>
-            )}
+            {errorFavourites && <Message variant="danger">{errorFavourites}</Message>}
             {successFavourites && (
               <div className="mt-3">
                 <Message variant="success">Added to favourites</Message>
