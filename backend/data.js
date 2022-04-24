@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 
+// TODO: Some images were updated
+
 module.exports = {
   users: [
     {
