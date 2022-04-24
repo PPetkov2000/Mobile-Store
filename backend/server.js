@@ -1,17 +1,22 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const logger = require("morgan");
+const helmet = require("helmet");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const connectDB = require("./config/database");
+const { rateLimiter } = require("./utils/rateLimiter")
 
-dotenv.config();
-
+require("dotenv").config();
 connectDB();
 
 const app = express();
 
+rateLimiter(app);
+
+app.use(helmet());
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
