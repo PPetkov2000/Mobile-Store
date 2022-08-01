@@ -28,8 +28,11 @@ const updateUser = asyncWrapper(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
+    if (req.body.username && req.body.username !== user.username) {
+      await Product.updateMany({ "reviews.creator": user._id }, { $set: { "reviews.$.name": req.body.username } });
+      user.username = req.body.username || user.username;
+    }
     user.email = req.body.email || user.email;
-    user.username = req.body.username || user.username;
     user.isAdmin = req.body.isAdmin;
 
     const updatedUser = await user.save();
