@@ -1,23 +1,24 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import React, { useState } from 'react'
+import { Form } from 'react-bootstrap'
 
-const FormInput = ({ type = "text", name, placeholder, value, handleChange, icon }) => {
-  const capitalize = (str) => {
-    return str[0].toUpperCase() + str.slice(1);
-  };
-
-  const splitByUppercase = (str) => {
-    return str.match(/[A-Z][a-z]+/g)
-      ? str.match(/[A-Z][a-z]+/g).join(" ")
-      : str;
-  };
+const FormInput = ({ label, handleChange, errorMessage, icon, id, ...inputProps }) => {
+  const [focused, setFocused] = useState(false)
 
   return (
-    <Form.Group controlId={name}>
-      <Form.Label>{icon} {splitByUppercase(capitalize(name))}</Form.Label>
-      <Form.Control type={type} name={name} placeholder={placeholder} value={value} onChange={handleChange} required />
+    <Form.Group controlId={inputProps.name} className={inputProps.parentClass}>
+      {label && (
+        <Form.Label>
+          {icon && <i className={icon} aria-hidden="true" />} {label}
+        </Form.Label>
+      )}
+      {inputProps.type === 'checkbox' ? (
+        <Form.Check {...inputProps} onChange={handleChange} />
+      ) : (
+        <Form.Control {...inputProps} onChange={handleChange} onBlur={() => setFocused(true)} focused={focused.toString()} />
+      )}
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </Form.Group>
-  );
+  )
 }
 
-export default FormInput;
+export default FormInput
