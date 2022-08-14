@@ -1,68 +1,59 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Form } from "react-bootstrap";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormInput from "../../components/FormInput";
-import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
-import { listProductDetails, updateProduct } from "../../actions/productActions";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Form } from 'react-bootstrap'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import FormInput from '../../components/FormInput'
+import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants'
+import { listProductDetails, updateProduct } from '../../actions/productActions'
+import useForm from '../../customHooks/useForm'
 
 const initialFormData = {
-  name: "",
-  images: "",
-  brand: "",
-  price: "",
-  cpu: "",
-  camera: "",
-  size: "",
-  weight: "",
-  display: "",
-  battery: "",
-  memory: "",
-  countInStock: "",
-  description: "",
-};
+  name: '',
+  images: '',
+  brand: '',
+  price: '',
+  cpu: '',
+  camera: '',
+  size: '',
+  weight: '',
+  display: '',
+  battery: '',
+  memory: '',
+  countInStock: '',
+  description: '',
+}
 
 function ProductEditScreen({ match, history }) {
-  const productId = match.params.id;
-
-  const [formData, setFormData] = useState(initialFormData);
-
-  const dispatch = useDispatch();
-
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-
-  const productUpdate = useSelector((state) => state.productUpdate);
-  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
+  const dispatch = useDispatch()
+  const { loading, error, product } = useSelector((state) => state.productDetails)
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector((state) => state.productUpdate)
+  const { formData, setFormData, handleChange } = useForm(initialFormData)
+  const productId = match.params.id
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: PRODUCT_UPDATE_RESET });
-      history.push("/admin/productlist");
+      dispatch({ type: PRODUCT_UPDATE_RESET })
+      history.push('/admin/productlist')
     } else {
       if (!product.name || product._id !== productId) {
-        dispatch(listProductDetails(productId));
+        dispatch(listProductDetails(productId))
       } else {
         const productData = Object.keys(product)
           .filter((key) => initialFormData.hasOwnProperty(key))
           .reduce((acc, curr) => {
-            acc[curr] = product[curr];
-            return acc;
-          }, {});
-        setFormData(productData);
+            acc[curr] = product[curr]
+            return acc
+          }, {})
+        setFormData(productData)
       }
     }
-  }, [dispatch, history, productId, product, successUpdate]);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }, [productId, product, successUpdate])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(updateProduct({ _id: productId, ...formData }));
-  };
+    e.preventDefault()
+    dispatch(updateProduct({ _id: productId, ...formData }))
+  }
 
   return (
     <div className="edit-page__container">
@@ -78,18 +69,20 @@ function ProductEditScreen({ match, history }) {
           {Object.keys(initialFormData).map((key) => (
             <FormInput
               key={key}
-              type={typeof formData[key] === "number" ? "number" : "text"}
+              type={typeof formData[key] === 'number' ? 'number' : 'text'}
               name={key}
               placeholder={`Enter ${key}`}
               value={formData[key]}
               handleChange={handleChange}
             />
           ))}
-          <button type="submit" className="btn btn-main btn-full-width">Update</button>
+          <button type="submit" className="btn btn-main btn-full-width">
+            Update
+          </button>
         </Form>
       )}
     </div>
-  );
+  )
 }
 
-export default ProductEditScreen;
+export default ProductEditScreen
