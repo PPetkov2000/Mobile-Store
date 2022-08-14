@@ -1,26 +1,23 @@
-import React, { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { savePaymentMethod } from "../../actions/cartActions";
-import CheckoutSteps from "../../components/CheckoutSteps";
+import React, { useState } from 'react'
+import { Form, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { savePaymentMethod } from '../../actions/cartActions'
+import CheckoutSteps from '../../components/CheckoutSteps'
 
 const PaymentScreen = ({ history }) => {
-  const cart = useSelector((state) => state.cart);
-  const { shippingAddress } = cart;
+  const dispatch = useDispatch()
+  const { shippingAddress } = useSelector((state) => state.cart)
+  const [paymentMethod, setPaymentMethod] = useState('PayPal')
 
   if (!shippingAddress) {
-    history.push("/shipping");
+    history.push('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
-
-  const dispatch = useDispatch();
-
   const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(savePaymentMethod(paymentMethod));
-    history.push("/placeorder");
-  };
+    e.preventDefault()
+    dispatch(savePaymentMethod(paymentMethod))
+    history.push('/placeorder')
+  }
 
   return (
     <div className="payment-method__container">
@@ -30,7 +27,9 @@ const PaymentScreen = ({ history }) => {
           <h2>Payment Method</h2>
           <Form onSubmit={submitHandler} className="payment-method__form text-center">
             <Form.Group>
-              <Form.Label as="legend" className="payment-method__label">Select Method</Form.Label>
+              <Form.Label as="legend" className="payment-method__label">
+                Select Method
+              </Form.Label>
               <Col>
                 <Form.Check
                   type="radio"
@@ -43,12 +42,14 @@ const PaymentScreen = ({ history }) => {
                 ></Form.Check>
               </Col>
             </Form.Group>
-            <button type="submit" className="btn btn-main">Continue</button>
+            <button type="submit" className="btn btn-main">
+              Continue
+            </button>
           </Form>
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default PaymentScreen;
+export default PaymentScreen
