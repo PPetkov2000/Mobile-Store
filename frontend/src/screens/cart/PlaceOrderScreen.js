@@ -1,49 +1,49 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col } from "react-bootstrap";
-import Message from "../../components/Message";
-import CheckoutSteps from "../../components/CheckoutSteps";
-import { createOrder } from "../../actions/orderActions";
-import { ORDER_CREATE_RESET } from "../../constants/orderConstans";
-import { USER_DETAILS_RESET } from "../../constants/userConstants";
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
+import Message from '../../components/Message'
+import CheckoutSteps from '../../components/CheckoutSteps'
+import { createOrder } from '../../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../../constants/orderConstans'
+import { USER_DETAILS_RESET } from '../../constants/userConstants'
 
 function PlaceOrderScreen({ history }) {
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart)
+  const { error, success, order } = useSelector((state) => state.orderCreate)
 
   if (!cart.shippingAddress.address) {
-    history.push("/shipping");
+    history.push('/shipping')
   } else if (!cart.paymentMethod) {
-    history.push("/payment");
+    history.push('/payment')
   }
 
-  const formatPrice = (price) => {
-    return (Math.round(price * 100) / 100).toFixed(2);
-  };
+  const formatPrice = (price) => (Math.round(price * 100) / 100).toFixed(2)
 
-  cart.itemsPrice = formatPrice(cart.cartItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0));
-  cart.shippingPrice = formatPrice(cart.itemsPrice > 100 ? 0 : 10);
-  cart.taxPrice = formatPrice(Number((cart.itemsPrice * 0.15).toFixed(2)));
-  cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2);
-
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { error, success, order } = orderCreate;
+  cart.itemsPrice = formatPrice(cart.cartItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0))
+  cart.shippingPrice = formatPrice(cart.itemsPrice > 100 ? 0 : 10)
+  cart.taxPrice = formatPrice(Number((cart.itemsPrice * 0.15).toFixed(2)))
+  cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`);
-      dispatch({ type: USER_DETAILS_RESET });
-      dispatch({ type: ORDER_CREATE_RESET });
+      history.push(`/order/${order._id}`)
+      dispatch({ type: USER_DETAILS_RESET })
+      dispatch({ type: ORDER_CREATE_RESET })
     }
-  }, [dispatch, history, success, order]);
+  }, [dispatch, history, success, order])
 
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
-        orderItems: cart.cartItems.map((item) => {
-          return { name: item.name, imageUrl: item.images[0], price: item.price, quantity: item.quantity, product: item.product };
-        }),
+        orderItems: cart.cartItems.map((item) => ({
+          name: item.name,
+          imageUrl: item.images[0],
+          price: item.price,
+          quantity: item.quantity,
+          product: item.product,
+        })),
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
@@ -51,8 +51,8 @@ function PlaceOrderScreen({ history }) {
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       })
-    );
-  };
+    )
+  }
 
   return (
     <section className="order-info">
@@ -62,9 +62,7 @@ function PlaceOrderScreen({ history }) {
           <div className="order-info__details">
             <h3 className="order-info__title">Shipping</h3>
             <p className="mb-0">
-              Address: {cart.shippingAddress.address},{" "}
-              {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{" "}
-              {cart.shippingAddress.country}
+              Address: {cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
             </p>
           </div>
           <div className="order-info__details">
@@ -82,11 +80,12 @@ function PlaceOrderScreen({ history }) {
                     <img src={item.images && item.images[0]} alt={item.name} className="order-info__product-image" />
                   </Col>
                   <Col>
-                    <Link to={`/products/${item.product}`} className="order-info__product-name">{item.name}</Link>
+                    <Link to={`/products/${item.product}`} className="order-info__product-name">
+                      {item.name}
+                    </Link>
                   </Col>
                   <Col md={5} xs={5} sm={5}>
-                    {item.quantity} * {item.price} = $
-                    {item.quantity * item.price}
+                    {item.quantity} * {item.price} = ${item.quantity * item.price}
                   </Col>
                 </Row>
               ))
@@ -109,7 +108,9 @@ function PlaceOrderScreen({ history }) {
               <Col className="text-right">${cart.taxPrice}</Col>
             </Row>
             <Row className="order-info__summary-total-price">
-              <Col md={4} sm={6} xs={6}>Total</Col>
+              <Col md={4} sm={6} xs={6}>
+                Total
+              </Col>
               <Col md={8} sm={6} xs={6} className="text-right">
                 ${cart.totalPrice}
               </Col>
@@ -127,7 +128,7 @@ function PlaceOrderScreen({ history }) {
         </Col>
       </Row>
     </section>
-  );
+  )
 }
 
-export default PlaceOrderScreen;
+export default PlaceOrderScreen
