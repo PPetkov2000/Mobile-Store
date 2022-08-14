@@ -1,67 +1,60 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col } from "react-bootstrap";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import Rating from "../components/Rating";
-import ProductReview from "../components/ProductReview";
-import { listProductDetails, addToFavourites, removeFromFavourites } from "../actions/productActions";
-import { getUserDetails } from "../actions/userActions";
-import { PRODUCT_ADD_FAVOURITES_RESET, PRODUCT_REMOVE_FAVOURITES_RESET } from "../constants/productConstants";
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import Rating from '../components/Rating'
+import ProductReview from '../components/ProductReview'
+import { listProductDetails, addToFavourites, removeFromFavourites } from '../actions/productActions'
+import { getUserDetails } from '../actions/userActions'
+import { PRODUCT_ADD_FAVOURITES_RESET, PRODUCT_REMOVE_FAVOURITES_RESET } from '../constants/productConstants'
 
 function ProductScreen({ match, history }) {
-  const productId = match.params.id;
-
-  const dispatch = useDispatch();
-
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  const productAddFavourites = useSelector((state) => state.productAddFavourites);
-  const { loading: loadingFavourites, error: errorFavourites, success: successFavourites } = productAddFavourites;
-
-  const productRemoveFavourites = useSelector((state) => state.productRemoveFavourites);
-  const { loading: loadingRemoveFavourites, error: errorRemoveFavourites, success: successRemoveFavourites } = productRemoveFavourites;
+  const dispatch = useDispatch()
+  const { loading, error, product } = useSelector((state) => state.productDetails)
+  const { user } = useSelector((state) => state.userDetails)
+  const { userInfo } = useSelector((state) => state.userLogin)
+  const { loading: loadingFavorites, error: errorFavorites, success: successFavorites } = useSelector((state) => state.productAddFavourites)
+  const {
+    loading: loadingRemoveFavorites,
+    error: errorRemoveFavorites,
+    success: successRemoveFavorites,
+  } = useSelector((state) => state.productRemoveFavourites)
+  const productId = match.params.id
 
   useEffect(() => {
     if (!product || product._id !== productId) {
-      dispatch(listProductDetails(productId));
-      dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET });
+      dispatch(listProductDetails(productId))
+      dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET })
       if (userInfo) {
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserDetails('profile'))
       }
     }
 
-    if (successRemoveFavourites || successFavourites) {
-      dispatch(getUserDetails("profile"));
+    if (successRemoveFavorites || successFavorites) {
+      dispatch(getUserDetails('profile'))
       setTimeout(() => {
-        dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET });
-        dispatch({ type: PRODUCT_REMOVE_FAVOURITES_RESET });
-      }, 4000);
+        dispatch({ type: PRODUCT_ADD_FAVOURITES_RESET })
+        dispatch({ type: PRODUCT_REMOVE_FAVOURITES_RESET })
+      }, 4000)
     }
-  }, [productId, dispatch, product, successFavourites, successRemoveFavourites, userInfo]);
+  }, [productId, product, successFavorites, successRemoveFavorites, userInfo])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${productId}`);
-  };
+    history.push(`/cart/${productId}`)
+  }
 
   const addToFavouritesHandler = () => {
     if (productId) {
-      dispatch(addToFavourites(productId));
+      dispatch(addToFavourites(productId))
     }
-  };
+  }
 
   const removeFromFavouritesHandler = () => {
     if (productId) {
-      dispatch(removeFromFavourites(productId));
+      dispatch(removeFromFavourites(productId))
     }
-  };
+  }
 
   return loading ? (
     <Loader />
@@ -75,8 +68,7 @@ function ProductScreen({ match, history }) {
         </Col>
         <Col>
           <h3 className="product-details__name">{product.name}</h3>
-          <Rating value={product.rating} text={`Clients reviewed: ${product.reviews && product.reviews.length}`}
-          />
+          <Rating value={product.rating} text={`Clients reviewed: ${product.reviews && product.reviews.length}`} />
           <div className="product-details__features">
             <p>
               <strong>Memory:</strong> {product.memory}
@@ -109,32 +101,35 @@ function ProductScreen({ match, history }) {
             <h3 className="product-details__order-price">Price: ${product.price}</h3>
             <i className="fa fa-truck btn-green--icon" aria-hidden="true"></i>
             <span className="free-delivery">free delivery</span>
-            <button className="btn btn-full-width add-to-cart" onClick={addToCartHandler}>
+            <button className="btn btn-full-width add-to-cart" onClick={addToCartHandler} title="Add to cart button">
               <i className="fa fa-cart-plus" aria-hidden="true"></i> add to cart
             </button>
             {Object.keys(user).length > 0 &&
-              (user.favouriteProducts && Boolean(!user.favouriteProducts.find((x) => x._id.toString() === productId)
-              ) ? (
-                <button className="btn btn-full-width add-to-favourites" onClick={addToFavouritesHandler}>
-                  <i className="fa fa-heart" aria-hidden="true"></i> add to favourites
+              (user.favouriteProducts && Boolean(!user.favouriteProducts.find((x) => x._id.toString() === productId)) ? (
+                <button className="btn btn-full-width add-to-favourites" onClick={addToFavouritesHandler} title="Add to favorites button">
+                  <i className="fa fa-heart" aria-hidden="true"></i> add to favorites
                 </button>
               ) : (
-                <button className="btn btn-full-width remove-from-favourites" onClick={removeFromFavouritesHandler}>
-                  <i className="fa fa-heart" aria-hidden="true"></i> remove from favourites
+                <button
+                  className="btn btn-full-width remove-from-favourites"
+                  onClick={removeFromFavouritesHandler}
+                  title="Remove from favorites button"
+                >
+                  <i className="fa fa-heart" aria-hidden="true"></i> remove from favorites
                 </button>
               ))}
-            {loadingRemoveFavourites && <Loader />}
-            {errorRemoveFavourites && <Message variant="danger">{errorRemoveFavourites}</Message>}
-            {successRemoveFavourites && (
+            {loadingRemoveFavorites && <Loader />}
+            {errorRemoveFavorites && <Message variant="danger">{errorRemoveFavorites}</Message>}
+            {successRemoveFavorites && (
               <div className="mt-3">
-                <Message variant="success">Removed from favourites</Message>
+                <Message variant="success">Removed from favorites</Message>
               </div>
             )}
-            {loadingFavourites && <Loader />}
-            {errorFavourites && <Message variant="danger">{errorFavourites}</Message>}
-            {successFavourites && (
+            {loadingFavorites && <Loader />}
+            {errorFavorites && <Message variant="danger">{errorFavorites}</Message>}
+            {successFavorites && (
               <div className="mt-3">
-                <Message variant="success">Added to favourites</Message>
+                <Message variant="success">Added to favorites</Message>
               </div>
             )}
           </div>
@@ -142,7 +137,7 @@ function ProductScreen({ match, history }) {
       </Row>
       <ProductReview productId={productId} productReviews={product.reviews} />
     </section>
-  );
+  )
 }
 
-export default ProductScreen;
+export default ProductScreen
