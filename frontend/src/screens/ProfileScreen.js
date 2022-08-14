@@ -1,65 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Form, Table } from "react-bootstrap";
-import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
-import { listMyOrders } from "../actions/orderActions";
-import { Link } from "react-router-dom";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
-import FormInput from "../components/FormInput";
-import Products from "../components/Products";
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col, Form } from 'react-bootstrap'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import FormInput from '../components/FormInput'
+import Products from '../components/Products'
+import UserOrders from '../components/UserOrders'
+import useForm from '../customHooks/useForm'
 
 function ProfileScreen({ match }) {
-  const pageNumber = match.params.pageNumber || 1;
+  const dispatch = useDispatch()
+  const { loading, error, user } = useSelector((state) => state.userDetails)
+  const { success } = useSelector((state) => state.userUpdateProfile)
+  const { formData, handleChange } = useForm({ username: user?.username || '', email: user?.email || '', password: '', confirmPassword: '' })
+  const pageNumber = match.params.pageNumber || 1
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const inputs = [
+    {
+      id: 1,
+      type: 'text',
+      name: 'username',
+      label: 'Username',
+      placeholder: 'Enter Username',
+      pattern: '^[A-Za-z0-9]{3,16}$',
+      errorMessage: 'Username should be 3-16 characters long and should not include any special characters!',
+      required: true,
+    },
+    {
+      id: 2,
+      type: 'email',
+      name: 'email',
+      label: 'Email',
+      placeholder: 'Enter Email',
+      errorMessage: 'Please enter a valid email address!',
+      required: true,
+    },
+    {
+      id: 3,
+      type: 'password',
+      name: 'password',
+      label: 'Password',
+      placeholder: 'Enter Password',
+      pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,30}$',
+      errorMessage: 'Password should be 6-30 characters long and include at least 1 letter, 1 number, 1 special character!',
+      required: true,
+    },
+    {
+      id: 4,
+      type: 'password',
+      name: 'confirmPassword',
+      label: 'Confirm Password',
+      placeholder: 'Enter Password again',
+      pattern: formData.password,
+      errorMessage: 'Passwords do not match!',
+      required: true,
+    },
+  ]
 
-  const dispatch = useDispatch();
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
-
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
-
-  const orderListMy = useSelector((state) => state.orderListMy);
-  const { loading: loadingOrders, error: errorOrders, orders, page, pages } = orderListMy;
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(updateUserProfile({ _id: user._id, ...formData }))
+  }
 
   useEffect(() => {
     if (!user || !user.username || success) {
-      dispatch({ type: USER_UPDATE_PROFILE_RESET });
-      dispatch(getUserDetails("profile"));
-    } else {
-      setEmail(user.email);
-      setUsername(user.username);
+      dispatch({ type: USER_UPDATE_PROFILE_RESET })
+      dispatch(getUserDetails('profile'))
     }
-  }, [dispatch, user, success]);
-
-  useEffect(() => {
-    dispatch(listMyOrders(pageNumber));
-  }, [dispatch, pageNumber]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
-    } else {
-      dispatch(updateUserProfile({ _id: user._id, email, username, password }));
-    }
-  };
+  }, [dispatch, user, success])
 
   return (
     <section className="profile">
       <Row>
         <Col md={4} className="mb-5">
           <h2 className="profile__title">My Profile</h2>
-          {message && <Message variant="danger">{message}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading ? (
             <Loader />
@@ -67,61 +83,27 @@ function ProfileScreen({ match }) {
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} className="profile__form">
-              <FormInput type="text" name="username" placeholder="Enter username" value={username} handleChange={(e) => setUsername(e.target.value)} />
-              <FormInput type="email" name="email" placeholder="Enter email" value={email} handleChange={(e) => setEmail(e.target.value)} />
-              <FormInput type="password" name="password" placeholder="Enter password" value={password} handleChange={(e) => setPassword(e.target.value)} />
-              <FormInput type="password" name="confirm password" placeholder="Confirm Password" value={confirmPassword} handleChange={(e) => setConfirmPassword(e.target.value)} />
-              <button type="submit" className="btn btn-main btn-full-width">Update</button>
+              {inputs.map((input) => (
+                <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
+              ))}
+              <button type="submit" className="btn btn-main btn-full-width">
+                Update
+              </button>
             </Form>
           )}
         </Col>
         <Col md={8}>
-          <h2 className="profile__title">My Orders</h2>
-          {loadingOrders ? (
-            <Loader />
-          ) : errorOrders ? (
-            <Message variant="danger">{errorOrders}</Message>
-          ) : (
-            <Table striped bordered hover responsive size="sm" className="profile__table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>DATE</th>
-                  <th>TOTAL</th>
-                  <th>PAID</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td>{order._id}</td>
-                    <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>${order.totalPrice.toFixed(2)}</td>
-                    <td className="text-center">
-                      {order.isPaid ? (
-                        new Date(Number(order.paidAt)).toLocaleDateString()
-                      ) : (
-                        <i className="fa fa-times btn-red--icon"></i>
-                      )}
-                    </td>
-                    <td className="text-center">
-                      <Link to={`/order/${order._id}`} className="btn btn-full-width btn-blue--bordered p-0">Details</Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          )}
-          <Paginate page={page} pages={pages} paginateStr="/profile" />
+          <UserOrders pageNumber={pageNumber} />
         </Col>
       </Row>
       {user.favouriteProducts && (
         <section className="products">
-          <h2 className="products__title"><i className="fa fa-heart"></i> favourite products</h2>
+          <h2 className="products__title">
+            <i className="fa fa-heart"></i> favorite products
+          </h2>
           {user.favouriteProducts.length === 0 ? (
             <div className="products__empty">
-              <h3 className="products__empty-text">You don't have favourite products yet.</h3>
+              <h3 className="products__empty-text">You don't have favorite products yet.</h3>
             </div>
           ) : (
             <Products products={user.favouriteProducts} />
@@ -129,7 +111,7 @@ function ProfileScreen({ match }) {
         </section>
       )}
     </section>
-  );
+  )
 }
 
-export default ProfileScreen;
+export default ProfileScreen
