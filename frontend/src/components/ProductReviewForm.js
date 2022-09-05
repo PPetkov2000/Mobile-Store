@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Form } from "react-bootstrap";
-import { createProductReview, listProductDetails } from "../actions/productActions";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DELETE_REVIEW_RESET } from "../constants/productConstants";
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form } from 'react-bootstrap'
+import { createProductReview, listProductDetails } from '../actions/productActions'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DELETE_REVIEW_RESET } from '../constants/productConstants'
 
 function ProductReviewForm({ productId }) {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-
-  const dispatch = useDispatch();
-
-  const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const { loading, error, success } = productReviewCreate;
+  const dispatch = useDispatch()
+  const { loading, error, success } = useSelector((state) => state.productReviewCreate)
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState('')
 
   useEffect(() => {
     if (success) {
-      setRating(0);
-      setComment("");
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
-      dispatch({ type: PRODUCT_DELETE_REVIEW_RESET });
-      dispatch(listProductDetails(productId));
+      setRating(0)
+      setComment('')
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+      dispatch({ type: PRODUCT_DELETE_REVIEW_RESET })
+      dispatch(listProductDetails(productId))
     }
-  }, [dispatch, success, productId]);
+  }, [success, productId])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(createProductReview(productId, { rating, comment }));
-  };
+    e.preventDefault()
+    dispatch(createProductReview(productId, { rating, comment }))
+  }
 
   return (
     <>
@@ -54,10 +51,12 @@ function ProductReviewForm({ productId }) {
           <Form.Label>Comment</Form.Label>
           <Form.Control as="textarea" row="3" value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Enter your comment" />
         </Form.Group>
-        <button disabled={loading} type="submit" className="btn btn-main btn-full-width">Submit</button>
+        <button disabled={loading} type="submit" className="btn btn-main btn-full-width">
+          Submit
+        </button>
       </Form>
     </>
-  );
+  )
 }
 
-export default ProductReviewForm;
+export default ProductReviewForm
