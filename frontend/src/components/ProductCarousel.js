@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
-import { Carousel } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { listTopProducts } from "../actions/productActions";
-import Loader from "./Loader";
-import Message from "./Message";
+import React, { useEffect } from 'react'
+import { Carousel } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { listTopProducts } from '../actions/productActions'
+import Loader from './Loader'
+import Message from './Message'
 
 function ProductCarousel() {
-  const dispatch = useDispatch();
-
-  const productTopRated = useSelector((state) => state.productTopRated);
-  const { loading, error, products } = productTopRated;
+  const dispatch = useDispatch()
+  const { loading, error, products } = useSelector((state) => state.productTopRated)
 
   useEffect(() => {
-    dispatch(listTopProducts());
-  }, [dispatch]);
+    dispatch(listTopProducts())
+  }, [dispatch])
 
   return loading ? (
     <Loader />
@@ -27,13 +25,15 @@ function ProductCarousel() {
           <Link to={`/products/${product._id}`} className="img-link">
             <img src={product.images[2]} alt={product.name} className="img" />
             <Carousel.Caption>
-              <h3 className="carousel-caption-title">{product.name} ${product.price}</h3>
+              <h3 className="carousel-caption-title">
+                {product.name} ${product.price}
+              </h3>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
       ))}
     </Carousel>
-  );
+  )
 }
 
-export default ProductCarousel;
+export default ProductCarousel
