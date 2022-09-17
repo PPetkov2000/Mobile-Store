@@ -4,7 +4,7 @@ const useForm = (initialState) => {
   const [formData, setFormData] = useState(initialState)
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormData({ ...formData, [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value })
   }
 
   return { formData, setFormData, handleChange }
