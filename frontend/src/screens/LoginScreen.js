@@ -7,31 +7,13 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormInput from '../components/FormInput'
 import useForm from '../customHooks/useForm'
+import { LOGIN_FIELDS } from '../configs/form-fields'
 
 function LoginScreen({ history, location }) {
   const dispatch = useDispatch()
   const { loading, error, userInfo } = useSelector((state) => state.userLogin)
   const { formData, handleChange } = useForm({ email: '', password: '' })
   const redirect = location.search ? location.search.split('=')[1] : '/'
-
-  const inputs = [
-    {
-      id: 1,
-      type: 'email',
-      name: 'email',
-      label: 'Email',
-      placeholder: 'Enter Email',
-      required: true,
-    },
-    {
-      id: 2,
-      type: 'password',
-      name: 'password',
-      label: 'Password',
-      placeholder: 'Enter Password',
-      required: true,
-    },
-  ]
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -51,7 +33,7 @@ function LoginScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="auth-form">
-        {inputs.map((input) => (
+        {LOGIN_FIELDS(formData).map((input) => (
           <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
         ))}
         <button type="submit" className="btn btn-main btn-full-width">
