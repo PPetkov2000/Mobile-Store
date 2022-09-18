@@ -7,6 +7,7 @@ import FormInput from '../../components/FormInput'
 import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants'
 import { listProductDetails, updateProduct } from '../../actions/productActions'
 import useForm from '../../customHooks/useForm'
+import { PRODUCT_FIELDS } from '../../configs/form-fields'
 
 const initialFormData = {
   name: '',
@@ -66,15 +67,8 @@ function ProductEditScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
-          {Object.keys(initialFormData).map((key) => (
-            <FormInput
-              key={key}
-              type={typeof formData[key] === 'number' ? 'number' : 'text'}
-              name={key}
-              placeholder={`Enter ${key}`}
-              value={formData[key]}
-              handleChange={handleChange}
-            />
+          {PRODUCT_FIELDS(formData, true).map((field) => (
+            <FormInput key={field.id} {...field} value={formData[field.name]} handleChange={handleChange} />
           ))}
           <button type="submit" className="btn btn-main btn-full-width">
             Update
