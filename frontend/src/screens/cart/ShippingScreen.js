@@ -30,8 +30,8 @@ function ShippingScreen({ history }) {
         <Col xs={12} md={8} className="mx-auto">
           <h2>Shipping</h2>
           <Form onSubmit={submitHandler} className="shipping-address__form">
-            {SHIPPING_FIELDS(formData).map((input) => (
-              <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
+            {SHIPPING_FIELDS(formData).map((field) => (
+              <FormInput key={field.id} {...field} value={formData[field.name]} handleChange={handleChange} />
             ))}
             <button type="submit" className="btn btn-main btn-full-width">
               Continue
