@@ -7,6 +7,7 @@ import FormInput from '../../components/FormInput'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import useForm from '../../customHooks/useForm'
+import { PRODUCT_FIELDS } from '../../configs/form-fields'
 
 const initialFormData = {
   name: '',
@@ -47,15 +48,8 @@ const ProductCreateScreen = ({ history }) => {
       {loading && <Loader />}
       {error && <Message variant="danger">{error}</Message>}
       <Form onSubmit={submitHandler}>
-        {Object.keys(initialFormData).map((key) => (
-          <FormInput
-            key={key}
-            type={typeof formData[key] === 'number' ? 'number' : 'text'}
-            name={key}
-            placeholder={`Enter ${key}`}
-            value={formData[key]}
-            handleChange={handleChange}
-          />
+        {PRODUCT_FIELDS(formData).map((field) => (
+          <FormInput key={field.id} {...field} value={formData[field.name]} handleChange={handleChange} />
         ))}
         <button type="submit" className="btn btn-main btn-full-width">
           Create
