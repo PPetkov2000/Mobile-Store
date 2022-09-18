@@ -42,8 +42,8 @@ function ProfileScreen({ match }) {
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} className="profile__form">
-              {PROFILE_FIELDS(formData).map((input) => (
-                <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
+              {PROFILE_FIELDS(formData).map((field) => (
+                <FormInput key={field.id} {...field} value={formData[field.name]} handleChange={handleChange} />
               ))}
               <button type="submit" className="btn btn-main btn-full-width">
                 Update
