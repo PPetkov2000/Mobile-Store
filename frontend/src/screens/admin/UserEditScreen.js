@@ -7,6 +7,7 @@ import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import FormInput from '../../components/FormInput'
 import useForm from '../../customHooks/useForm'
+import { USER_EDIT_FIELDS } from '../../configs/form-fields'
 
 function UserEditScreen({ match, history }) {
   const dispatch = useDispatch()
@@ -14,34 +15,6 @@ function UserEditScreen({ match, history }) {
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector((state) => state.userUpdate)
   const { formData, setFormData, handleChange } = useForm({ username: '', email: '', isAdmin: false })
   const userId = match.params.id
-
-  const inputs = [
-    {
-      id: 1,
-      type: 'text',
-      name: 'username',
-      label: 'Username',
-      placeholder: 'Enter Username',
-      pattern: '^[A-Za-z0-9]{3,16}$',
-      errorMessage: 'Username should be 3-16 characters long and should not include any special characters!',
-    },
-    {
-      id: 2,
-      type: 'email',
-      name: 'email',
-      label: 'Email',
-      placeholder: 'Enter Email',
-      errorMessage: 'Please enter a valid email address!',
-    },
-    {
-      id: 3,
-      type: 'checkbox',
-      name: 'isAdmin',
-      label: 'Is Admin',
-      checked: formData.isAdmin,
-      parentClass: 'inputWrapper',
-    },
-  ]
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -72,7 +45,7 @@ function UserEditScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <Form onSubmit={submitHandler}>
-          {inputs.map((input) => (
+          {USER_EDIT_FIELDS(formData).map((input) => (
             <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
           ))}
           <button type="submit" className="btn btn-main btn-full-width">
