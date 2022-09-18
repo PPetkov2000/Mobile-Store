@@ -36,8 +36,8 @@ function RegisterScreen({ history, location }) {
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler} className="auth-form">
-        {REGISTER_FIELDS(formData).map((input) => (
-          <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
+        {REGISTER_FIELDS(formData).map((field) => (
+          <FormInput key={field.id} {...field} value={formData[field.name]} handleChange={handleChange} />
         ))}
         <button type="submit" className="btn btn-main btn-full-width">
           Register
