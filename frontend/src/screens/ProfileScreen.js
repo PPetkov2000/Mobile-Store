@@ -9,6 +9,7 @@ import FormInput from '../components/FormInput'
 import Products from '../components/Products'
 import UserOrders from '../components/UserOrders'
 import useForm from '../customHooks/useForm'
+import { PROFILE_FIELDS } from '../configs/form-fields'
 
 function ProfileScreen({ match }) {
   const dispatch = useDispatch()
@@ -16,48 +17,6 @@ function ProfileScreen({ match }) {
   const { success } = useSelector((state) => state.userUpdateProfile)
   const { formData, handleChange } = useForm({ username: user?.username || '', email: user?.email || '', password: '', confirmPassword: '' })
   const pageNumber = match.params.pageNumber || 1
-
-  const inputs = [
-    {
-      id: 1,
-      type: 'text',
-      name: 'username',
-      label: 'Username',
-      placeholder: 'Enter Username',
-      pattern: '^[A-Za-z0-9]{3,16}$',
-      errorMessage: 'Username should be 3-16 characters long and should not include any special characters!',
-      required: true,
-    },
-    {
-      id: 2,
-      type: 'email',
-      name: 'email',
-      label: 'Email',
-      placeholder: 'Enter Email',
-      errorMessage: 'Please enter a valid email address!',
-      required: true,
-    },
-    {
-      id: 3,
-      type: 'password',
-      name: 'password',
-      label: 'Password',
-      placeholder: 'Enter Password',
-      pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,30}$',
-      errorMessage: 'Password should be 6-30 characters long and include at least 1 letter, 1 number, 1 special character!',
-      required: true,
-    },
-    {
-      id: 4,
-      type: 'password',
-      name: 'confirmPassword',
-      label: 'Confirm Password',
-      placeholder: 'Enter Password again',
-      pattern: formData.password,
-      errorMessage: 'Passwords do not match!',
-      required: true,
-    },
-  ]
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -83,7 +42,7 @@ function ProfileScreen({ match }) {
             <Message variant="danger">{error}</Message>
           ) : (
             <Form onSubmit={submitHandler} className="profile__form">
-              {inputs.map((input) => (
+              {PROFILE_FIELDS(formData).map((input) => (
                 <FormInput key={input.id} {...input} value={formData[input.name]} handleChange={handleChange} />
               ))}
               <button type="submit" className="btn btn-main btn-full-width">
