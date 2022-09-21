@@ -29,7 +29,7 @@ function UserEditScreen({ match, history }) {
       if (!user.username || user._id !== userId) {
         dispatch(getUserDetails(userId))
       } else {
-        setFormData({ username: user.username, email: user.email, isAdmin: user.IsAdmin })
+        setFormData({ username: user.username, email: user.email, isAdmin: user.isAdmin })
       }
     }
   }, [successUpdate, user, userId])
