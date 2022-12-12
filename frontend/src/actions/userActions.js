@@ -1,5 +1,5 @@
 import api from '../utils/api-instance'
-import { ORDER_LIST_MY_RESET } from '../constants/orderConstans'
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -26,7 +26,6 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
 } from '../constants/userConstants'
-import actionsErrorHandler from '../utils/actionsErrorHandler'
 
 export const register = (username, email, password, confirmPassword) => async (dispatch) => {
   try {
@@ -36,7 +35,7 @@ export const register = (username, email, password, confirmPassword) => async (d
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
-    dispatch({ type: USER_REGISTER_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_REGISTER_FAIL, payload: error })
   }
 }
 
@@ -47,7 +46,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
-    dispatch({ type: USER_LOGIN_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_LOGIN_FAIL, payload: error })
   }
 }
 
@@ -75,7 +74,7 @@ export const listUsers =
       }
       dispatch({ type: USER_LIST_SUCCESS, payload: listUsersCache.get(pageNumber) })
     } catch (error) {
-      dispatch({ type: USER_LIST_FAIL, payload: actionsErrorHandler(error) })
+      dispatch({ type: USER_LIST_FAIL, payload: error })
     }
   }
 
@@ -89,7 +88,7 @@ export const getUserDetails = (userId) => async (dispatch) => {
     }
     dispatch({ type: USER_DETAILS_SUCCESS, payload: getUserDetailsCache.get(userId) })
   } catch (error) {
-    dispatch({ type: USER_DETAILS_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_DETAILS_FAIL, payload: error })
   }
 }
 
@@ -101,7 +100,7 @@ export const updateUser = (user) => async (dispatch) => {
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
     dispatch({ type: USER_DETAILS_RESET })
   } catch (error) {
-    dispatch({ type: USER_UPDATE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_UPDATE_FAIL, payload: error })
   }
 }
 
@@ -111,7 +110,7 @@ export const deleteUser = (userId) => async (dispatch) => {
     await api.delete(`/api/v1/users/${userId}`)
     dispatch({ type: USER_DELETE_SUCCESS })
   } catch (error) {
-    dispatch({ type: USER_DELETE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_DELETE_FAIL, payload: error })
   }
 }
 
@@ -123,6 +122,6 @@ export const updateUserProfile = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
-    dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: error })
   }
 }
