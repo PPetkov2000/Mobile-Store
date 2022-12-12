@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 import Message from '../../components/Message'
 import CheckoutSteps from '../../components/CheckoutSteps'
 import { createOrder } from '../../actions/orderActions'
-import { ORDER_CREATE_RESET } from '../../constants/orderConstans'
+import { ORDER_CREATE_RESET } from '../../constants/orderConstants'
 import { USER_DETAILS_RESET } from '../../constants/userConstants'
 
 function PlaceOrderScreen({ history }) {
