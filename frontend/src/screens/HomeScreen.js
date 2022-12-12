@@ -29,7 +29,7 @@ function HomeScreen({ match }) {
           <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
-        ) : products.length === 0 ? (
+        ) : products?.length === 0 ? (
           <div className="products__empty">
             <h2 className="products__empty-text">Products not found</h2>
             <Link to="/" className="btn btn-light">
