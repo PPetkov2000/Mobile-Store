@@ -16,8 +16,7 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
-} from '../constants/orderConstans'
-import actionsErrorHandler from '../utils/actionsErrorHandler'
+} from '../constants/orderConstants'
 
 export const createOrder = (order) => async (dispatch) => {
   try {
@@ -27,7 +26,7 @@ export const createOrder = (order) => async (dispatch) => {
     dispatch({ type: CART_CLEAR_ITEMS, payload: data })
     localStorage.removeItem('cartItems')
   } catch (error) {
-    dispatch({ type: ORDER_CREATE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: ORDER_CREATE_FAIL, payload: error })
   }
 }
 
@@ -43,7 +42,7 @@ export const listOrders =
       }
       dispatch({ type: ORDER_LIST_SUCCESS, payload: listOrdersCache.get(pageNumber) })
     } catch (error) {
-      dispatch({ type: ORDER_LIST_FAIL, payload: actionsErrorHandler(error) })
+      dispatch({ type: ORDER_LIST_FAIL, payload: error })
     }
   }
 
@@ -59,7 +58,7 @@ export const listMyOrders =
       }
       dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: listMyOrdersCache.get(pageNumber) })
     } catch (error) {
-      dispatch({ type: ORDER_LIST_MY_FAIL, payload: actionsErrorHandler(error) })
+      dispatch({ type: ORDER_LIST_MY_FAIL, payload: error })
     }
   }
 
@@ -73,7 +72,7 @@ export const getOrderDetails = (orderId) => async (dispatch) => {
     }
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: getOrderDetailsCache.get(orderId) })
   } catch (error) {
-    dispatch({ type: ORDER_DETAILS_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: ORDER_DETAILS_FAIL, payload: error })
   }
 }
 
@@ -83,6 +82,6 @@ export const payOrder = (orderId, paymentResult) => async (dispatch) => {
     const { data } = await api.put(`/api/v1/orders/${orderId}/pay`, paymentResult)
     dispatch({ type: ORDER_PAY_SUCCESS, payload: data })
   } catch (error) {
-    dispatch({ type: ORDER_PAY_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: ORDER_PAY_FAIL, payload: error })
   }
 }
