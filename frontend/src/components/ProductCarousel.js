@@ -18,9 +18,9 @@ function ProductCarousel() {
     <Loader />
   ) : error ? (
     <Message variant="danger">{error}</Message>
-  ) : (
+  ) : products?.length === 0 ? null : (
     <Carousel pause="hover" className="product-carousel bg-dark">
-      {products.map((product) => (
+      {products?.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/products/${product._id}`} className="img-link">
             <img src={product.images[2]} alt={product.name} className="img" />
