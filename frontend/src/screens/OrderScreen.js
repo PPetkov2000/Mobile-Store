@@ -6,7 +6,7 @@ import { PayPalButton } from 'react-paypal-button-v2'
 import { getOrderDetails } from '../actions/orderActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { ORDER_PAY_RESET } from '../constants/orderConstans'
+import { ORDER_PAY_RESET } from '../constants/orderConstants'
 import axios from 'axios'
 import { payOrder } from '../actions/orderActions'
 
