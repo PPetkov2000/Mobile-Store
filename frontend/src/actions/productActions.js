@@ -31,7 +31,6 @@ import {
   PRODUCT_REMOVE_FAVOURITES_SUCCESS,
   PRODUCT_REMOVE_FAVOURITES_FAIL,
 } from '../constants/productConstants'
-import actionsErrorHandler from '../utils/actionsErrorHandler'
 
 const listProductsCache = new Map()
 export const listProducts =
@@ -46,7 +45,7 @@ export const listProducts =
       }
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: listProductsCache.get(cacheKey) })
     } catch (error) {
-      dispatch({ type: PRODUCT_LIST_FAIL, payload: actionsErrorHandler(error) })
+      dispatch({ type: PRODUCT_LIST_FAIL, payload: error })
     }
   }
 
@@ -60,7 +59,7 @@ export const listProductDetails = (productId) => async (dispatch) => {
     }
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: listProductDetailsCache.get(productId) })
   } catch (error) {
-    dispatch({ type: PRODUCT_DETAILS_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error })
   }
 }
 
@@ -70,7 +69,7 @@ export const createProduct = (product) => async (dispatch) => {
     const { data } = await api.post('/api/v1/products', product)
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data })
   } catch (error) {
-    dispatch({ type: PRODUCT_CREATE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_CREATE_FAIL, payload: error })
   }
 }
 
@@ -81,7 +80,7 @@ export const updateProduct = (product) => async (dispatch) => {
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data })
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
   } catch (error) {
-    dispatch({ type: PRODUCT_UPDATE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_UPDATE_FAIL, payload: error })
   }
 }
 
@@ -91,7 +90,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
     await api.delete(`/api/v1/products/${productId}`)
     dispatch({ type: PRODUCT_DELETE_SUCCESS })
   } catch (error) {
-    dispatch({ type: PRODUCT_DELETE_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_DELETE_FAIL, payload: error })
   }
 }
 
@@ -106,7 +105,8 @@ export const listTopProducts = () => async (dispatch) => {
     }
     dispatch({ type: PRODUCT_TOP_SUCCESS, payload: listTopProductsCache.get(cacheKey) })
   } catch (error) {
-    dispatch({ type: PRODUCT_TOP_FAIL, payload: actionsErrorHandler(error) })
+    console.log({ error })
+    dispatch({ type: PRODUCT_TOP_FAIL, payload: error })
   }
 }
 
@@ -116,7 +116,7 @@ export const createProductReview = (productId, review) => async (dispatch) => {
     await api.post(`/api/v1/products/${productId}/reviews`, review)
     dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS })
   } catch (error) {
-    dispatch({ type: PRODUCT_CREATE_REVIEW_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_CREATE_REVIEW_FAIL, payload: error })
   }
 }
 
@@ -127,7 +127,7 @@ export const deleteProductReview = (productId, reviewId) => async (dispatch) => 
     dispatch({ type: PRODUCT_DELETE_REVIEW_SUCCESS })
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product })
   } catch (error) {
-    dispatch({ type: PRODUCT_DELETE_REVIEW_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_DELETE_REVIEW_FAIL, payload: error })
   }
 }
 
@@ -137,7 +137,7 @@ export const addToFavourites = (productId) => async (dispatch) => {
     await api.put(`/api/v1/products/${productId}/like`)
     dispatch({ type: PRODUCT_ADD_FAVOURITES_SUCCESS })
   } catch (error) {
-    dispatch({ type: PRODUCT_ADD_FAVOURITES_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_ADD_FAVOURITES_FAIL, payload: error })
   }
 }
 
@@ -147,6 +147,6 @@ export const removeFromFavourites = (productId) => async (dispatch) => {
     await api.put(`/api/v1/products/${productId}/dislike`)
     dispatch({ type: PRODUCT_REMOVE_FAVOURITES_SUCCESS })
   } catch (error) {
-    dispatch({ type: PRODUCT_REMOVE_FAVOURITES_FAIL, payload: actionsErrorHandler(error) })
+    dispatch({ type: PRODUCT_REMOVE_FAVOURITES_FAIL, payload: error })
   }
 }
