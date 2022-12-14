@@ -17,9 +17,7 @@ function RegisterScreen({ history, location }) {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    const emptyFields = Object.keys(formData)
-      .map((key) => formData[key])
-      .every(Boolean)
+    const emptyFields = Object.keys(formData).map((key) => formData[key]).every(Boolean)
     if (emptyFields) return
     dispatch(register(...formData))
   }
