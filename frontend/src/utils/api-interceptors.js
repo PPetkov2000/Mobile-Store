@@ -32,7 +32,7 @@ const addInterceptors = (instance) => {
   instance.interceptors.response.use(
     (response) => {
       console.log({ response })
-      if (response.data.newAuthToken) {
+      if (response.data?.newAuthToken) {
         const userInfoFromLocalStorage = JSON.parse(localStorage.getItem('userInfo'))
         const updatedUserInfo = { ...userInfoFromLocalStorage, token: 'Bearer ' + response.data.newAuthToken }
         localStorage.setItem('userInfo', updatedUserInfo)
