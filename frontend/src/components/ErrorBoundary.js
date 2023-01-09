@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
     const { hasError, errorInfo } = this.state;
     if (hasError) {
       return (
-        <div className="card my-5">
+        <div className="card my-5" style={{ maxWidth: "60vw", marginInline: "auto" }}>
           <div className="card-header">
             <p>
               There was an error in loading this page.{" "}
