@@ -23,6 +23,27 @@ main {
   color: $primary-color !important;
 }
 
+.upload-button-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  height: 150px;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 10px black;
+  }
+
+  + input[type='file'] {
+    display: none;
+  }
+}
+
 .product-card {
   text-align: center;
   border: 1px solid gray;
