@@ -7,7 +7,7 @@ const FormInput = ({ label, handleChange, errorMessage, icon, id, ...inputProps 
   return (
     <Form.Group controlId={inputProps.name} className={inputProps.parentClass}>
       {label && (
-        <Form.Label>
+        <Form.Label className={inputProps.labelClass}>
           {icon && <i className={icon} aria-hidden="true" />} {label}
         </Form.Label>
       )}
