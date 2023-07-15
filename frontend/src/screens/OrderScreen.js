@@ -106,7 +106,7 @@ function OrderScreen({ match, history }) {
               order.orderItems.map((item, index) => (
                 <Row key={index} className="order-info__content">
                   <Col xs={2} sm={2} md={2}>
-                    <img src={item.imageUrl} alt={item.name} className="order-info__product-image" />
+                    <img src={item.imageUrl} alt={item.name} className="order-info__product-image" loading="lazy" />
                   </Col>
                   <Col>
                     <Link to={`/products/${item.product}`} className="order-info__product-name">
