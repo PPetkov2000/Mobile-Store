@@ -64,7 +64,7 @@ function ProductScreen({ match, history }) {
     <section className="product-details">
       <Row xs={1} sm={2} md={2} lg={3} xl={3}>
         <Col>
-          <img src={product.images && product.images[0]} alt={product.name} className="product-details__image" />
+          <img src={product.images && product.images[0]} alt={product.name} className="product-details__image" loading="lazy" />
         </Col>
         <Col>
           <h3 className="product-details__name">{product.name}</h3>
