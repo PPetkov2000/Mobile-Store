@@ -39,7 +39,7 @@ function CartScreen({ match, location, history }) {
               return (
                 <Row key={item.product} className="cart__info-item">
                   <Col md={1} sm={1} xs={1}>
-                    <img src={item.images && item.images[0]} alt={item.name} className="cart__info-image" />
+                    <img src={item.images && item.images[0]} alt={item.name} className="cart__info-image" loading="lazy" />
                   </Col>
                   <Col md={5} sm={5} xs={5}>
                     <Link to={`/products/${item.product}`} className="cart__info-product-name">
