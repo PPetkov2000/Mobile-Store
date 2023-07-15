@@ -77,7 +77,7 @@ function PlaceOrderScreen({ history }) {
               cart.cartItems.map((item, index) => (
                 <Row key={index} className="order-info__content">
                   <Col md={2} xs={2} sm={2}>
-                    <img src={item.images && item.images[0]} alt={item.name} className="order-info__product-image" />
+                    <img src={item.images && item.images[0]} alt={item.name} className="order-info__product-image" loading="lazy" />
                   </Col>
                   <Col>
                     <Link to={`/products/${item.product}`} className="order-info__product-name">
