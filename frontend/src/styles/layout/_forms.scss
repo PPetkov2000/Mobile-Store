@@ -2,6 +2,29 @@
 .shipping-address__form,
 .profile__form {
   @extend %box-shadow-container;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: rem;
+  margin-top: rem;
+}
+
+.error-message {
+  font-size: 12px;
+  padding: 3rem;
+  color: red;
+  display: none;
+}
+
+input:invalid[focused='true'] {
+  border: 1px solid red;
+}
+
+input:invalid[focused='true'] ~ .error-message {
+  display: block;
+}
+
+input[type='checkbox'] {
+  margin-left: 0.5rem;
+}
+
+.inputWrapper {
+  display: flex;
 }
