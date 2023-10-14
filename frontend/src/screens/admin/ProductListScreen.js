@@ -66,10 +66,8 @@ function ProductListScreen({ match, history }) {
                   <td>{product.brand}</td>
                   <td>
                     <div className="admin__actions">
-                      <Link to={`/admin/product/${product._id}/edit`}>
-                        <button className="btn-blue--icon">
-                          <i className="fa fa-edit"></i>
-                        </button>
+                      <Link to={`/admin/product/${product._id}/edit`} className="btn-blue--icon">
+                        <i className="fa fa-edit"></i>
                       </Link>
                       <button className="btn-red--icon" onClick={() => deleteProductHandler(product._id)}>
                         <i className="fa fa-trash"></i>
