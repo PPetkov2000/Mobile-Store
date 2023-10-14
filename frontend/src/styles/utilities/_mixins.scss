@@ -15,6 +15,7 @@
   background-color: $color;
   color: white;
   font-size: 0.9rem;
+  transition: all 200ms ease-in-out;
 
   &:hover {
     background-color: transparent;
@@ -26,6 +27,7 @@
     border: 1px solid $color;
     color: $color;
     font-size: 0.9rem;
+    transition: all 200ms ease-in-out;
 
     &:hover {
       background-color: $color;
@@ -37,6 +39,7 @@
     background-color: transparent;
     color: $color;
     border: none;
+    transition: all 200ms ease-in-out;
 
     &:hover {
       transform: scale(1.2);
