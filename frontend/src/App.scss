@@ -302,5 +302,12 @@ main {
   &__actions {
     display: flex;
     justify-content: space-evenly;
+
+    > a {
+      display: flex;
+      align-items: center;
+      padding-inline: 6px;
+      text-decoration: none;
+    }
   }
 }
