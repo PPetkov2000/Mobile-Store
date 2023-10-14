@@ -41,6 +41,12 @@ const UserOrders = ({ pageNumber }) => {
                 <Message variant="danger">{error}</Message>
               </td>
             </tr>
+          ) : orders?.length === 0 ? (
+            <tr style={{ height: '300px' }}>
+              <td colSpan="5" style={{ paddingTop: '2rem', fontSize: '1.2rem', textAlign: 'center', color: '#df500e' }}>
+                You don't have orders yet.
+              </td>
+            </tr>
           ) : (
             orders.map((order) => (
               <tr key={order._id}>
