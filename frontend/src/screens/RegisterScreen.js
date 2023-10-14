@@ -17,9 +17,10 @@ function RegisterScreen({ history, location }) {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    const emptyFields = Object.keys(formData).map((key) => formData[key]).every(Boolean)
+    const emptyFields = Object.values(formData).filter(Boolean).length !== Object.values(formData).length
     if (emptyFields) return
-    dispatch(register(...formData))
+    const { username, email, password, confirmPassword } = formData
+    dispatch(register(username, email, password, confirmPassword))
   }
 
   useEffect(() => {
