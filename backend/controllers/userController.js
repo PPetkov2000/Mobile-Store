@@ -9,6 +9,7 @@ const getUsers = asyncWrapper(async (req, res) => {
 
   const count = await User.countDocuments()
   const users = await User.find()
+    .sort({ updatedAt: 'desc' })
     .limit(usersPerPage)
     .skip(usersPerPage * (page - 1)) // 8 * (1 - 1) = 0 skipped users on page 1 | 8 * (2 - 1) = 8 skipped users on page 2
 
