@@ -6,7 +6,7 @@ const getOrders = asyncWrapper(async (req, res) => {
   const page = Number(req.query.pageNumber) || 1;
 
   const count = await Order.countDocuments();
-  const orders = await Order.find().populate("creator").sort({ createdAt: "desc" }).limit(ordersPerPage).skip(ordersPerPage * (page - 1));
+  const orders = await Order.find().populate("creator").sort({ updatedAt: "desc" }).limit(ordersPerPage).skip(ordersPerPage * (page - 1));
   // 8 * (1 - 1) = 0 skipped orders on page 1 | 8 * (2 - 1) = 8 skipped orders on page 2
 
   res.json({ orders, page, pages: Math.ceil(count / ordersPerPage), count: orders.length });
