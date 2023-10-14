@@ -63,10 +63,8 @@ function UserListScreen({ history, match }) {
                   </td>
                   <td>
                     <div className="admin__actions">
-                      <Link to={`/admin/user/${user._id}/edit`}>
-                        <button className="btn-blue--icon">
-                          <i className="fa fa-edit"></i>
-                        </button>
+                      <Link to={`/admin/user/${user._id}/edit`} className="btn-blue--icon">
+                        <i className="fa fa-edit"></i>
                       </Link>
                       <button className="btn-red--icon" onClick={() => deleteHandler(user._id)}>
                         <i className="fa fa-trash"></i>
