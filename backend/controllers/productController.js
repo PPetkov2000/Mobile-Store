@@ -8,7 +8,10 @@ const getProducts = asyncWrapper(async (req, res) => {
   const keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: "i" } } : {};
 
   const count = await Product.countDocuments({ ...keyword });
-  const products = await Product.find({ ...keyword }).limit(productsPerPage).skip(productsPerPage * (page - 1));
+  const products = await Product.find({ ...keyword })
+      .sort({ updatedAt: 'desc' })
+      .limit(productsPerPage)
+      .skip(productsPerPage * (page - 1));
   // 8 * (1 - 1) = 0 skipped products on page 1 | 8 * (2 - 1) = 8 skipped products on page 2
 
   res.json({ products, page, pages: Math.ceil(count / productsPerPage), count: products.length });
