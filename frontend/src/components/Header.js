@@ -20,7 +20,7 @@ function Header() {
     <header>
       <Navbar collapseOnSelect expand="md" bg="light" variant="light" fixed="top">
         <Navbar.Brand>
-          <img src="./images/logo.jpg" alt="logo" className="logo" />
+          <img src="./images/logo.jpg" alt="logo" className="logo" style={{ aspectRatio: '3.29' }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
