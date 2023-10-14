@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 
-const FormInput = ({ label, handleChange, errorMessage, icon, id, ...inputProps }) => {
+const FormInput = ({ label, handleChange, errorMessage, icon, id, labelClass, ...inputProps }) => {
   const [focused, setFocused] = useState(false)
 
   return (
     <Form.Group controlId={inputProps.name} className={inputProps.parentClass}>
       {label && (
-        <Form.Label className={inputProps.labelClass}>
+        <Form.Label className={labelClass}>
           {icon && <i className={icon} aria-hidden="true" />} {label}
         </Form.Label>
       )}
