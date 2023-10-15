@@ -31,33 +31,33 @@ import {
   PRODUCT_REMOVE_FAVOURITES_SUCCESS,
   PRODUCT_REMOVE_FAVOURITES_FAIL,
 } from '../constants/productConstants'
+import CacheManager from '../utils/cache-manager'
 
-const listProductsCache = new Map()
 export const listProducts =
   (keyword = '', pageNumber = '') =>
   async (dispatch) => {
+    const cacheKey = `products?keyword=${keyword}&pageNumber=${pageNumber}`
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST })
-      const cacheKey = keyword + pageNumber
-      if (!listProductsCache.has(cacheKey)) {
+      if (!CacheManager.get(cacheKey)) {
         const { data } = await api.get(`/api/v1/products?keyword=${keyword}&pageNumber=${pageNumber}`)
-        listProductsCache.set(cacheKey, data)
+        CacheManager.set(cacheKey, data)
       }
-      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: listProductsCache.get(cacheKey) })
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: CacheManager.get(cacheKey) })
     } catch (error) {
       dispatch({ type: PRODUCT_LIST_FAIL, payload: error })
     }
   }
 
-const listProductDetailsCache = new Map()
 export const listProductDetails = (productId) => async (dispatch) => {
+  const cacheKey = `products/${productId}`
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
-    if (!listProductDetailsCache.has(productId)) {
+    if (!CacheManager.get(cacheKey)) {
       const { data } = await api.get(`/api/v1/products/${productId}`)
-      listProductDetailsCache.set(productId, data)
+      CacheManager.set(cacheKey, data)
     }
-    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: listProductDetailsCache.get(productId) })
+    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: CacheManager.get(cacheKey) })
   } catch (error) {
     dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error })
   }
@@ -94,18 +94,16 @@ export const deleteProduct = (productId) => async (dispatch) => {
   }
 }
 
-const listTopProductsCache = new Map()
 export const listTopProducts = () => async (dispatch) => {
+  const cacheKey = 'products/top'
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST })
-    const cacheKey = 'listTopProducts'
-    if (!listTopProductsCache.has(cacheKey)) {
+    if (!CacheManager.get(cacheKey)) {
       const { data } = await api.get('/api/v1/products/top')
-      listTopProductsCache.set(cacheKey, data)
+      CacheManager.set(cacheKey, data)
     }
-    dispatch({ type: PRODUCT_TOP_SUCCESS, payload: listTopProductsCache.get(cacheKey) })
+    dispatch({ type: PRODUCT_TOP_SUCCESS, payload: CacheManager.get(cacheKey) })
   } catch (error) {
-    console.log({ error })
     dispatch({ type: PRODUCT_TOP_FAIL, payload: error })
   }
 }
