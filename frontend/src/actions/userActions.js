@@ -26,6 +26,7 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
 } from '../constants/userConstants'
+import CacheManager from '../utils/cache-manager'
 
 export const register = (username, email, password, confirmPassword) => async (dispatch) => {
   try {
@@ -62,31 +63,31 @@ export const logout = () => (dispatch) => {
   document.location.href = '/login'
 }
 
-const listUsersCache = new Map()
 export const listUsers =
   (pageNumber = '') =>
   async (dispatch) => {
+    const cacheKey = `users?pageNumber=${pageNumber}`
     try {
       dispatch({ type: USER_LIST_REQUEST })
-      if (!listUsersCache.has(pageNumber)) {
+      if (!CacheManager.get(cacheKey)) {
         const { data } = await api.get(`/api/v1/users?pageNumber=${pageNumber}`)
-        listUsersCache.set(pageNumber, data)
+        CacheManager.set(cacheKey, data)
       }
-      dispatch({ type: USER_LIST_SUCCESS, payload: listUsersCache.get(pageNumber) })
+      dispatch({ type: USER_LIST_SUCCESS, payload: CacheManager.get(cacheKey) })
     } catch (error) {
       dispatch({ type: USER_LIST_FAIL, payload: error })
     }
   }
 
-const getUserDetailsCache = new Map()
 export const getUserDetails = (userId) => async (dispatch) => {
+  const cacheKey = `users/${userId}`
   try {
     dispatch({ type: USER_DETAILS_REQUEST })
-    if (!getUserDetailsCache.has(userId)) {
+    if (!CacheManager.get(cacheKey)) {
       const { data } = await api.get(`/api/v1/users/${userId}`)
-      getUserDetailsCache.set(userId, data)
+      CacheManager.set(cacheKey, data)
     }
-    dispatch({ type: USER_DETAILS_SUCCESS, payload: getUserDetailsCache.get(userId) })
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: CacheManager.get(cacheKey) })
   } catch (error) {
     dispatch({ type: USER_DETAILS_FAIL, payload: error })
   }
