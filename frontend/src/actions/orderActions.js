@@ -17,6 +17,7 @@ import {
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
 } from '../constants/orderConstants'
+import CacheManager from '../utils/cache-manager'
 
 export const createOrder = (order) => async (dispatch) => {
   try {
@@ -30,47 +31,47 @@ export const createOrder = (order) => async (dispatch) => {
   }
 }
 
-const listOrdersCache = new Map()
 export const listOrders =
   (pageNumber = '') =>
   async (dispatch) => {
+    const cacheKey = `orders?pageNumber=${pageNumber}`
     try {
       dispatch({ type: ORDER_LIST_REQUEST })
-      if (!listOrdersCache.has(pageNumber)) {
+      if (!CacheManager.get(cacheKey)) {
         const { data } = await api.get(`/api/v1/orders?pageNumber=${pageNumber}`)
-        listOrdersCache.set(pageNumber, data)
+        CacheManager.set(cacheKey, data)
       }
-      dispatch({ type: ORDER_LIST_SUCCESS, payload: listOrdersCache.get(pageNumber) })
+      dispatch({ type: ORDER_LIST_SUCCESS, payload: CacheManager.get(cacheKey) })
     } catch (error) {
       dispatch({ type: ORDER_LIST_FAIL, payload: error })
     }
   }
 
-const listMyOrdersCache = new Map()
 export const listMyOrders =
   (pageNumber = '') =>
   async (dispatch) => {
+    const cacheKey = `orders/myorders?pageNumber=${pageNumber}`
     try {
       dispatch({ type: ORDER_LIST_MY_REQUEST })
-      if (!listMyOrdersCache.has(pageNumber)) {
+      if (!CacheManager.get(cacheKey)) {
         const { data } = await api.get(`/api/v1/orders/myorders?pageNumber=${pageNumber}`)
-        listMyOrdersCache.set(pageNumber, data)
+        CacheManager.set(cacheKey, data)
       }
-      dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: listMyOrdersCache.get(pageNumber) })
+      dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: CacheManager.get(cacheKey) })
     } catch (error) {
       dispatch({ type: ORDER_LIST_MY_FAIL, payload: error })
     }
   }
 
-const getOrderDetailsCache = new Map()
 export const getOrderDetails = (orderId) => async (dispatch) => {
+  const cacheKey = `orders/${orderId}`
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST })
-    if (!getOrderDetailsCache.has(orderId)) {
+    if (!CacheManager.get(cacheKey)) {
       const { data } = await api.get(`/api/v1/orders/${orderId}`)
-      getOrderDetailsCache.set(orderId, data)
+      CacheManager.set(cacheKey, data)
     }
-    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: getOrderDetailsCache.get(orderId) })
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: CacheManager.get(cacheKey) })
   } catch (error) {
     dispatch({ type: ORDER_DETAILS_FAIL, payload: error })
   }
