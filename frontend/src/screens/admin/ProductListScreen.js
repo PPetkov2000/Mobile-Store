@@ -41,7 +41,7 @@ function ProductListScreen({ match, history }) {
               <th>NAME</th>
               <th>PRICE</th>
               <th>BRAND</th>
-              <th></th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -66,10 +66,15 @@ function ProductListScreen({ match, history }) {
                   <td>{product.brand}</td>
                   <td>
                     <div className="admin__actions">
-                      <Link to={`/admin/product/${product._id}/edit`} className="btn-blue--icon">
+                      <Link to={`/admin/product/${product._id}/edit`} className="btn-blue--icon" title="Edit Product" aria-label="Edit Product">
                         <i className="fa fa-edit"></i>
                       </Link>
-                      <button className="btn-red--icon" onClick={() => deleteProductHandler(product._id)}>
+                      <button
+                        className="btn-red--icon"
+                        onClick={() => deleteProductHandler(product._id)}
+                        title="Edit Product"
+                        aria-label="Edit Product"
+                      >
                         <i className="fa fa-trash"></i>
                       </button>
                     </div>
