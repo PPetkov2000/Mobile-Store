@@ -60,7 +60,11 @@ function ProductListScreen({ match, history }) {
             ) : (
               products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product._id}</td>
+                  <td>
+                    <Link to={`/products/${product._id}`} className="btn-blue--icon" title="Go to product details" aria-label="Go to product details">
+                      {product._id}
+                    </Link>
+                  </td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.brand}</td>
