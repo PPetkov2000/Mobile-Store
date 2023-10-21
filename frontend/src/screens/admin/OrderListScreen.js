@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Table } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import { listOrders } from '../../actions/orderActions'
-import { Link } from 'react-router-dom'
 import Paginate from '../../components/Paginate'
+import { formatDate } from '../../utils/dateFormatter'
 
 function OrderListScreen({ match }) {
   const dispatch = useDispatch()
@@ -47,9 +48,13 @@ function OrderListScreen({ match }) {
             ) : (
               orders.map((order) => (
                 <tr key={order._id}>
-                  <td>{order._id}</td>
+                  <td>
+                    <Link to={`/orders/${order._id}`} className="btn-blue--icon" title="Go to order details" aria-label="Go to order details">
+                      {order._id}
+                    </Link>
+                  </td>
                   <td>{order.creator && order.creator.username}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{formatDate(order.createdAt)}</td>
                   <td>${order.totalPrice.toFixed(2)}</td>
                   <td className="text-center">
                     {order.isPaid ? new Date(Number(order.paidAt)).toLocaleDateString() : <i className="fa fa-times btn-red--icon"></i>}
