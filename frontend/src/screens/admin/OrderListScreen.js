@@ -27,8 +27,8 @@ function OrderListScreen({ match }) {
               <th>USER</th>
               <th>DATE</th>
               <th>TOTAL</th>
-              <th>PAID</th>
-              <th></th>
+              <th className="text-center">PAID</th>
+              <th />
             </tr>
           </thead>
           <tbody>
