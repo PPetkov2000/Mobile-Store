@@ -33,8 +33,8 @@ function UserListScreen({ history, match }) {
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th></th>
+              <th className="text-center">ADMIN</th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -63,10 +63,10 @@ function UserListScreen({ history, match }) {
                   </td>
                   <td>
                     <div className="admin__actions">
-                      <Link to={`/admin/user/${user._id}/edit`} className="btn-blue--icon">
+                      <Link to={`/admin/user/${user._id}/edit`} className="btn-blue--icon" title="Edit User" aria-label="Edit User">
                         <i className="fa fa-edit"></i>
                       </Link>
-                      <button className="btn-red--icon" onClick={() => deleteHandler(user._id)}>
+                      <button className="btn-red--icon" onClick={() => deleteHandler(user._id)} title="Delete User" aria-label="Delete User">
                         <i className="fa fa-trash"></i>
                       </button>
                     </div>
