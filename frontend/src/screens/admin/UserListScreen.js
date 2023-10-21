@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deleteUser, listUsers } from '../../actions/userActions'
+import { formatDate } from '../../utils/dateFormatter'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import Paginate from '../../components/Paginate'
@@ -11,11 +12,12 @@ function UserListScreen({ history, match }) {
   const dispatch = useDispatch()
   const { loading, error, users, page, pages } = useSelector((state) => state.userList)
   const { success: successDelete } = useSelector((state) => state.userDelete)
+  const { success: successUpdate } = useSelector((state) => state.userUpdate)
   const pageNumber = match.params.pageNumber || 1
 
   useEffect(() => {
     dispatch(listUsers(pageNumber))
-  }, [dispatch, history, successDelete, pageNumber])
+  }, [dispatch, history, successDelete, successUpdate, pageNumber])
 
   const deleteHandler = (userId) => {
     if (window.confirm('Are you sure?')) {
@@ -33,6 +35,8 @@ function UserListScreen({ history, match }) {
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
+              <th className="text-center">CREATED</th>
+              <th className="text-center">UPDATED</th>
               <th className="text-center">ADMIN</th>
               <th />
             </tr>
@@ -58,12 +62,22 @@ function UserListScreen({ history, match }) {
                   <td>
                     <a href={`mailto:${user.email}`}>{user.email}</a>
                   </td>
+                  <td className="text-center">{formatDate(user.createdAt)}</td>
+                  <td className="text-center">{formatDate(user.updatedAt)}</td>
                   <td className="text-center">
                     {user.isAdmin ? <i className="fa fa-check btn-green--icon"></i> : <i className="fa fa-times btn-red--icon"></i>}
                   </td>
                   <td>
                     <div className="admin__actions">
-                      <Link to={`/admin/user/${user._id}/edit`} className="btn-blue--icon" title="Edit User" aria-label="Edit User">
+                      <Link
+                        to={{
+                          pathname: `/admin/user/${user._id}/edit`,
+                          state: { pageNumber },
+                        }}
+                        className="btn-blue--icon"
+                        title="Edit User"
+                        aria-label="Edit User"
+                      >
                         <i className="fa fa-edit"></i>
                       </Link>
                       <button className="btn-red--icon" onClick={() => deleteHandler(user._id)} title="Delete User" aria-label="Delete User">
