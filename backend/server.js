@@ -17,7 +17,7 @@ const app = express()
 rateLimiter(app)
 
 app.use(helmet())
-app.use(logger('dev'))
+process.env.NODE_ENV !== "prod" && app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false, limit: '50mb' }))
 // app.use(cors())
