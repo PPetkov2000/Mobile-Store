@@ -17,10 +17,10 @@ const app = express()
 rateLimiter(app)
 
 app.use(helmet())
-process.env.NODE_ENV !== "prod" && app.use(logger('dev'))
+process.env.NODE_ENV !== 'prod' && app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false, limit: '50mb' }))
-// app.use(cors())
+// app.use(cors({ origin: '127.0.0.1', credentials: true }))
 // app.use(cookieParser())
 app.use(setCache())
 
