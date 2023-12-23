@@ -76,8 +76,8 @@ function ProductListScreen({ match, history }) {
                       <button
                         className="btn-red--icon"
                         onClick={() => deleteProductHandler(product._id)}
-                        title="Edit Product"
-                        aria-label="Edit Product"
+                        title="Delete Product"
+                        aria-label="Delete Product"
                       >
                         <i className="fa fa-trash"></i>
                       </button>
