@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const connectDB = async () => {
   try {
@@ -6,13 +6,28 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       useCreateIndex: true,
-    });
+    })
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
+    console.error(`Error: ${error.message}`)
+    process.exit(1)
   }
-};
+}
 
-module.exports = connectDB;
+mongoose.connection.on('disconnected', () => {
+  console.info('[Service:Database] Disconnected.')
+
+  // [optional] exit app when database is disconnected
+  // process.exit(1);
+})
+
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    console.info('INFO: Node is down. So the Mongoose.')
+
+    process.exit(0)
+  })
+})
+
+module.exports = connectDB
