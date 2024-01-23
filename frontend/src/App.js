@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { Container, Spinner } from 'react-bootstrap'
 import './App.scss'
 import PrivateRoute from './router/PrivateRoute'
@@ -58,8 +58,9 @@ function App() {
                 <AdminRoute path="/admin/orderlist" exact component={OrderListScreen} />
                 <AdminRoute path="/admin/orderlist/:pageNumber" exact component={OrderListScreen} />
                 <Route path="/forbidden" component={Forbidden} />
+                <Route path="/not-found" component={PageNotFound} />
               </Container>
-              <Route path="*" component={PageNotFound} />
+              <Route path="*" component={() => <Redirect to="/not-found" />} />
             </Suspense>
           </Switch>
         </ErrorBoundary>
