@@ -144,7 +144,7 @@ const authUser = asyncWrapper(async (req, res) => {
     })
 
     // req.session.user = user;
-    // res.cookie('session', req.session.id, { httpOnly: true });
+    // res.cookie('session', req.session.id, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 10000000 });
   } else {
     res.status(401)
     throw new Error('Invalid email or password')
