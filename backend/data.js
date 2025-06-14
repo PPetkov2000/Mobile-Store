@@ -5,8 +5,8 @@ const bcrypt = require("bcrypt");
 module.exports = {
   users: [
     {
-      email: "plamen1@email.com",
-      username: "Plamen",
+      email: "admin@email.com",
+      username: "Admin",
       password: bcrypt.hashSync("123", 10),
       isAdmin: true,
       favouriteProducts: [],
